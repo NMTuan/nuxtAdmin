@@ -2,13 +2,15 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-09 15:22:26
- * @LastEditTime: 2024-02-27 16:58:36
+ * @LastEditTime: 2024-02-27 20:28:01
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\middleware\auth.global.ts
  */
 export default defineNuxtRouteMiddleware(async (to, from) => {
     const userStore = useUserStore()
+    const pageStore = usePageStore()
+    console.log('route', to)
 
     // 1 无token，则跳转登录页面
     if (!userStore.token) {
@@ -27,7 +29,11 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
         }
 
         // 3 有id，则认定为已登录，已获取用户信息，直接判断to页面是否有权限即可
-        if (!userStore.routes.find((route) => route.route === to.name)) {
+        if (
+            !userStore.routes.find(
+                (route) => route.route === 'index' || to.params.slug.join('__')
+            )
+        ) {
             abortNavigation(
                 createError({
                     statusCode: 403,
@@ -36,4 +42,6 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
             )
         }
     }
+
+    pageStore.handlerConfig(to)
 })

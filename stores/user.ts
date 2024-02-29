@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-09 14:29:39
- * @LastEditTime: 2024-02-27 15:19:24
+ * @LastEditTime: 2024-02-29 09:38:30
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\stores\user.ts
@@ -13,9 +13,13 @@ const flat = (arr, pLabel = '', pValue = '') => {
     return arr.reduce((total, item, index) => {
         const label = pLabel ? `${pLabel}-${item.label}` : item.label
         const value = pValue ? `${pValue}__${item.value}` : item.value
+        const path = value.replaceAll('__', '/')
         total.push({
             name: label,
             route: value,
+            path: `/${path}`,
+            layout: item.layout,
+            props: item.props,
             label: item.label,
             value: item.value
         })
