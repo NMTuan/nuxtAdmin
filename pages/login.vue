@@ -2,10 +2,10 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-08 16:56:10
- * @LastEditTime: 2024-02-10 10:36:32
+ * @LastEditTime: 2024-02-29 13:45:08
  * @LastEditors: NMTuan
  * @Description: 
- * @FilePath: /nuxtAdmin/pages/login.vue
+ * @FilePath: \nuxtAdmin\pages\login.vue
 -->
 <template>
     <div>
@@ -42,7 +42,7 @@ const submit = () => {
             userStore.token = res.data.token
         }
         results.value = res
-        navigateTo({ path: '/' })
+        navigateTo('/index')
     })
 }
 </script>

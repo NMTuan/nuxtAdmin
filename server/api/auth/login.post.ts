@@ -2,10 +2,10 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-08 20:42:54
- * @LastEditTime: 2024-02-10 10:30:33
+ * @LastEditTime: 2024-02-29 13:41:40
  * @LastEditors: NMTuan
  * @Description:
- * @FilePath: /nuxtAdmin/server/api/auth/login.post.ts
+ * @FilePath: \nuxtAdmin\server\api\auth\login.post.ts
  */
 import jwt from 'jsonwebtoken'
 
@@ -21,6 +21,6 @@ export default defineEventHandler(async (evt) => {
 
     return rs({
         username: body.username,
-        token: 'Bearer ' + token
+        token: token
     })
 })

@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:34:38
- * @LastEditTime: 2024-02-29 10:51:57
+ * @LastEditTime: 2024-02-29 14:03:53
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\stores\page.ts
@@ -11,12 +11,22 @@ import { defineStore } from 'pinia'
 
 export const usePageStore = defineStore('page', () => {
     const userStore = useUserStore()
-    const config = ref({})
+    const apiStore = useApiStore()
+    const route = useRoute()
 
+    const actions = ref([])
     const moduleConfig = ref({})
     const pageConfig = ref({})
     const actionConfig = ref({})
-    const actions = ref([])
+    const config = computed(() => {
+        if (route.params.action) {
+            return actionConfig.value
+        } else if (route.params.page) {
+            return pageConfig.value
+        } else {
+            return moduleConfig.value
+        }
+    })
     // 处理所以config信息
     const handlerConfig = (to) => {
         const { module, page, action } = to.params
@@ -65,6 +75,18 @@ export const usePageStore = defineStore('page', () => {
             query
         }
     }
+
+    const fetch = (query) => {
+        const url = `${apiStore.url}${config.value.path}`
+        const options = {
+            method: config.value.fetchType || 'GET',
+            query,
+            headers: {
+                Authorization: 'Bearer ' + userStore.token
+            }
+        }
+        return useFetch(url, options)
+    }
     return {
         config,
         moduleConfig,
@@ -72,6 +94,7 @@ export const usePageStore = defineStore('page', () => {
         actionConfig,
         actions,
         handlerConfig,
-        handlerActionTo
+        handlerActionTo,
+        fetch: fetch
     }
 })

@@ -20,7 +20,7 @@ export default defineNuxtRouteMiddleware(async (to, from) => {
     } else {
         // 如果在登录页，则跳转至首页
         if (to.name === 'login') {
-            return navigateTo({ name: 'index' })
+            return navigateTo('/index')
         }
 
         // 2 有token，没有id，则去获取用户信息

@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-09 14:29:39
- * @LastEditTime: 2024-02-29 09:38:30
+ * @LastEditTime: 2024-02-29 13:34:20
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\stores\user.ts
@@ -14,14 +14,15 @@ const flat = (arr, pLabel = '', pValue = '') => {
         const label = pLabel ? `${pLabel}-${item.label}` : item.label
         const value = pValue ? `${pValue}__${item.value}` : item.value
         const path = value.replaceAll('__', '/')
+        const clone = JSON.parse(JSON.stringify(item))
+        if (clone.children) {
+            delete clone.children
+        }
         total.push({
             name: label,
             route: value,
             path: `/${path}`,
-            layout: item.layout,
-            props: item.props,
-            label: item.label,
-            value: item.value
+            ...clone
         })
         if (Array.isArray(item.children) && item.children.length > 0) {
             var child = flat(item.children, label, value)
@@ -33,6 +34,7 @@ const flat = (arr, pLabel = '', pValue = '') => {
 }
 
 export const useUserStore = defineStore('user', () => {
+    const apiStore = useApiStore()
     const id = ref('')
     const name = ref('')
     const nick = ref('')
@@ -46,13 +48,27 @@ export const useUserStore = defineStore('user', () => {
     const getMe = async () => {
         const userInfo = await $fetch('/api/users/me', {
             headers: {
-                Authorization: token.value || ''
+                Authorization: 'Bearer ' + token.value
             },
             method: 'GET'
         })
         if (userInfo.code === 200) {
+            id.value = userInfo.data.user.id
             menu.value = userInfo.data.menu
             routes.value = flat(menu.value)
+
+            if (userInfo.data.api.url) {
+                apiStore.url = userInfo.data.api.url
+            }
+            if (userInfo.data.api.login) {
+                apiStore.login = userInfo.data.api.login
+            }
+            if (userInfo.data.api.logout) {
+                apiStore.logout = userInfo.data.api.logout
+            }
+            if (userInfo.data.api.getMe) {
+                apiStore.getMe = userInfo.data.api.getMe
+            }
         }
         return userInfo.data
     }
