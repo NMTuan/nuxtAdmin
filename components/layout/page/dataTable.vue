@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:30:33
- * @LastEditTime: 2024-03-04 14:32:01
+ * @LastEditTime: 2024-03-04 16:32:09
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\layout\page\dataTable.vue
@@ -18,6 +18,10 @@
                         :key="action" :to="pageStore.handlerActionTo(row, action)">
                         {{ action.label }}
                     </UButton>
+                </template>
+
+                <template v-else-if="col.component">
+                    <LayoutPageDataTableColumn :row="row" :column="col" :value="row[col.key]"></LayoutPageDataTableColumn>
                 </template>
 
                 <template v-else-if="col.key === 'id'">
