@@ -8,15 +8,13 @@
  * @FilePath: \nuxtAdmin\pages\[module].vue
 -->
 <template>
-    <div>
+    <div class="border p-4 m-4">
         module
         <p>params: {{ $route.params }}</p>
         <p>config: {{ pageStore.moduleConfig }}</p>
-        <hr>
         <NuxtPage />
     </div>
 </template>
 <script setup>
 const pageStore = usePageStore()
-
 </script>

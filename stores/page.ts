@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:34:38
- * @LastEditTime: 2024-02-29 14:03:53
+ * @LastEditTime: 2024-03-04 10:51:02
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\stores\page.ts
@@ -76,10 +76,21 @@ export const usePageStore = defineStore('page', () => {
         }
     }
 
-    const fetch = (query) => {
-        const url = `${apiStore.url}${config.value.path}`
+    // 获取数据
+    const fetch = (type = 'page', query = {}) => {
+        let url = apiStore.url
+        let method = 'GET'
+        switch (type) {
+            case 'page':
+                url += pageConfig.value.path
+                method = pageConfig.value.fetchType || 'GET'
+                break
+            case 'action':
+                url += actionConfig.value.path
+                method = actionConfig.value.fetchType || 'GET'
+        }
         const options = {
-            method: config.value.fetchType || 'GET',
+            method,
             query,
             headers: {
                 Authorization: 'Bearer ' + userStore.token
@@ -87,6 +98,14 @@ export const usePageStore = defineStore('page', () => {
         }
         return useFetch(url, options)
     }
+
+    // 路由后退
+    const goBack = () => {
+        let path = config.value.path.split('/')
+        path.pop()
+        navigateTo(path.join('/'))
+    }
+
     return {
         config,
         moduleConfig,
@@ -95,6 +114,7 @@ export const usePageStore = defineStore('page', () => {
         actions,
         handlerConfig,
         handlerActionTo,
-        fetch: fetch
+        fetch,
+        goBack
     }
 })

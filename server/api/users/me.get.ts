@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-27 13:47:55
- * @LastEditTime: 2024-03-03 20:45:10
+ * @LastEditTime: 2024-03-04 10:56:40
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\users\me.get.ts
@@ -69,7 +69,7 @@ export default defineEventHandler(async (evt) => {
                                 value: 'delete',
                                 positions: ['row'],
                                 layout: 'delete',
-                                props: ['sex']
+                                props: ['city']
                             }
                         ]
                     },

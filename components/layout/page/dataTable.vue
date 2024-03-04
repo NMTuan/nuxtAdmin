@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:30:33
- * @LastEditTime: 2024-03-03 21:36:03
+ * @LastEditTime: 2024-03-04 10:32:30
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\layout\page\dataTable.vue
@@ -47,7 +47,7 @@ const columns = computed(() => {
     return pageStore.pageConfig.layoutProps.columns
 })
 
-const { data, pending, error, refresh } = await pageStore.fetch({
+const { data, pending, error, refresh } = await pageStore.fetch('page', {
     page,
     limit
 })

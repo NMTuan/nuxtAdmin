@@ -2,13 +2,13 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:16:40
- * @LastEditTime: 2024-02-29 11:05:42
+ * @LastEditTime: 2024-03-04 10:25:13
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\pages\[module]\[page]\[action].vue
 -->
 <template>
-    <div>
+    <div class="border p-4 m-4">
         action
         <p>params: {{ $route.params }}</p>
         <p>config: {{ pageStore.actionConfig }}</p>
