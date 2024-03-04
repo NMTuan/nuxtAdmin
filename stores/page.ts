@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:34:38
- * @LastEditTime: 2024-03-04 10:51:02
+ * @LastEditTime: 2024-03-04 14:35:35
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\stores\page.ts
@@ -82,11 +82,11 @@ export const usePageStore = defineStore('page', () => {
         let method = 'GET'
         switch (type) {
             case 'page':
-                url += pageConfig.value.path
+                url += pageConfig.value.ffetchPath || pageConfig.value.path
                 method = pageConfig.value.fetchType || 'GET'
                 break
             case 'action':
-                url += actionConfig.value.path
+                url += actionConfig.value.fetchPath || actionConfig.value.path
                 method = actionConfig.value.fetchType || 'GET'
         }
         const options = {

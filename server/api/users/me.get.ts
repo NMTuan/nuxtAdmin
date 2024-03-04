@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-27 13:47:55
- * @LastEditTime: 2024-03-04 10:56:40
+ * @LastEditTime: 2024-03-04 14:34:02
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\users\me.get.ts
@@ -33,17 +33,6 @@ export default defineEventHandler(async (evt) => {
                         value: 'user',
                         layout: 'dataTable',
                         // fetchType: 'POST',
-                        layoutProps: {
-                            columns: [
-                                { key: 'index', label: '序号' },
-                                { key: 'id', label: '编号' },
-                                { key: 'name', label: '姓名' },
-                                { key: 'email', label: '邮箱' },
-                                { key: 'city', label: '城市' },
-                                { key: 'country', label: '国家' },
-                                { key: 'actions', label: '操作' }
-                            ]
-                        },
                         children: [
                             {
                                 label: '创建',
@@ -55,7 +44,8 @@ export default defineEventHandler(async (evt) => {
                                 value: 'view',
                                 positions: ['row'],
                                 layout: 'view',
-                                props: ['id']
+                                props: ['id'],
+                                fetchPath: '/user/user'
                             },
                             {
                                 label: '编辑',
