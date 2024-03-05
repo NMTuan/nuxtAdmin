@@ -82,7 +82,7 @@ export const usePageStore = defineStore('page', () => {
         let method = 'GET'
         switch (type) {
             case 'page':
-                url += pageConfig.value.ffetchPath || pageConfig.value.path
+                url += pageConfig.value.fetchPath || pageConfig.value.path
                 method = pageConfig.value.fetchType || 'GET'
                 break
             case 'action':
