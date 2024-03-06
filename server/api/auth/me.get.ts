@@ -2,23 +2,16 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-27 13:47:55
- * @LastEditTime: 2024-03-06 13:29:35
+ * @LastEditTime: 2024-03-06 17:14:44
  * @LastEditors: NMTuan
  * @Description:
- * @FilePath: \nuxtAdmin\server\api\users\me.get.ts
+ * @FilePath: \nuxtAdmin\server\api\auth\me.get.ts
  */
 export default defineEventHandler(async (evt) => {
     // const auth = evt.auth
-    return rs({
-        user: {
-            id: 123456
-        },
-        api: {
-            url: '/api',
-            login: '',
-            logout: '',
-            getMe: ''
-        },
+    return {
+        id: 123456,
+        name: 'nickname',
         menu: [
             {
                 label: '首页',
@@ -72,5 +65,5 @@ export default defineEventHandler(async (evt) => {
                 ]
             }
         ]
-    })
+    }
 })
