@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:31:12
- * @LastEditTime: 2024-03-06 11:02:51
+ * @LastEditTime: 2024-03-06 15:27:12
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\layout\action\edit.vue
@@ -21,15 +21,16 @@
                 </div>
             </template>
 
-            <UForm ref="form" :state="submitData" @submit="handlerSubmit">
+            <UForm ref="form" :state="submitData" :schema="schema" @submit="handlerSubmit">
                 <UFormGroup v-if="fields.length === 0" v-for="(val, key) in formData" :name="key" :label="key"
                     class="mb-4">
                     <UInput :disabled="Object.keys(route.query).includes(key)" v-model="submitData[key]" />
                 </UFormGroup>
-                <UFormGroup v-else v-for="field in fields" :name="field.key" :label="field.label" class="mb-4">
+                <UFormGroup v-else v-for="field in fields" :name="field.key" :label="field.label" class="mb-4"
+                    :required="Object.keys(field.valid || {}).length > 0 || field.valids?.length > 0">
                     <USelectMenu v-if="field.type === 'select'" :options="field.options" value-attribute="value"
                         :multiple="field.multiple" v-model="submitData[field.key]"
-                        :disabled="field.disabled !== undefined ? field.disabled : Object.keys(route.query).includes(field.key) ">
+                        :disabled="field.disabled !== undefined ? field.disabled : Object.keys(route.query).includes(field.key)">
                     </USelectMenu>
                     <UInput v-else
                         :disabled="field.disabled !== undefined ? field.disabled : Object.keys(route.query).includes(field.key)"
@@ -40,7 +41,7 @@
             <!-- <div>{{ $route.query }}</div> -->
             <!-- <div>{{ pageStore.actionConfig }}</div> -->
             <!-- <pre>submitData: {{ submitData }}</pre> -->
-            <!-- <pre>fields: {{ fields }}</pre> -->
+            <!-- <pre>fields: {{ schema.shape }}</pre> -->
 
             <template #footer>
                 <div class="flex justify-end">
@@ -54,6 +55,8 @@
 </template>
 
 <script setup>
+import { z } from 'zod'
+
 const route = useRoute()
 const pageStore = usePageStore()
 const apiStore = useApiStore()
@@ -72,6 +75,45 @@ const fields = computed(() => {
     return data.value.data.fields || []
 })
 
+const schema = computed(() => {
+    const rule = data.value.data.fields.reduce((total, field) => {
+        let shape = z.string()
+        if (field.valid) {
+            Object.keys(field.valid).map((key) => {
+                switch (key) {
+                    case 'required': shape = shape.min(1, field.valid[key])
+                        break
+                    case 'min': shape = shape.min(field.valid[key])
+                        break
+                    case 'max': shape = shape.max(field.valid[key])
+                        break
+                    case 'email': shape = shape.email(field.valid[key])
+                }
+            })
+        }
+
+        if (field.valids) {
+            field.valids.map((item) => {
+                switch (item.key) {
+                    case 'required': shape = shape.min(1, item.message)
+                        break
+                    case 'min': shape = shape.min(item.value, item.message)
+                        break
+                    case 'max': shape = shape.max(item.value, item.message)
+                        break
+                    case 'email': shape = shape.email(item.message)
+                        break
+                }
+            })
+        }
+        total[field.key] = shape
+
+        return total
+    }, {})
+
+    return z.object(rule)
+})
+
 const handlerClose = () => {
     pageStore.goBack()
 }
@@ -85,6 +127,7 @@ const resetForm = () => {
 
 // 提交按钮,触发表单提交
 const submit = () => {
+    console.log('schema', schema.value)
     form.value.submit()
 }
 
