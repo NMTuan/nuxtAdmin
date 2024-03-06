@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:31:12
- * @LastEditTime: 2024-03-05 14:57:23
+ * @LastEditTime: 2024-03-06 11:02:51
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\layout\action\edit.vue
@@ -22,15 +22,25 @@
             </template>
 
             <UForm ref="form" :state="submitData" @submit="handlerSubmit">
-                <UFormGroup v-for="(val, key) in formData" :name="key" :label="key" class="mb-4">
+                <UFormGroup v-if="fields.length === 0" v-for="(val, key) in formData" :name="key" :label="key"
+                    class="mb-4">
                     <UInput :disabled="Object.keys(route.query).includes(key)" v-model="submitData[key]" />
+                </UFormGroup>
+                <UFormGroup v-else v-for="field in fields" :name="field.key" :label="field.label" class="mb-4">
+                    <USelectMenu v-if="field.type === 'select'" :options="field.options" value-attribute="value"
+                        :multiple="field.multiple" v-model="submitData[field.key]"
+                        :disabled="field.disabled !== undefined ? field.disabled : Object.keys(route.query).includes(field.key) ">
+                    </USelectMenu>
+                    <UInput v-else
+                        :disabled="field.disabled !== undefined ? field.disabled : Object.keys(route.query).includes(field.key)"
+                        v-model="submitData[field.key]" />
                 </UFormGroup>
             </UForm>
             <!-- <div>{{ $route.params }}</div> -->
             <!-- <div>{{ $route.query }}</div> -->
             <!-- <div>{{ pageStore.actionConfig }}</div> -->
-            <pre>submitData: {{ submitData }}</pre>
-            <pre>columns: {{ columns }}</pre>
+            <!-- <pre>submitData: {{ submitData }}</pre> -->
+            <!-- <pre>fields: {{ fields }}</pre> -->
 
             <template #footer>
                 <div class="flex justify-end">
@@ -58,8 +68,8 @@ const { data, pending } = await pageStore.fetch('action', route.query)
 const formData = computed(() => {
     return data.value.data.data
 })
-const columns = computed(() => {
-    return data.value.data.columns
+const fields = computed(() => {
+    return data.value.data.fields || []
 })
 
 const handlerClose = () => {

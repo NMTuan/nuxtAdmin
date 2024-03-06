@@ -2,12 +2,12 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-04 11:25:18
- * @LastEditTime: 2024-03-05 11:46:38
+ * @LastEditTime: 2024-03-06 11:03:03
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\user\user\edit.get.ts
  */
-import { users, userLabels, userColbumLabels } from './data'
+import { users, userLabels, citys } from './data'
 
 export default defineEventHandler(async (evt) => {
     const { id } = getQuery(evt)
@@ -17,7 +17,23 @@ export default defineEventHandler(async (evt) => {
         return total
     }, [])
     return rs({
-        data: user
-        // columns: userColbumLabels
+        data: user,
+        fields: [
+            // { key: 'id', label: '编号' },
+            {
+                key: 'name',
+                label: '姓名'
+                // disabled: false
+            },
+            { key: 'email', label: '邮箱' },
+            {
+                key: 'cid',
+                label: '城市',
+                type: 'select',
+                options: citys
+            },
+            { key: 'country', label: '国家' }
+            // { key: 'index', label: '序号' }
+        ]
     })
 })

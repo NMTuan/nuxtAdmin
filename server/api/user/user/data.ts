@@ -4,6 +4,7 @@ const users = [
         name: 'Beatrice Gomez',
         email: 'henurdi@nucma.org',
         city: 'Mejzupaj',
+        cid: '1',
         country: 'New Caledonia'
     },
     {
@@ -11,6 +12,7 @@ const users = [
         name: 'Millie Schultz',
         email: 'jo@wonrok.jo',
         city: 'Nunagwar',
+        cid: '2',
         country: 'Ascension Island'
     },
     {
@@ -18,6 +20,7 @@ const users = [
         name: 'Ronald Castillo',
         email: 'jetwuf@ziz.cz',
         city: 'Mavizo',
+        cid: '3',
         country: 'Latvia'
     },
     {
@@ -25,6 +28,7 @@ const users = [
         name: 'Norman Horton',
         email: 'ku@aw.ae',
         city: 'Bawelebu',
+        cid: '4',
         country: 'Afghanistan'
     },
     {
@@ -32,6 +36,7 @@ const users = [
         name: 'Francis Wells',
         email: 'su@ufo.at',
         city: 'Kispatkem',
+        cid: '5',
         country: 'Algeria'
     },
     {
@@ -39,6 +44,7 @@ const users = [
         name: 'Polly Conner',
         email: 'non@nolsizaz.fk',
         city: 'Iceotonac',
+        cid: '6',
         country: 'Paraguay'
     },
     {
@@ -46,6 +52,7 @@ const users = [
         name: 'Dennis Ruiz',
         email: 'ozjun@du.tn',
         city: 'Fobrarnuj',
+        cid: '7',
         country: 'Mauritius'
     },
     {
@@ -53,6 +60,7 @@ const users = [
         name: 'Laura Vasquez',
         email: 'natom@vu.sr',
         city: 'Kumgulva',
+        cid: '8',
         country: 'Albania'
     },
     {
@@ -60,6 +68,7 @@ const users = [
         name: 'Lou Morris',
         email: 'wip@vajub.al',
         city: 'Gublafrod',
+        cid: '9',
         country: 'Mozambique'
     },
     {
@@ -67,6 +76,7 @@ const users = [
         name: 'Sean Mitchell',
         email: 'besebha@eg.uk',
         city: 'Awonutcav',
+        cid: '10',
         country: 'New Caledonia'
     },
     {
@@ -74,6 +84,7 @@ const users = [
         name: 'Elijah May',
         email: 'za@wipli.lr',
         city: 'Zaevusi',
+        cid: '11',
         country: 'Papua New Guinea'
     },
     {
@@ -81,6 +92,7 @@ const users = [
         name: 'Olga Vasquez',
         email: 'towotvu@gusi.km',
         city: 'Ohocopzib',
+        cid: '12',
         country: 'Ecuador'
     },
     {
@@ -88,6 +100,7 @@ const users = [
         name: 'Tommy Richards',
         email: 'wecap@li.at',
         city: 'Volieze',
+        cid: '13',
         country: 'Tanzania'
     },
     {
@@ -95,6 +108,7 @@ const users = [
         name: 'Lottie Martinez',
         email: 'cuchu@az.ki',
         city: 'Pawtoto',
+        cid: '14',
         country: 'Georgia'
     },
     {
@@ -102,6 +116,7 @@ const users = [
         name: 'Beulah McDonald',
         email: 'guebu@kemjob.nr',
         city: 'Ehfujoli',
+        cid: '15',
         country: 'Anguilla'
     },
     {
@@ -109,6 +124,7 @@ const users = [
         name: 'Lilly Miller',
         email: 'hohdacso@dohikku.bs',
         city: 'Cahbefbaf',
+        cid: '16',
         country: 'Bosnia & Herzegovina'
     },
     {
@@ -116,6 +132,7 @@ const users = [
         name: 'Jeremiah Larson',
         email: 'kabafmoj@ulu.do',
         city: 'Evitevo',
+        cid: '17',
         country: 'Equatorial Guinea'
     },
     {
@@ -123,6 +140,7 @@ const users = [
         name: 'Willie Smith',
         email: 'liwimvu@fa.zw',
         city: 'Ufaforod',
+        cid: '18',
         country: 'Åland Islands'
     },
     {
@@ -130,6 +148,7 @@ const users = [
         name: 'Sophia Daniels',
         email: 'nu@mopkab.kh',
         city: 'Saugma',
+        cid: '19',
         country: 'Nicaragua'
     },
     {
@@ -137,6 +156,7 @@ const users = [
         name: 'John Houston',
         email: 'len@per.lk',
         city: 'Lehhaswu',
+        cid: '20',
         country: 'Micronesia'
     },
     {
@@ -144,6 +164,7 @@ const users = [
         name: 'Daisy Knight',
         email: 'pafezagid@hazfa.st',
         city: 'Megurfu',
+        cid: '21',
         country: 'Belize'
     },
     {
@@ -151,6 +172,7 @@ const users = [
         name: 'Howard Weaver',
         email: 'muj@pim.cd',
         city: 'Likzenda',
+        cid: '22',
         country: 'Western Sahara'
     },
     {
@@ -158,6 +180,7 @@ const users = [
         name: 'Sally Hamilton',
         email: 'nohsiruz@simdi.aq',
         city: 'Zuwiho',
+        cid: '23',
         country: 'Argentina'
     },
     {
@@ -165,6 +188,7 @@ const users = [
         name: 'Elva Sanders',
         email: 'vef@zimzot.py',
         city: 'Afihasnab',
+        cid: '24',
         country: 'Honduras'
     },
     {
@@ -172,6 +196,7 @@ const users = [
         name: 'Julian Stanley',
         email: 'ezu@iluse.ly',
         city: 'Noculho',
+        cid: '25',
         country: 'Benin'
     },
     {
@@ -179,8 +204,38 @@ const users = [
         name: 'Angel Abbott',
         email: 'no@dujez.bj',
         city: 'Gumjahav',
+        cid: '26',
         country: 'Myanmar (Burma)'
     }
+]
+
+export const citys = [
+    { value: '1', label: 'Mejzupaj' },
+    { value: '2', label: 'Nunagwar' },
+    { value: '3', label: 'Mavizo' },
+    { value: '4', label: 'Bawelebu' },
+    { value: '5', label: 'Kispatkem' },
+    { value: '6', label: 'Iceotonac' },
+    { value: '7', label: 'Fobrarnuj' },
+    { value: '8', label: 'Kumgulva' },
+    { value: '9', label: 'Gublafrod' },
+    { value: '10', label: 'Awonutcav' },
+    { value: '11', label: 'Zaevusi' },
+    { value: '12', label: 'Ohocopzib' },
+    { value: '13', label: 'Volieze' },
+    { value: '14', label: 'Pawtoto' },
+    { value: '15', label: 'Ehfujoli' },
+    { value: '16', label: 'Cahbefbaf' },
+    { value: '17', label: 'Evitevo' },
+    { value: '18', label: 'Ufaforod' },
+    { value: '19', label: 'Saugma' },
+    { value: '20', label: 'Lehhaswu' },
+    { value: '21', label: 'Megurfu' },
+    { value: '22', label: 'Likzenda' },
+    { value: '23', label: 'Zuwiho' },
+    { value: '24', label: 'Afihasnab' },
+    { value: '25', label: 'Noculho' },
+    { value: '26', label: 'Gumjahav' }
 ]
 
 users.map((item, index) => (item.index = index + 1))
@@ -192,6 +247,7 @@ export const userLabels = {
     name: '姓名',
     email: '邮箱',
     city: '城市',
+    cid: '城市ID',
     country: '国家',
     index: '序号'
 }

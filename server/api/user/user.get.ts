@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 12:14:50
- * @LastEditTime: 2024-03-04 17:20:58
+ * @LastEditTime: 2024-03-06 10:11:24
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\user\user.get.ts
@@ -48,6 +48,7 @@ export default defineEventHandler(async (evt) => {
             { key: 'name', label: '姓名' },
             { key: 'email', label: '邮箱' },
             { key: 'city', label: '城市' },
+            { key: 'cid', label: '城市编号' },
             { key: 'country', label: '国家' },
             { key: 'actions', label: '操作' }
         ],
