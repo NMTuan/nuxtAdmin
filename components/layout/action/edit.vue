@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:31:12
- * @LastEditTime: 2024-03-06 15:27:12
+ * @LastEditTime: 2024-03-06 15:56:16
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\layout\action\edit.vue
@@ -38,7 +38,7 @@
                 </UFormGroup>
             </UForm>
             <!-- <div>{{ $route.params }}</div> -->
-            <!-- <div>{{ $route.query }}</div> -->
+            <div>{{ $route.query }}</div>
             <!-- <div>{{ pageStore.actionConfig }}</div> -->
             <!-- <pre>submitData: {{ submitData }}</pre> -->
             <!-- <pre>fields: {{ schema.shape }}</pre> -->
@@ -65,6 +65,8 @@ const isOpen = ref(true)
 const form = ref()
 const submitData = ref({})
 const toast = useToast()
+const updateRow = inject('updateRow')
+
 
 const { data, pending } = await pageStore.fetch('action', route.query)
 
@@ -154,6 +156,7 @@ const handlerSubmit = async ({ data }) => {
             color: 'green',
             title: res.message || 'success !'
         })
+        updateRow(route.query, res.data.data)
         handlerClose()
     }
 }

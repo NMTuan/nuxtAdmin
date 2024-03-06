@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:30:33
- * @LastEditTime: 2024-03-04 16:32:09
+ * @LastEditTime: 2024-03-06 16:00:51
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\layout\page\dataTable.vue
@@ -21,7 +21,8 @@
                 </template>
 
                 <template v-else-if="col.component">
-                    <LayoutPageDataTableColumn :row="row" :column="col" :value="row[col.key]"></LayoutPageDataTableColumn>
+                    <LayoutPageDataTableColumn :row="row" :column="col" :value="row[col.key]">
+                    </LayoutPageDataTableColumn>
                 </template>
 
                 <template v-else-if="col.key === 'id'">
@@ -61,5 +62,27 @@ const columns = computed(() => {
 const total = computed(() => {
     return data.value.data.total
 })
+
+// 更新行
+const updateRow = (query, data) => {
+    const row = list.value.find(item => {
+        return Object.keys(query).every(key => item[key] === query[key])
+    })
+    if (row) {
+        Object.assign(row, data)
+    }
+}
+provide('updateRow', updateRow)
+// 删除行
+const removeRow = (query) => {
+    const row = list.value.find(item => {
+        return Object.keys(query).every(key => item[key] === query[key])
+    })
+    if (row) {
+        list.value.splice(list.value.indexOf(row), 1)
+    }
+}
+provide('removeRow', removeRow)
+
 
 </script>
