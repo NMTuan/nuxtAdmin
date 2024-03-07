@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:31:12
- * @LastEditTime: 2024-03-06 15:56:16
+ * @LastEditTime: 2024-03-07 11:08:31
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\layout\action\edit.vue
@@ -50,7 +50,7 @@
                 </div>
             </template>
         </UCard>
-
+        <slot />
     </UModal>
 </template>
 
@@ -66,9 +66,14 @@ const form = ref()
 const submitData = ref({})
 const toast = useToast()
 const updateRow = inject('updateRow')
+const pageInfo = inject('pageInfo')
 
 
-const { data, pending } = await pageStore.fetch('action', route.query)
+// const { data, pending } = await pageStore.fetch('action', route.query)
+const { data, peding } = await useFetch('/api' + pageInfo.value.path, {
+    query: route.query
+})
+console.log('data', data)
 
 const formData = computed(() => {
     return data.value.data.data
