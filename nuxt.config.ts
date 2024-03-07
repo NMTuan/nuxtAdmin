@@ -25,7 +25,10 @@ export default defineNuxtConfig({
                 signUp: false, //{ path: '/register', method: 'post' },
                 getSession: { path: '/me', method: 'get' }
             },
-            token: { signInResponseTokenPointer: '/data/token' }
+            token: {
+                signInResponseTokenPointer: '/data/token',
+                maxAgeInSeconds: 60 * 60 * 24
+            }
         }
     },
     imports: {
