@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-07 19:23:22
- * @LastEditTime: 2024-03-07 20:15:48
+ * @LastEditTime: 2024-03-07 20:30:14
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\action\confirm.vue
@@ -27,7 +27,7 @@
                 <UButton variant="ghost" class="mr-4" @click="handlerClose">
                     {{ actionInfo?.btns.cancel || 'cancel' }}
                 </UButton>
-                <UButton color="red" :loading="loading" @click="submit">
+                <UButton :loading="loading" @click="submit">
                     {{ actionInfo?.btns.submit || 'submit' }}
                 </UButton>
             </div>

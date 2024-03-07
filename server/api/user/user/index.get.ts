@@ -2,10 +2,10 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 12:14:50
- * @LastEditTime: 2024-03-06 10:11:24
+ * @LastEditTime: 2024-03-07 20:23:21
  * @LastEditors: NMTuan
  * @Description:
- * @FilePath: \nuxtAdmin\server\api\user\user.get.ts
+ * @FilePath: \nuxtAdmin\server\api\user\user\index.get.ts
  */
 
 import { users, userLabels, userColbumLabels } from './user/data'
