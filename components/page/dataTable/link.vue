@@ -1,12 +1,11 @@
-
 <!--
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-04 16:29:19
- * @LastEditTime: 2024-03-04 17:12:23
+ * @LastEditTime: 2024-03-07 19:09:28
  * @LastEditors: NMTuan
  * @Description: 
- * @FilePath: \nuxtAdmin\components\layout\page\dataTable\link.vue
+ * @FilePath: \nuxtAdmin\components\page\dataTable\link.vue
 -->
 
 <template>
@@ -17,24 +16,23 @@
         {{ value }}
     </ULink>
 </template>
+
 <script setup>
-const row = inject('row')
-const column = inject('column')
-const value = inject('value')
+const props = defineProps(['row', 'column', 'value'])
 
 // 构建参数
 const query = computed(() => {
     // 如果有配置query，则从row中提取数据
-    if (Array.isArray(column.query)) {
-        return column.query.reduce((total, item, index) => {
-            total[item] = row[item]
+    if (Array.isArray(props.column.query)) {
+        return props.column.query.reduce((total, item, index) => {
+            total[item] = props.row[item]
             return total
         }, {})
     }
     // 否则直接拿当前key和value传参
     else {
         return {
-            [column.key]: row[column.key]
+            [props.column.key]: props.row[props.column.key]
         }
     }
 

@@ -2,21 +2,51 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:18:04
- * @LastEditTime: 2024-03-04 10:23:55
+ * @LastEditTime: 2024-03-07 14:29:17
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\pages\[module]\[page].vue
 -->
+
 <template>
     <div class="border p-4 m-4">
-        page
-        <p>params: {{ $route.params }}</p>
-        <p>config: {{ pageStore.pageConfig }}</p>
+        <p>pageInfo: {{ pageInfo }}</p>
         <hr>
-        <LayoutPageDataTable v-if="pageStore.pageConfig.layout === 'dataTable'"></LayoutPageDataTable>
-        <LayoutPageView v-if="pageStore.pageConfig.layout === 'view'"></LayoutPageView>
+        <p>pageActions: {{ pageActions }}</p>
+        <hr>
+        <PageDataTable v-if="pageInfo.component === 'dataTable'"></PageDataTable>
+        <NuxtPage v-else />
     </div>
 </template>
+
 <script setup>
-const pageStore = usePageStore()
+const route = useRoute()
+const userStore = useUserStore()
+const { token } = useAuth()
+
+const moduleInfo = inject('moduleInfo')
+const baseURL = inject('baseURL')
+
+const { module, page } = route.params
+const pageInfo = computed(() => {
+    return userStore.routes.find(route => route.route === `${module}__${page}`)
+})
+provide('pageInfo', pageInfo)
+
+// 获取数据
+const pageFetch = (query = {}) => {
+    return useLazyFetch(`${baseURL}${pageInfo.value.path}`, {
+        method: pageInfo.fetchType || 'GET',
+        headers: {
+            Authorization: token.value
+        },
+        query
+    })
+}
+provide('pageFetch', pageFetch)
+
+const pageActions = computed(() => {
+    return userStore.routes.filter(route => route.route.startsWith(`${module}__${page}__`))
+})
+provide('pageActions', pageActions)
 </script>

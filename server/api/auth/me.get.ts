@@ -2,23 +2,16 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-27 13:47:55
- * @LastEditTime: 2024-03-06 13:29:35
+ * @LastEditTime: 2024-03-08 10:47:26
  * @LastEditors: NMTuan
  * @Description:
- * @FilePath: \nuxtAdmin\server\api\users\me.get.ts
+ * @FilePath: \nuxtAdmin\server\api\auth\me.get.ts
  */
 export default defineEventHandler(async (evt) => {
     // const auth = evt.auth
-    return rs({
-        user: {
-            id: 123456
-        },
-        api: {
-            url: '/api',
-            login: '',
-            logout: '',
-            getMe: ''
-        },
+    return {
+        id: 123456,
+        name: 'nickname',
         menu: [
             {
                 label: '首页',
@@ -31,46 +24,64 @@ export default defineEventHandler(async (evt) => {
                     {
                         label: '用户',
                         value: 'user',
-                        layout: 'dataTable',
+                        component: 'dataTable',
                         // fetchType: 'POST',
-                        children: [
+                        actions: [
                             {
                                 label: '创建',
                                 value: 'create',
-                                positions: ['table']
+                                component: 'form',
+                                btns: {
+                                    submit: '提交',
+                                    cancel: '取消'
+                                },
+                                positions: ['top']
                             },
                             {
                                 label: '查看',
                                 value: 'view',
+                                component: 'detail',
+                                // showType: 'slideover',
+                                btns: {
+                                    close: '关闭'
+                                },
                                 positions: ['row'],
-                                layout: 'view',
-                                props: ['id'],
+                                props: ['id', 'name'],
                                 fetchPath: '/user/user'
                             },
                             {
                                 label: '编辑',
                                 value: 'edit',
+                                component: 'form',
+                                showType: 'slideover',
+                                btns: {
+                                    submit: '更新',
+                                    cancel: '取消'
+                                },
                                 positions: ['row'],
-                                layout: 'edit',
-                                props: ['id', 'name']
+                                props: ['id']
                             },
                             {
                                 label: '删除',
                                 value: 'delete',
+                                component: 'confirm',
+                                btns: {
+                                    submit: '删除',
+                                    cancel: '取消'
+                                },
                                 positions: ['row'],
-                                layout: 'delete',
-                                props: ['city']
+                                props: ['id']
                             }
                         ]
                     },
                     {
                         label: '角色',
                         value: 'role',
-                        layout: 'view'
+                        component: 'view'
                     },
                     { label: '权限', value: 'permission' }
                 ]
             }
         ]
-    })
+    }
 })
