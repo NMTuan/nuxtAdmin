@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-27 13:47:55
- * @LastEditTime: 2024-03-07 20:12:55
+ * @LastEditTime: 2024-03-08 10:47:26
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\auth\me.get.ts
@@ -30,6 +30,11 @@ export default defineEventHandler(async (evt) => {
                             {
                                 label: '创建',
                                 value: 'create',
+                                component: 'form',
+                                btns: {
+                                    submit: '提交',
+                                    cancel: '取消'
+                                },
                                 positions: ['top']
                             },
                             {

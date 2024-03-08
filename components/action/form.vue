@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:31:12
- * @LastEditTime: 2024-03-07 20:17:20
+ * @LastEditTime: 2024-03-08 11:47:59
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\action\form.vue
@@ -89,22 +89,18 @@ const fields = computed(() => {
 // 表单验证
 const schema = computed(() => {
     const rule = data.value?.data.fields.reduce((total, field) => {
-        let shape = z.string()
         if (field.valid) {
-            Object.keys(field.valid).map((key) => {
-                switch (key) {
-                    case 'required': shape = shape.min(1, field.valid[key])
-                        break
-                    case 'min': shape = shape.min(field.valid[key])
-                        break
-                    case 'max': shape = shape.max(field.valid[key])
-                        break
-                    case 'email': shape = shape.email(field.valid[key])
-                }
-            })
+            field.valids = Object.keys(field.valid).reduce((total, key) => {
+                total.push({
+                    key,
+                    message: field.valid[key]
+                })
+                return total
+            }, [])
         }
 
         if (field.valids) {
+            let shape = z.string()
             field.valids.map((item) => {
                 switch (item.key) {
                     case 'required': shape = shape.min(1, item.message)
@@ -117,8 +113,8 @@ const schema = computed(() => {
                         break
                 }
             })
+            total[field.key] = shape
         }
-        total[field.key] = shape
 
         return total
     }, {})

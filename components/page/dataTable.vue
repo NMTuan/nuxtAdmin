@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:30:33
- * @LastEditTime: 2024-03-08 10:36:10
+ * @LastEditTime: 2024-03-08 10:48:59
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\page\dataTable.vue
@@ -10,11 +10,18 @@
 
 <template>
     <div>
+        <!-- 功能操作 -->
+        <div>
+            <UButton v-for="item in pageActions.filter(action => action?.positions.includes('top'))" :to="item.path">
+                {{ item.label }}
+            </UButton>
+        </div>
+        <!-- 数据表格 -->
         <UTable v-if="columns" :rows="list" :columns="columns" :loading="pending">
             <template v-for="col in columns" #[`${col.key}-data`]="{ row }">
                 <template v-if="col.key === 'actions'">
                     <UButton v-for="action in pageActions.filter(action => action?.positions.includes('row')) "
-                        :key="action" :to="handlerActionTo(row, action)">
+                        :to="handlerActionTo(row, action)">
                         {{ action.label }}
                     </UButton>
                 </template>
@@ -29,6 +36,7 @@
                 </template>
             </template>
         </UTable>
+        <!-- 底部分页 -->
         <UPagination v-model="page" :page-count="limit" :total="total" show-last show-first />
         <NuxtPage />
     </div>
@@ -62,7 +70,7 @@ const total = computed(() => {
 // 处理action的query参数
 const handlerActionTo = (rowData, action) => {
     let query
-    const props = action.props
+    const props = action.props || []
 
     if (Array.isArray(props)) {
         query = props.reduce((total, item) => {
@@ -71,7 +79,7 @@ const handlerActionTo = (rowData, action) => {
         }, {})
     }
     return {
-        path: action.path,
+        path: action.path || '',
         query
     }
 }
