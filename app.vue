@@ -14,3 +14,8 @@
         <UNotifications />
     </NuxtLayout>
 </template>
+<style>
+* {
+    @apply transition-all duration-300;
+}
+</style>

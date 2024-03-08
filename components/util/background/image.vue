@@ -1,3 +1,12 @@
+<!--
+ * @Author: NMTuan
+ * @Email: NMTuan@qq.com
+ * @Date: 2024-03-08 20:16:27
+ * @LastEditTime: 2024-03-08 20:45:56
+ * @LastEditors: NMTuan
+ * @Description: 
+ * @FilePath: \nuxtAdmin\components\util\background\image.vue
+-->
 <template>
     <div :style="style">
         <slot />
@@ -32,7 +41,7 @@ const style = computed(() => {
         height: 1080,
         variance: 32,
         xColors: [handlerColor(50, 'zinc')],
-        yColors: [handlerColor('white'), handlerColor('white'), handlerColor('white'), handlerColor(100), handlerColor(200)],
+        yColors: [handlerColor('white'), handlerColor('white'), handlerColor(100), handlerColor(200)],
         seed: null
     }).toCanvas()
     const triangle = pattern.toDataURL('image/png')
