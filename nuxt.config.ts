@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-01-04 18:31:48
- * @LastEditTime: 2024-03-07 12:36:18
+ * @LastEditTime: 2024-03-08 15:07:47
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\nuxt.config.ts
@@ -10,9 +10,14 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
     devtools: { enabled: false },
-    modules: ['@nuxt/ui', '@pinia/nuxt', '@sidebase/nuxt-auth'],
+    modules: [
+        '@nuxt/ui',
+        '@pinia/nuxt',
+        '@sidebase/nuxt-auth',
+        '@nuxtjs/color-mode'
+    ],
     colorMode: {
-        preference: 'dark'
+        preference: 'light'
     },
     auth: {
         baseURL: '/api',
