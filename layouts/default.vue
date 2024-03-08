@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-08 16:57:23
- * @LastEditTime: 2024-03-07 13:20:47
+ * @LastEditTime: 2024-03-08 10:30:14
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\layouts\default.vue
@@ -12,6 +12,7 @@
     <div>
         <div>baseURL: {{ config.public.auth.baseURL }}</div>
         <hr>
+        <div>user status: {{ status }}</div>
         <div>user: {{ data }}</div>
         <hr>
         <div>
@@ -30,6 +31,6 @@
 <script setup>
 const userStore = useUserStore()
 const config = useRuntimeConfig()
-const { data } = useAuth()
+const { data, status } = useAuth()
 provide('baseURL', config.public.auth.baseURL)
 </script>

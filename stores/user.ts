@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-09 14:29:39
- * @LastEditTime: 2024-03-07 13:08:37
+ * @LastEditTime: 2024-03-08 10:31:23
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\stores\user.ts
@@ -40,14 +40,18 @@ const flat = (arr, pLabel = '', pValue = '') => {
 }
 
 export const useUserStore = defineStore('user', () => {
-    const { data } = useAuth()
+    const { data, status } = useAuth()
     // 根据菜单整理的路由权限，一维数组
     const routes = computed(() => {
-        return flat(data.value.menu)
+        if (status.value === 'authenticated') {
+            return flat(data.value.menu)
+        }
+        // unauthenticated
+        return []
     })
 
     return {
-        menu: data.value.menu,
+        menu: status.value === 'authenticated' ? data.value.menu : [],
         routes
     }
 })

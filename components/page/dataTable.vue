@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:30:33
- * @LastEditTime: 2024-03-07 14:46:52
+ * @LastEditTime: 2024-03-08 10:36:10
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\page\dataTable.vue
@@ -48,15 +48,15 @@ const { data, pending, error, refresh } = await pageFetch({
 
 // 数据
 const list = computed(() => {
-    return data.value.data.data
+    return data.value?.data.data || []
 })
 // 列配置
 const columns = computed(() => {
-    return data.value.data.columns
+    return data.value?.data.columns || []
 })
 // 总条数
 const total = computed(() => {
-    return data.value.data.total
+    return data.value?.data.total || 0
 })
 
 // 处理action的query参数
