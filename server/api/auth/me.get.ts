@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-27 13:47:55
- * @LastEditTime: 2024-03-08 10:47:26
+ * @LastEditTime: 2024-03-09 12:07:05
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\auth\me.get.ts
@@ -15,7 +15,9 @@ export default defineEventHandler(async (evt) => {
         menu: [
             {
                 label: '首页',
-                value: 'index'
+                value: 'index',
+                icon: 'i-ri-home-3-line',
+                activeIcon: 'i-ri-home-3-fill'
             },
             {
                 label: '用户管理',
@@ -24,6 +26,8 @@ export default defineEventHandler(async (evt) => {
                     {
                         label: '用户',
                         value: 'user',
+                        icon: 'i-ri-user-line',
+                        activeIcon: 'i-ri-user-fill',
                         component: 'dataTable',
                         // fetchType: 'POST',
                         actions: [
@@ -80,6 +84,25 @@ export default defineEventHandler(async (evt) => {
                         component: 'view'
                     },
                     { label: '权限', value: 'permission' }
+                ]
+            },
+            {
+                label: 'level1',
+                value: 'level1',
+                children: [
+                    { label: 'level1-1', value: 'level11' },
+                    { label: 'level1-2', value: 'level12' },
+                    { label: 'level1-3', value: 'level13' }
+                ]
+            },
+            { label: 'level2', value: 'level2' },
+            {
+                label: 'level3',
+                value: 'level3',
+                children: [
+                    { label: 'level3-1', value: 'level31' },
+                    { label: 'level3-2', value: 'level32' },
+                    { label: 'level3-3', value: 'level33' }
                 ]
             }
         ]

@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:30:33
- * @LastEditTime: 2024-03-08 10:48:59
+ * @LastEditTime: 2024-03-08 22:10:02
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\page\dataTable.vue
@@ -17,7 +17,7 @@
             </UButton>
         </div>
         <!-- 数据表格 -->
-        <UTable v-if="columns" :rows="list" :columns="columns" :loading="pending">
+        <UTable v-if="columns" :rows="list" :columns="columns" :loading="pending" class="bg-lime-200">
             <template v-for="col in columns" #[`${col.key}-data`]="{ row }">
                 <template v-if="col.key === 'actions'">
                     <UButton v-for="action in pageActions.filter(action => action?.positions.includes('row')) "
@@ -37,7 +37,9 @@
             </template>
         </UTable>
         <!-- 底部分页 -->
-        <UPagination v-model="page" :page-count="limit" :total="total" show-last show-first />
+        <div class="sticky bottom-0 bg-green-200 py-4">
+            <UPagination v-model="page" :page-count="limit" :total="total" show-last show-first />
+        </div>
         <NuxtPage />
     </div>
 </template>

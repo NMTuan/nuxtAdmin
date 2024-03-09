@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-08 16:56:10
- * @LastEditTime: 2024-03-08 21:37:39
+ * @LastEditTime: 2024-03-09 11:38:26
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\pages\login.vue
@@ -43,7 +43,7 @@
 
             <div class="pb-4">
                 <ULink class="opacity-25 hover:opacity-100" to="https://github.com/NMTuan/nuxtAdmin" target="_blank">
-                    <UIcon name="i-ri-github-fill" size="24" dynamic />
+                    <UIcon name="i-ri-github-fill" size="24" />
                 </ULink>
             </div>
         </UtilBackgroundImage>
@@ -51,6 +51,9 @@
 </template>
 
 <script setup>
+definePageMeta({
+    layout: 'page'
+})
 const { signIn } = useAuth()
 const username = ref('test')
 const password = ref('test1234')
