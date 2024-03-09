@@ -2,14 +2,16 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-09 09:40:00
- * @LastEditTime: 2024-03-09 14:20:16
+ * @LastEditTime: 2024-03-09 21:01:45
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\layout\menu\item.vue
 -->
 <template>
     <ULink :to="item?.path" activeClass="text-primary" inactiveClass="text-zinc-600 dark:text-zinc-400"
-        class="items-center h-[52px] px-6 hover:bg-zinc-100 dark:hover:bg-zinc-900">
+        class="items-center h-[48px] px-6 my-1 rounded" :class="[
+        current ? 'bg-primary-100 dark:bg-zinc-700' : 'hover:bg-zinc-100 dark:hover:bg-zinc-900',
+    ]">
         <UIcon v-if="current" :name="item.activeIcon || item.icon || 'i-tabler-point-filled'" size="22"
             class="flex-shrink-0" />
         <UIcon v-else :name="item.icon || 'i-tabler-point'" size="22" class="flex-shrink-0" />

@@ -16,9 +16,9 @@
         <template v-else>
             <UTooltip class="block xl:hidden" :text="item.label" :popper="{ arrow: true, placement: 'right' }"
                 :ui="{ base: 'text-base h-10 px-4 py-2' }">
-                <LayoutMenuItem class="flex justify-center" :item="item" />
+                <LayoutMenuItem class="flex justify-center mx-2" :item="item" />
             </UTooltip>
-            <LayoutMenuItem class="hidden xl:flex" :item="item" />
+            <LayoutMenuItem class="hidden xl:flex mx-2" :item="item" />
         </template>
     </div>
 </template>
