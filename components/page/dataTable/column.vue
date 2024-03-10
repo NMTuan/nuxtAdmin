@@ -13,7 +13,7 @@ import type { LayoutPageDataTableLink } from '#build/components';
 
 
 <template>
-    <PageDataTableLink v-if="column.component === 'link'" :row="row" :column="column" :value="value" />
+    <PageDataTableLink v-if="column?.component === 'link'" :row="row" :column="column" :value="value" />
 </template>
 
 <script setup>

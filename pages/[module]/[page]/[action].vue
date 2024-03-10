@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:16:40
- * @LastEditTime: 2024-03-10 16:29:10
+ * @LastEditTime: 2024-03-10 18:44:26
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\pages\[module]\[page]\[action].vue
@@ -11,16 +11,16 @@
 <template>
     <div>
         <ActionSlideover v-if="actionInfo.showType === 'slideover'"
-            :prevent-close="['form'].includes(actionInfo.component)">
-            <ActionForm v-if="actionInfo.component === 'form'" />
-            <ActionDetail v-else-if="actionInfo.component === 'detail'" />
-            <ActionConfirm v-else-if="actionInfo.component === 'confirm'" />
+            :prevent-close="['form'].includes(actionInfo?.component)">
+            <ActionForm v-if="actionInfo?.component === 'form'" />
+            <ActionDetail v-else-if="actionInfo?.component === 'detail'" />
+            <ActionConfirm v-else-if="actionInfo?.component === 'confirm'" />
             <NuxtPage v-else />
         </ActionSlideover>
-        <ActionModel v-else :prevent-close="['form'].includes(actionInfo.component)">
-            <ActionForm v-if="actionInfo.component === 'form'" />
-            <ActionDetail v-else-if="actionInfo.component === 'detail'" />
-            <ActionConfirm v-else-if="actionInfo.component === 'confirm'" />
+        <ActionModel v-else :prevent-close="['form'].includes(actionInfo?.component)">
+            <ActionForm v-if="actionInfo?.component === 'form'" />
+            <ActionDetail v-else-if="actionInfo?.component === 'detail'" />
+            <ActionConfirm v-else-if="actionInfo?.component === 'confirm'" />
             <NuxtPage v-else />
         </ActionModel>
         <!-- <LayoutActionEdit v-if="pageStore.actionConfig.layout === 'edit'"></LayoutActionEdit> -->

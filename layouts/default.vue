@@ -11,7 +11,7 @@
 <template>
     <div class="flex">
         <div
-            class="flex flex-col flex-shrink-0 w-[90px] xl:w-[280px] shadow-xl xl:shadow-none h-screen border-r-none xl:border-r sticky top-0 z-10">
+            class="flex flex-col flex-shrink-0 w-[90px] xl:w-[280px] shadow-xl xl:shadow-none h-screen border-r-none xl:border-r sticky top-0 z-[11]">
             <div class="h-[74px] flex-shrink-0">
                 <LayoutLogo />
             </div>

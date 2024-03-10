@@ -9,7 +9,7 @@
 -->
 
 <template>
-    <PageDataTable v-if="pageInfo.component === 'dataTable'"></PageDataTable>
+    <PageDataTable v-if="pageInfo?.component === 'dataTable'"></PageDataTable>
     <NuxtPage v-else />
 </template>
 

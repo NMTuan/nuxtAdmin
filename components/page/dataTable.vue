@@ -46,7 +46,7 @@
                     </UButton>
                 </template>
 
-                <template v-else-if="col.component">
+                <template v-else-if="col?.component">
                     <PageDataTableColumn :row="row" :column="col" :value="row[col.key]">
                     </PageDataTableColumn>
                 </template>
