@@ -9,18 +9,7 @@
 -->
 
 <template>
-    <div class="border p-4 m-4">
-        <div>
-            <template v-for="route in userStore.routes">
-                <ULink v-if="(route?.__type !== 'action')" :to="route.path" class="mx-4">
-                    [{{ route.name }}]
-                </ULink>
-            </template>
-        </div>
-        <p>moduleInfo: {{ moduleInfo }}</p>
-        <hr>
-        <NuxtPage />
-    </div>
+    <NuxtPage />
 </template>
 
 <script setup>

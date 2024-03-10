@@ -2,18 +2,14 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:16:40
- * @LastEditTime: 2024-03-07 19:31:42
+ * @LastEditTime: 2024-03-10 16:29:10
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\pages\[module]\[page]\[action].vue
 -->
 
 <template>
-    <div class="border p-4 m-4">
-        <p>actionInfo: {{ actionInfo }}</p>
-        <hr>
-        <p>query: {{ $route.query }}</p>
-        <hr>
+    <div>
         <ActionSlideover v-if="actionInfo.showType === 'slideover'"
             :prevent-close="['form'].includes(actionInfo.component)">
             <ActionForm v-if="actionInfo.component === 'form'" />

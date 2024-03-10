@@ -9,14 +9,8 @@
 -->
 
 <template>
-    <div class="border p-4 m-4">
-        <p>pageInfo: {{ pageInfo }}</p>
-        <hr>
-        <p>pageActions: {{ pageActions }}</p>
-        <hr>
-        <PageDataTable v-if="pageInfo.component === 'dataTable'"></PageDataTable>
-        <NuxtPage v-else />
-    </div>
+    <PageDataTable v-if="pageInfo.component === 'dataTable'"></PageDataTable>
+    <NuxtPage v-else />
 </template>
 
 <script setup>
