@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-27 13:47:55
- * @LastEditTime: 2024-03-09 12:07:05
+ * @LastEditTime: 2024-03-10 09:48:24
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\auth\me.get.ts
@@ -11,7 +11,7 @@ export default defineEventHandler(async (evt) => {
     // const auth = evt.auth
     return {
         id: 123456,
-        name: 'nickname',
+        name: 'Floyd Fletcher',
         menu: [
             {
                 label: '首页',
@@ -105,6 +105,15 @@ export default defineEventHandler(async (evt) => {
                     { label: 'level3-3', value: 'level33' }
                 ]
             }
+        ],
+        topbar: [
+            {
+                icon: 'i-ri-notification-3-line',
+                path: ''
+            },
+            'darkMode',
+            'fullScreen',
+            'user'
         ]
     }
 })

@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-27 13:47:55
- * @LastEditTime: 2024-03-09 14:12:56
+ * @LastEditTime: 2024-03-10 08:55:29
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\layouts\default.vue
@@ -28,12 +28,16 @@
                 <LayoutMenu />
             </div>
         </div>
-        <div class="flex-1 px-8">
-            <div class="h-[74px] sticky top-0 bg-red-200 z-10">
-                header
-                <UtilColorMode></UtilColorMode>
+        <div class="flex-1">
+            <div class="h-[74px] sticky top-0 z-10 bg-zinc-50/75 dark:bg-zinc-950/75 backdrop-blur ">
+                <LayoutHeader />
             </div>
             <div class=" py-4">
+                <div class="flex justify-end">
+                    <!-- <LayoutHeaderUser /> -->
+
+                </div>
+
                 <slot></slot>
                 <p v-for="i in 50">{{ i }}</p>
             </div>
