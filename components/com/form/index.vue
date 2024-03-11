@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-11 13:37:09
- * @LastEditTime: 2024-03-11 16:30:41
+ * @LastEditTime: 2024-03-11 20:39:46
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\com\form\index.vue
@@ -48,12 +48,18 @@ provide('formData', formData)
 
 // 监听组件外的变动. 更新到组件内
 watchEffect(() => {
-    formData.value = Object.assign(formData.value, props.modelValue)
+    if (Object.keys(props.modelValue).length === 0) {
+        formData.value = {}
+    } else {
+        formData.value = Object.assign(formData.value, props.modelValue)
+    }
 })
 
 // 监听组件内的变动. 更新到组件外
 watchEffect(() => {
-    emits('update:modelValue', formData.value)
+    if (JSON.stringify(props.modelValue) !== JSON.stringify(formData.value)) {
+        emits('update:modelValue', formData.value)
+    }
 })
 
 defineExpose({

@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:30:33
- * @LastEditTime: 2024-03-11 17:18:33
+ * @LastEditTime: 2024-03-11 20:15:04
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\page\dataTable.vue
@@ -15,6 +15,7 @@
         <UHorizontalNavigation :links="links" class="border-b" :ui="{ wrapper: 'px-6' }" />
 
         {{ searchFields }}
+        <div>q: {{ q }}</div>
         <div class="flex items-center justify-between mt-6 mb-2 px-6">
             <!-- 功能操作 -->
             <div>
@@ -26,11 +27,6 @@
             <!-- 搜索 -->
             <PageDataTableSearch v-model="q" :field="searchFields[0]" />
         </div>
-        <div>searchQuery: {{ searchQuery }}</div>
-        <div>q: {{ q }}</div>
-        <div>page: {{ page }}</div>
-        <div>limit: {{ limit }}</div>
-
 
         <!-- 数据表格 -->
         <UTable v-if="columns" :rows="list" :columns="columns" :loading="pending" class="border-b mx-6">
@@ -54,7 +50,7 @@
         </UTable>
         <!-- 底部分页 -->
         <div class="sticky bottom-0 p-6 bg-white/75 dark:bg-white/75 backdrop-blur">
-            <UPagination v-model="page" :page-count="limit" :total="total" show-last show-first />
+            <UPagination v-model="q.page" :page-count="q.limit" :total="total" show-last show-first />
         </div>
         <NuxtPage />
     </div>
@@ -66,21 +62,12 @@ const pageActions = inject('pageActions')
 
 const page = ref(1)
 const limit = ref(10)
-const searchQuery = ref({})
-const q = reactive({
+const q = ref({
     page: 1,
     limit: 10
 })
 
-const { data, pending, error, refresh } = await pageFetch(
-    {
-        page: page.value,
-        limit: limit.value,
-        ...searchQuery.value
-    },
-    [page]
-
-)
+const { data, pending, error, refresh } = await pageFetch(q)
 
 // 数据
 const list = computed(() => {

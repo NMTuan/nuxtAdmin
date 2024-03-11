@@ -11,9 +11,10 @@
 import { users, userLabels, userColbumLabels } from './data'
 
 export default defineEventHandler(async (evt) => {
-    let { limit = 10, page = 1, id } = getQuery(evt)
+    let { limit = 10, page = 1, id, name = '' } = getQuery(evt)
     limit = Number(limit)
     page = Number(page)
+    let data = users
 
     if (id) {
         const user = users.find((u) => u.id === id)
@@ -26,11 +27,14 @@ export default defineEventHandler(async (evt) => {
             data: userData,
             columns: userColbumLabels
         })
+    } else if (name) {
+        // 找到name字段含name的所有数据
+        data = users.filter((u) => u.name.includes(name))
     }
 
     const offset = (page - 1) * limit
     return rs({
-        data: users.slice(offset, offset + limit),
+        data: data.slice(offset, offset + limit),
         columns: [
             { key: 'index', label: '序号' },
             {
@@ -58,6 +62,6 @@ export default defineEventHandler(async (evt) => {
                 placeholder: '姓名'
             }
         ],
-        total: users.length
+        total: data.length
     })
 })
