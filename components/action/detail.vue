@@ -30,7 +30,7 @@
         <template #footer>
             <div class="flex justify-end">
                 <UButton @click="handlerClose">
-                    {{ actionInfo?.btns.close || 'close' }}
+                    {{ actionInfo.btns?.close || 'close' }}
                 </UButton>
             </div>
         </template>

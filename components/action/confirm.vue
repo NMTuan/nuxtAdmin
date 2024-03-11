@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-07 19:23:22
- * @LastEditTime: 2024-03-07 20:30:14
+ * @LastEditTime: 2024-03-11 16:32:59
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\action\confirm.vue
@@ -25,10 +25,10 @@
         <template #footer>
             <div class="flex justify-end">
                 <UButton variant="ghost" class="mr-4" @click="handlerClose">
-                    {{ actionInfo?.btns.cancel || 'cancel' }}
+                    {{ actionInfo.btns?.cancel || 'cancel' }}
                 </UButton>
                 <UButton :loading="loading" @click="submit">
-                    {{ actionInfo?.btns.submit || 'submit' }}
+                    {{ actionInfo.btns?.submit || 'submit' }}
                 </UButton>
             </div>
         </template>

@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:16:40
- * @LastEditTime: 2024-03-11 10:48:07
+ * @LastEditTime: 2024-03-11 15:20:14
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\pages\[module]\[page]\[action].vue
@@ -11,16 +11,16 @@
 <template>
     <div>
         <ActionSlideover v-if="actionInfo.showType === 'slideover'"
-            :prevent-close="['form'].includes(actionInfo?.component)">
-            <ActionForm v-if="actionInfo?.component === 'form'" />
-            <ActionDetail v-else-if="actionInfo?.component === 'detail'" />
-            <ActionConfirm v-else-if="actionInfo?.component === 'confirm'" />
+            :prevent-close="['form'].includes(actionInfo.component)">
+            <ActionForm v-if="actionInfo.component === 'form'" />
+            <ActionDetail v-else-if="actionInfo.component === 'detail'" />
+            <ActionConfirm v-else-if="actionInfo.component === 'confirm'" />
             <NuxtPage v-else />
         </ActionSlideover>
-        <ActionModel v-else :prevent-close="['form'].includes(actionInfo?.component)">
-            <ActionForm v-if="actionInfo?.component === 'form'" />
-            <ActionDetail v-else-if="actionInfo?.component === 'detail'" />
-            <ActionConfirm v-else-if="actionInfo?.component === 'confirm'" />
+        <ActionModel v-else :prevent-close="['form'].includes(actionInfo.component)">
+            <ActionForm v-if="actionInfo.component === 'form'" />
+            <ActionDetail v-else-if="actionInfo.component === 'detail'" />
+            <ActionConfirm v-else-if="actionInfo.component === 'confirm'" />
             <NuxtPage v-else />
         </ActionModel>
         <!-- <LayoutActionEdit v-if="pageStore.actionConfig.layout === 'edit'"></LayoutActionEdit> -->
@@ -40,7 +40,7 @@ const baseURL = inject('baseURL')
 
 const { module, page, action } = route.params
 const actionInfo = computed(() => {
-    return routeStore.routes.find(route => route.route === `${module}__${page}__${action}`)
+    return routeStore.routes.find(route => route.route === `${module}__${page}__${action}`) || {}
 })
 provide('actionInfo', actionInfo)
 

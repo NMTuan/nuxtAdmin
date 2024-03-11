@@ -20,7 +20,7 @@ const routeStore = useRouteStore()
 const { module } = route.params
 
 const moduleInfo = computed(() => {
-    return routeStore.routes.find(route => route.route === `${module}`)
+    return routeStore.routes.find(route => route.route === `${module}`) || {}
 })
 provide('moduleInfo', moduleInfo)
 
