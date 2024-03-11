@@ -1,36 +1,36 @@
 <!--
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
- * @Date: 2024-02-08 16:57:23
- * @LastEditTime: 2024-03-08 10:30:14
+ * @Date: 2024-02-27 13:47:55
+ * @LastEditTime: 2024-03-11 10:36:23
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\layouts\default.vue
 -->
 
 <template>
-    <div>
-        <div>baseURL: {{ config.public.auth.baseURL }}</div>
-        <hr>
-        <div>user status: {{ status }}</div>
-        <div>user: {{ data }}</div>
-        <hr>
-        <div>
-            <template v-for="route in userStore.routes">
-                <ULink v-if="(route?.__type !== 'action')" :to="route.path" class="mx-4">
-                    [{{ route.name }}]
-                </ULink>
-            </template>
+    <div class="flex">
+        <div
+            class="flex flex-col flex-shrink-0 w-[90px] xl:w-[280px] shadow-xl xl:shadow-none h-screen border-r-none xl:border-r sticky top-0 z-[11]">
+            <div class="h-[74px] flex-shrink-0">
+                <LayoutLogo />
+            </div>
+            <div class="flex-1 overflow-hidden">
+                <LayoutMenu />
+            </div>
         </div>
-        <slot></slot>
-        <pre>routes: {{ userStore.routes }}</pre>
-
+        <div class="flex-1">
+            <div class="h-[74px] sticky top-0 z-10 bg-gray-50/75 dark:bg-gray-950/75 backdrop-blur ">
+                <LayoutHeader />
+            </div>
+            <div class="pt-4 pb-8 px-8">
+                <slot></slot>
+            </div>
+        </div>
     </div>
 </template>
 
 <script setup>
-const userStore = useUserStore()
 const config = useRuntimeConfig()
-const { data, status } = useAuth()
 provide('baseURL', config.public.auth.baseURL)
 </script>

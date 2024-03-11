@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-01-04 18:31:48
- * @LastEditTime: 2024-03-05 14:51:54
+ * @LastEditTime: 2024-03-09 09:36:56
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\app.vue
@@ -14,3 +14,20 @@
         <UNotifications />
     </NuxtLayout>
 </template>
+<script setup>
+import 'simplebar-vue/dist/simplebar.min.css';
+
+</script>
+<style lang="scss">
+* {
+    // @apply transition-all duration-300;
+}
+
+html {
+    @apply bg-gray-50;
+
+    &.dark {
+        @apply bg-gray-950;
+    }
+}
+</style>
