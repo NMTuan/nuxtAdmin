@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:30:33
- * @LastEditTime: 2024-03-10 18:37:14
+ * @LastEditTime: 2024-03-11 17:18:33
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\page\dataTable.vue
@@ -14,33 +14,29 @@
         <!-- 快捷筛选 -->
         <UHorizontalNavigation :links="links" class="border-b" :ui="{ wrapper: 'px-6' }" />
 
+        {{ searchFields }}
         <div class="flex items-center justify-between mt-6 mb-2 px-6">
             <!-- 功能操作 -->
             <div>
-                <UButton v-for="item in pageActions.filter(action => action?.positions.includes('top')) "
+                <UButton v-for="item in pageActions.filter(action => action.positions.includes('top')) "
                     :to="item.path">
                     {{ item.label }}
                 </UButton>
             </div>
             <!-- 搜索 -->
-            <div class="flex">
-                <UInput placeholder="搜索" clearable class="w-40" />
-                <UButtonGroup orientation="horizontal" class="ml-2">
-                    <UButton>搜索</UButton>
-                    <UDropdown :items="items" :popper="{ placement: 'bottom-end', arrow: true }"
-                        :ui="{ width: 'w-auto' }">
-                        <UButton icon="i-heroicons-chevron-down-20-solid" class="border-l" />
-                    </UDropdown>
-                </UButtonGroup>
-            </div>
-
+            <PageDataTableSearch v-model="q" :field="searchFields[0]" />
         </div>
+        <div>searchQuery: {{ searchQuery }}</div>
+        <div>q: {{ q }}</div>
+        <div>page: {{ page }}</div>
+        <div>limit: {{ limit }}</div>
+
 
         <!-- 数据表格 -->
         <UTable v-if="columns" :rows="list" :columns="columns" :loading="pending" class="border-b mx-6">
             <template v-for="col in columns" #[`${col.key}-data`]="{ row }">
                 <template v-if="col.key === 'actions'">
-                    <UButton v-for="action in pageActions.filter(action => action?.positions.includes('row')) "
+                    <UButton v-for="action in pageActions.filter(action => action.positions.includes('row')) "
                         :to="handlerActionTo(row, action)">
                         {{ action.label }}
                     </UButton>
@@ -70,11 +66,21 @@ const pageActions = inject('pageActions')
 
 const page = ref(1)
 const limit = ref(10)
-
-const { data, pending, error, refresh } = await pageFetch({
-    page,
-    limit
+const searchQuery = ref({})
+const q = reactive({
+    page: 1,
+    limit: 10
 })
+
+const { data, pending, error, refresh } = await pageFetch(
+    {
+        page: page.value,
+        limit: limit.value,
+        ...searchQuery.value
+    },
+    [page]
+
+)
 
 // 数据
 const list = computed(() => {
@@ -87,6 +93,19 @@ const columns = computed(() => {
 // 总条数
 const total = computed(() => {
     return data.value?.data.total || 0
+})
+
+const searchFields = computed(() => {
+    if (Array.isArray(data.value?.data.search)) {
+        return data.value.data.search.reduce((total, item) => {
+            total.push({
+                label: columns.value.find(col => col.key === item.key)?.label,
+                ...item
+            })
+            return total
+        }, [])
+    }
+    return []
 })
 
 // 处理action的query参数
@@ -133,10 +152,4 @@ const links = [{
     to: '/components/command-palette'
 }]
 
-const items = [
-    [
-        { label: '高级搜索' },
-        { label: '重置搜索' }
-    ]
-]
 </script>

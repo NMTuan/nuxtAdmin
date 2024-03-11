@@ -27,13 +27,14 @@ const pageInfo = computed(() => {
 provide('pageInfo', pageInfo)
 
 // 获取数据
-const pageFetch = (query = {}) => {
+const pageFetch = (query = {}, watch = []) => {
     return useLazyFetch(`${baseURL}${pageInfo.value.path}`, {
         method: pageInfo.fetchType || 'GET',
         headers: {
             Authorization: token.value
         },
-        query
+        query,
+        watch
     })
 }
 provide('pageFetch', pageFetch)
