@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-08 21:51:51
- * @LastEditTime: 2024-03-10 09:19:07
+ * @LastEditTime: 2024-03-11 10:56:04
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\layout\header.vue
@@ -17,7 +17,7 @@
                 <LayoutHeaderDarkMode v-if="item === 'darkMode'" />
                 <LayoutHeaderFullScreen v-else-if="item === 'fullScreen'" />
                 <LayoutHeaderUser v-else-if="item === 'user'" />
-                <UButton v-else-if="item?.icon" color="zinc" square variant="soft" :icon="item.icon" size="lg"
+                <UButton v-else-if="item?.icon" color="gray" square variant="soft" :icon="item.icon" size="lg"
                     class="mr-2" />
             </template>
         </div>

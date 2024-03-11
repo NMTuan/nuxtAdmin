@@ -1,5 +1,5 @@
 <template>
-    <div class="flex items-center px-4 py-3 text-zinc-500 dark:text-zinc-400">
+    <div class="flex items-center px-4 py-3 text-gray-500 dark:text-gray-400">
         <div class="text-xs font-bold hidden xl:block">
             {{ item?.label }}
         </div>

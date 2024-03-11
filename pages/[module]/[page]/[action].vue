@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:16:40
- * @LastEditTime: 2024-03-10 18:44:26
+ * @LastEditTime: 2024-03-11 10:48:07
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\pages\[module]\[page]\[action].vue
@@ -31,16 +31,16 @@
 <script setup>
 
 const route = useRoute()
-const userStore = useUserStore()
+const routeStore = useRouteStore()
 const { token } = useAuth()
 
-const moduleInfo = inject('moduleInfo')
+// const moduleInfo = inject('moduleInfo')
 const pageInfo = inject('pageInfo')
 const baseURL = inject('baseURL')
 
 const { module, page, action } = route.params
 const actionInfo = computed(() => {
-    return userStore.routes.find(route => route.route === `${module}__${page}__${action}`)
+    return routeStore.routes.find(route => route.route === `${module}__${page}__${action}`)
 })
 provide('actionInfo', actionInfo)
 
@@ -62,7 +62,7 @@ const actionPost = (body) => {
         query: route.query,
         body,
         headers: {
-            Authorization: 'Bearer ' + userStore.token
+            Authorization: token.value
         }
     })
 }

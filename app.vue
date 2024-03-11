@@ -24,10 +24,10 @@ import 'simplebar-vue/dist/simplebar.min.css';
 }
 
 html {
-    @apply bg-zinc-50;
+    @apply bg-gray-50;
 
     &.dark {
-        @apply bg-zinc-950;
+        @apply bg-gray-950;
     }
 }
 </style>

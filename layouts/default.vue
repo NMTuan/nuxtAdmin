@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-27 13:47:55
- * @LastEditTime: 2024-03-10 18:17:31
+ * @LastEditTime: 2024-03-11 10:36:23
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\layouts\default.vue
@@ -20,7 +20,7 @@
             </div>
         </div>
         <div class="flex-1">
-            <div class="h-[74px] sticky top-0 z-10 bg-zinc-50/75 dark:bg-zinc-950/75 backdrop-blur ">
+            <div class="h-[74px] sticky top-0 z-10 bg-gray-50/75 dark:bg-gray-950/75 backdrop-blur ">
                 <LayoutHeader />
             </div>
             <div class="pt-4 pb-8 px-8">
@@ -31,8 +31,6 @@
 </template>
 
 <script setup>
-const userStore = useUserStore()
 const config = useRuntimeConfig()
-const { data, status } = useAuth()
 provide('baseURL', config.public.auth.baseURL)
 </script>

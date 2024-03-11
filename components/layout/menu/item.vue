@@ -8,9 +8,9 @@
  * @FilePath: \nuxtAdmin\components\layout\menu\item.vue
 -->
 <template>
-    <ULink :to="item?.path" activeClass="text-primary" inactiveClass="text-zinc-600 dark:text-zinc-400"
+    <ULink :to="item?.path" activeClass="text-primary" inactiveClass="text-gray-600 dark:text-gray-400"
         class="items-center h-[48px] px-6 my-1 rounded" :class="[
-        current ? 'bg-primary-100 dark:bg-zinc-700' : 'hover:bg-zinc-100 dark:hover:bg-zinc-900',
+        current ? 'bg-primary-100 dark:bg-gray-700' : 'hover:bg-gray-100 dark:hover:bg-gray-900',
     ]">
         <UIcon v-if="current" :name="item.activeIcon || item.icon || 'i-tabler-point-filled'" size="22"
             class="flex-shrink-0" />

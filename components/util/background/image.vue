@@ -40,7 +40,7 @@ const style = computed(() => {
         width: 1920,
         height: 1080,
         variance: 32,
-        xColors: [handlerColor(50, 'zinc')],
+        xColors: [handlerColor(50, 'gray')],
         yColors: [handlerColor('white'), handlerColor('white'), handlerColor(100), handlerColor(200)],
         seed: null
     }).toCanvas()

@@ -2,10 +2,10 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-09 14:29:39
- * @LastEditTime: 2024-03-08 10:31:23
+ * @LastEditTime: 2024-03-11 10:44:10
  * @LastEditors: NMTuan
  * @Description:
- * @FilePath: \nuxtAdmin\stores\user.ts
+ * @FilePath: \nuxtAdmin\stores\route.ts
  */
 import { defineStore } from 'pinia'
 
@@ -39,7 +39,7 @@ const flat = (arr, pLabel = '', pValue = '') => {
     }, [])
 }
 
-export const useUserStore = defineStore('user', () => {
+export const useRouteStore = defineStore('route', () => {
     const { data, status } = useAuth()
     // 根据菜单整理的路由权限，一维数组
     const routes = computed(() => {
@@ -50,8 +50,5 @@ export const useUserStore = defineStore('user', () => {
         return []
     })
 
-    return {
-        menu: status.value === 'authenticated' ? data.value.menu : [],
-        routes
-    }
+    return { routes }
 })

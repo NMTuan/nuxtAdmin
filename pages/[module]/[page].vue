@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:18:04
- * @LastEditTime: 2024-03-07 14:29:17
+ * @LastEditTime: 2024-03-11 10:42:38
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\pages\[module]\[page].vue
@@ -15,15 +15,14 @@
 
 <script setup>
 const route = useRoute()
-const userStore = useUserStore()
+const routeStore = useRouteStore()
 const { token } = useAuth()
 
-const moduleInfo = inject('moduleInfo')
+// const moduleInfo = inject('moduleInfo')
 const baseURL = inject('baseURL')
-
 const { module, page } = route.params
 const pageInfo = computed(() => {
-    return userStore.routes.find(route => route.route === `${module}__${page}`)
+    return routeStore.routes.find(route => route.route === `${module}__${page}`)
 })
 provide('pageInfo', pageInfo)
 
@@ -40,7 +39,7 @@ const pageFetch = (query = {}) => {
 provide('pageFetch', pageFetch)
 
 const pageActions = computed(() => {
-    return userStore.routes.filter(route => route.route.startsWith(`${module}__${page}__`))
+    return routeStore.routes.filter(route => route.route.startsWith(`${module}__${page}__`))
 })
 provide('pageActions', pageActions)
 </script>

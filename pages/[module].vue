@@ -13,13 +13,14 @@
 </template>
 
 <script setup>
+
 const route = useRoute()
-const userStore = useUserStore()
+const routeStore = useRouteStore()
 
 const { module } = route.params
 
 const moduleInfo = computed(() => {
-    return userStore.routes.find(route => route.route === `${module}`)
+    return routeStore.routes.find(route => route.route === `${module}`)
 })
 provide('moduleInfo', moduleInfo)
 

@@ -1,7 +1,7 @@
 <template>
-    <UButton v-if="state" @click="fullScreenExit" color="zinc" square variant="soft" icon="i-ri-fullscreen-exit-line"
+    <UButton v-if="state" @click="fullScreenExit" color="gray" square variant="soft" icon="i-ri-fullscreen-exit-line"
         size="lg" class="mr-2" />
-    <UButton v-else @click="fullScreen" color="zinc" square variant="soft" icon="i-ri-fullscreen-line" size="lg"
+    <UButton v-else @click="fullScreen" color="gray" square variant="soft" icon="i-ri-fullscreen-line" size="lg"
         class="mr-2" />
 </template>
 <script setup>
