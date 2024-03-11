@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:31:12
- * @LastEditTime: 2024-03-08 11:47:59
+ * @LastEditTime: 2024-03-11 16:29:34
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\action\form.vue
@@ -27,31 +27,16 @@
                 <USkeleton class="h-8 mb-4" />
             </template>
         </div>
-        <UForm v-else ref="form" :state="submitData" :schema="schema" @submit="handlerSubmit">
-            <!-- 后端没有配置表单数据，则循环所有字段直接渲染 -->
-            <UFormGroup v-if="fields.length === 0" v-for="(val, key) in formData" :name="key" :label="key" class="mb-4">
-                <UInput :disabled="Object.keys(route.query).includes(key)" v-model="submitData[key]" />
-            </UFormGroup>
-            <!-- 根据后端返回的表单数据渲染 -->
-            <UFormGroup v-else v-for="field in fields" :name="field.key" :label="field.label" class="mb-4"
-                :required="Object.keys(field.valid || {}).length > 0 || field.valids?.length > 0">
-                <USelectMenu v-if="field.type === 'select'" :options="field.options" value-attribute="value"
-                    :multiple="field.multiple" v-model="submitData[field.key]"
-                    :disabled="field.disabled !== undefined ? field.disabled : Object.keys(route.query).includes(field.key)">
-                </USelectMenu>
-                <UInput v-else
-                    :disabled="field.disabled !== undefined ? field.disabled : Object.keys(route.query).includes(field.key)"
-                    v-model="submitData[field.key]" />
-            </UFormGroup>
-        </UForm>
+
+        <ComForm ref="form" v-model="submitData" :fields="fields" :schema="schema" :submit="handlerSubmit"></ComForm>
 
         <template #footer>
             <div class="flex justify-end">
                 <UButton variant="ghost" class="mr-4" @click="handlerClose">
-                    {{ actionInfo?.btns.cancel || 'cancel' }}
+                    {{ actionInfo.btns.cancel || 'cancel' }}
                 </UButton>
                 <UButton :loading="loading" @click="submit">
-                    {{ actionInfo?.btns.submit || 'submit' }}
+                    {{ actionInfo.btns.submit || 'submit' }}
                 </UButton>
             </div>
         </template>
@@ -134,6 +119,7 @@ const submit = () => {
 
 // 表单提交
 const handlerSubmit = async ({ data }) => {
+    console.log('handlerSubmit')
     // 克隆一份，把query中的参数过滤掉，不提交
     // const d = JSON.parse(JSON.stringify(data))
     // Object.keys(route.query).map((key) => {
