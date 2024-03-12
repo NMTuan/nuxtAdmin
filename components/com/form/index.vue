@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-11 13:37:09
- * @LastEditTime: 2024-03-12 11:46:14
+ * @LastEditTime: 2024-03-12 11:56:22
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\com\form\index.vue
@@ -10,7 +10,12 @@
  TODO 有fileds，可以考虑把表单验证放在这里
 -->
 <template>
-    <UForm ref="form" :state="formData" :schema="schema" @submit="submit" :class="horizontal && 'form--horizontal'">
+    <template v-if="loading" v-for="i in (fields.length || 3)">
+        <USkeleton v-if="withLabel" class="h-4 w-16 mb-2" />
+        <USkeleton class="h-8 mb-4" />
+    </template>
+    <UForm v-else ref="form" :state="formData" :schema="schema" @submit="submit"
+        :class="horizontal && 'form--horizontal'">
         <UFormGroup v-if="fields.length === 0" v-for="(label, key) in formData" :name="key"
             :label="withLabel ? key : ''" :ui="groupUI" :class="[!horizontal && 'mb-4']">
             <ComFormItem :field="{ key, label }" />
@@ -46,6 +51,10 @@ const props = defineProps({
     submit: {
         type: Function,
         default: () => { }
+    },
+    loading: {
+        type: Boolean,
+        default: false
     }
 })
 const emits = defineEmits(['update:modelValue'])

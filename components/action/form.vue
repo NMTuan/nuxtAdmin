@@ -19,16 +19,9 @@
                     @click="handlerClose" />
             </div>
         </template>
-
-        <div v-if="pending">
-
-            <template v-for="i in 3">
-                <USkeleton class="h-4 w-16 mb-2" />
-                <USkeleton class="h-8 mb-4" />
-            </template>
-        </div>
-
-        <ComForm ref="form" v-model="submitData" :fields="fields" :schema="schema" :submit="handlerSubmit"></ComForm>
+        <ComForm ref="form" v-model="submitData" :fields="fields" :schema="schema" :submit="handlerSubmit"
+            :loading="pending">
+        </ComForm>
         <template #footer>
             <div class="flex justify-end">
                 <UButton variant="ghost" class="mr-4" @click="handlerClose">
