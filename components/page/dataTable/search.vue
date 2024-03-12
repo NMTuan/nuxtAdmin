@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-11 16:38:23
- * @LastEditTime: 2024-03-12 10:47:14
+ * @LastEditTime: 2024-03-12 12:30:44
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\page\dataTable\search.vue
@@ -31,14 +31,6 @@
                     </div>
                 </template>
 
-                <div v-if="pending">
-
-                    <template v-for="i in 3">
-                        <USkeleton class="h-4 w-16 mb-2" />
-                        <USkeleton class="h-8 mb-4" />
-                    </template>
-                </div>
-
                 <ComForm :fields="advFields" v-model="q" :submit="submit"></ComForm>
 
                 <template #footer>
@@ -50,7 +42,7 @@
                             <UButton variant="ghost" class="mr-4" @click="handlerClose">
                                 {{ 'cancel' }}
                             </UButton>
-                            <UButton :loading="loading" @click="submit">
+                            <UButton @click="submit">
                                 {{ 'submit' }}
                             </UButton>
                         </div>
