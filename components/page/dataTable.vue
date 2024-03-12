@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:30:33
- * @LastEditTime: 2024-03-11 20:15:04
+ * @LastEditTime: 2024-03-12 16:33:06
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\page\dataTable.vue
@@ -11,12 +11,8 @@
 <template>
     <div class="bg-white border rounded">
 
-        <!-- 快捷筛选 -->
-        <UHorizontalNavigation :links="links" class="border-b" :ui="{ wrapper: 'px-6' }" />
-
-        {{ searchFields }}
         <div>q: {{ q }}</div>
-        <div class="flex items-center justify-between mt-6 mb-2 px-6">
+        <div class="flex items-center justify-between m-6">
             <!-- 功能操作 -->
             <div>
                 <UButton v-for="item in pageActions.filter(action => action.positions.includes('top')) "
@@ -27,6 +23,9 @@
             <!-- 搜索 -->
             <PageDataTableSearch v-model="q" :fields="searchFields" :adv-fields="advFields" />
         </div>
+
+        <!-- 快捷筛选 -->
+        <PageDataTableFilter v-model="q" :filters="filters" />
 
         <!-- 数据表格 -->
         <UTable v-if="columns" :rows="list" :columns="columns" :loading="pending" class="border-b mx-6">
@@ -106,6 +105,10 @@ const advFields = computed(() => {
     return []
 })
 
+const filters = computed(() => {
+    return data.value?.data.filters || []
+})
+
 // 处理action的query参数
 const handlerActionTo = (rowData, action) => {
     let query
@@ -124,30 +127,5 @@ const handlerActionTo = (rowData, action) => {
 }
 
 provide('pageRefresh', refresh)
-
-
-
-
-
-
-
-
-const links = [{
-    label: 'All',
-    // badge: 100,
-    to: '/user/user'
-}, {
-    label: 'Installation',
-    icon: 'i-heroicons-home',
-    to: '/getting-started/installation'
-}, {
-    label: 'Horizontal Navigation',
-    icon: 'i-heroicons-chart-bar',
-    to: `/components/horizontal-navigation`
-}, {
-    label: 'Command Palette',
-    icon: 'i-heroicons-command-line',
-    to: '/components/command-palette'
-}]
 
 </script>

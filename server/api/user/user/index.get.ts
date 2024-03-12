@@ -76,6 +76,11 @@ export default defineEventHandler(async (evt) => {
             { key: 'cid', type: 'select', options: citys },
             { key: 'country' }
         ],
+        filters: [
+            { label: '全部', query: {} },
+            { label: '未处理', query: { name: 'a' } },
+            { label: '已处理', query: { email: 'b' } }
+        ],
         total: data.length
     })
 })

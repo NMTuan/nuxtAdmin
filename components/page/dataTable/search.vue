@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-11 16:38:23
- * @LastEditTime: 2024-03-12 12:30:44
+ * @LastEditTime: 2024-03-12 16:14:31
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\page\dataTable\search.vue
@@ -70,7 +70,7 @@ const props = defineProps({
 const emits = defineEmits(['update:modelValue'])
 
 const q = ref({})   // 查询项
-const oriQ = JSON.parse(JSON.stringify(props.modelValue))  // 原始表单值
+const oriQ = JSON.stringify(props.modelValue)  // 原始表单值
 const isOpen = ref(false)
 
 const submit = () => {
@@ -88,13 +88,13 @@ const submit = () => {
             newQ[item.key] = q.value[item.key]
         }
     })
-    emits('update:modelValue', newQ)
+    emits('update:modelValue', JSON.parse(JSON.stringify(newQ)))
 }
 
 const reset = () => {
     handlerClose()
     q.value = {}
-    emits('update:modelValue', oriQ)
+    emits('update:modelValue', JSON.parse(oriQ))
 }
 
 const handlerClose = () => {
@@ -105,8 +105,15 @@ const items = [
     [
         { label: '高级搜索', click: () => isOpen.value = true },
         {
-            label: '重置搜索', click: reset
+            label: '重置搜索', click: () => reset
         }
     ]
 ]
+
+// 监听组件外的变动. 更新到组件内
+watchEffect(() => {
+    q.value = JSON.parse(JSON.stringify(props.modelValue))
+})
+
+
 </script>

@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-11 13:37:09
- * @LastEditTime: 2024-03-12 11:56:22
+ * @LastEditTime: 2024-03-12 16:13:09
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\com\form\index.vue
@@ -79,11 +79,7 @@ const groupUI = computed(() => {
 
 // 监听组件外的变动. 更新到组件内
 watchEffect(() => {
-    if (Object.keys(props.modelValue).length === 0) {
-        formData.value = {}
-    } else {
-        formData.value = Object.assign(formData.value, props.modelValue)
-    }
+    formData.value = Object.assign({}, props.modelValue)
 })
 
 // 监听组件内的变动. 更新到组件外
