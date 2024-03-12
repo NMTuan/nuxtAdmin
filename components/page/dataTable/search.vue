@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-11 16:38:23
- * @LastEditTime: 2024-03-12 08:38:11
+ * @LastEditTime: 2024-03-12 09:35:42
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\page\dataTable\search.vue
@@ -36,15 +36,12 @@ const oriQ = JSON.parse(JSON.stringify(props.modelValue))
 const submit = () => {
     const newQ = JSON.parse(JSON.stringify(props.modelValue))
     props.fields.forEach(item => {
-        if (q.value[item.key]) {
+        // 注意，这里===空时，也需要刷新
+        if (q.value[item.key] !== undefined) {
             newQ[item.key] = q.value[item.key]
         }
     })
-    // newQ[props.field.key] = q.value[props.field.key]
-
-    // if (JSON.stringify(newQ) !== JSON.stringify(props.modelValue)) {
     emits('update:modelValue', newQ)
-    // }
 }
 
 const reset = () => {
