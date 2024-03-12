@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-11 13:37:09
- * @LastEditTime: 2024-03-12 09:02:18
+ * @LastEditTime: 2024-03-12 11:46:14
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\com\form\index.vue
@@ -11,7 +11,12 @@
 -->
 <template>
     <UForm ref="form" :state="formData" :schema="schema" @submit="submit" :class="horizontal && 'form--horizontal'">
-        <UFormGroup v-for="field in fields" :name="field.key" :label="withLabel ? field.label : ''" :ui="groupUI">
+        <UFormGroup v-if="fields.length === 0" v-for="(label, key) in formData" :name="key"
+            :label="withLabel ? key : ''" :ui="groupUI" :class="[!horizontal && 'mb-4']">
+            <ComFormItem :field="{ key, label }" />
+        </UFormGroup>
+        <UFormGroup v-else v-for="field in fields" :name="field.key" :label="withLabel ? field.label : ''" :ui="groupUI"
+            :class="[!horizontal && 'mb-4']">
             <ComFormItem :field="field" />
         </UFormGroup>
     </UForm>

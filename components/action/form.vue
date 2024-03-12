@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:31:12
- * @LastEditTime: 2024-03-12 09:51:45
+ * @LastEditTime: 2024-03-12 11:47:17
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\action\form.vue
@@ -72,7 +72,9 @@ const fields = computed(() => {
 
 // 表单验证
 const schema = computed(() => {
-    const rule = data.value?.data.fields.reduce((total, field) => {
+    if (!data.value?.data?.fields) return []
+
+    const rule = data.value.data.fields.reduce((total, field) => {
         if (field.valid) {
             field.valids = Object.keys(field.valid).reduce((total, key) => {
                 total.push({
