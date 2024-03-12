@@ -25,7 +25,7 @@
                 </UButton>
             </div>
             <!-- 搜索 -->
-            <PageDataTableSearch v-model="q" :field="searchFields[0]" />
+            <PageDataTableSearch v-model="q" :fields="searchFields" />
         </div>
 
         <!-- 数据表格 -->
