@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:31:12
- * @LastEditTime: 2024-03-11 16:29:34
+ * @LastEditTime: 2024-03-12 09:51:45
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\action\form.vue
@@ -29,7 +29,6 @@
         </div>
 
         <ComForm ref="form" v-model="submitData" :fields="fields" :schema="schema" :submit="handlerSubmit"></ComForm>
-
         <template #footer>
             <div class="flex justify-end">
                 <UButton variant="ghost" class="mr-4" @click="handlerClose">
@@ -141,9 +140,9 @@ const handlerSubmit = async ({ data }) => {
 }
 
 // 监听异步加载的数据，拿到数据后赋值给表单
-watchEffect(() => {
-    Object.keys(formData.value).map((key) => {
-        submitData.value[key] = formData.value[key]
+watch(formData, (vals) => {
+    Object.keys(vals).map((key) => {
+        submitData.value[key] = vals[key]
     })
 })
 
