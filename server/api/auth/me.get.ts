@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-27 13:47:55
- * @LastEditTime: 2024-03-10 09:48:24
+ * @LastEditTime: 2024-03-12 10:42:45
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\auth\me.get.ts
@@ -51,7 +51,7 @@ export default defineEventHandler(async (evt) => {
                                 },
                                 positions: ['row'],
                                 props: ['id', 'name'],
-                                fetchPath: '/user/user'
+                                // fetchPath: '/user/user'
                             },
                             {
                                 label: '编辑',

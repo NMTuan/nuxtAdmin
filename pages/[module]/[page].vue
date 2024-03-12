@@ -2,14 +2,14 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:18:04
- * @LastEditTime: 2024-03-11 10:42:38
+ * @LastEditTime: 2024-03-11 15:16:22
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\pages\[module]\[page].vue
 -->
 
 <template>
-    <PageDataTable v-if="pageInfo?.component === 'dataTable'"></PageDataTable>
+    <PageDataTable v-if="pageInfo.component === 'dataTable'"></PageDataTable>
     <NuxtPage v-else />
 </template>
 
@@ -22,18 +22,19 @@ const { token } = useAuth()
 const baseURL = inject('baseURL')
 const { module, page } = route.params
 const pageInfo = computed(() => {
-    return routeStore.routes.find(route => route.route === `${module}__${page}`)
+    return routeStore.routes.find(route => route.route === `${module}__${page}`) || {}
 })
 provide('pageInfo', pageInfo)
 
 // 获取数据
-const pageFetch = (query = {}) => {
+const pageFetch = (query = {}, watch = []) => {
     return useLazyFetch(`${baseURL}${pageInfo.value.path}`, {
         method: pageInfo.fetchType || 'GET',
         headers: {
             Authorization: token.value
         },
-        query
+        query,
+        watch
     })
 }
 provide('pageFetch', pageFetch)

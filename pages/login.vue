@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-08 16:56:10
- * @LastEditTime: 2024-03-09 11:38:26
+ * @LastEditTime: 2024-03-12 12:38:25
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\pages\login.vue
@@ -52,7 +52,8 @@
 
 <script setup>
 definePageMeta({
-    layout: 'page'
+    layout: 'page',
+    auth: false
 })
 const { signIn } = useAuth()
 const username = ref('test')

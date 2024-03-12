@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-01-04 18:31:48
- * @LastEditTime: 2024-03-08 15:07:47
+ * @LastEditTime: 2024-03-12 12:39:02
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\nuxt.config.ts
@@ -33,6 +33,9 @@ export default defineNuxtConfig({
             token: {
                 signInResponseTokenPointer: '/data/token',
                 maxAgeInSeconds: 60 * 60 * 24
+            },
+            pages: {
+                login: '/login'
             }
         }
     },
