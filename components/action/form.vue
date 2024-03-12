@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:31:12
- * @LastEditTime: 2024-03-12 11:47:17
+ * @LastEditTime: 2024-03-12 21:03:13
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\action\form.vue
@@ -38,8 +38,6 @@
 <script setup>
 import { z } from 'zod'
 
-const route = useRoute()
-
 const pageRefresh = inject('pageRefresh')
 const actionInfo = inject('actionInfo')
 const actionFetch = inject('actionFetch')
@@ -51,7 +49,7 @@ const submitData = ref({})  // 要提交的数据
 const toast = useToast()
 const loading = ref(false)
 
-const { data, pending } = await actionFetch(route.query)
+const { data, pending } = await actionFetch()
 
 // 表单数据
 const formData = computed(() => {
@@ -107,13 +105,13 @@ const handlerClose = () => {
 
 // 提交按钮,触发表单提交
 const submit = () => {
-    console.log('schema', schema.value)
+    // console.log('schema', schema.value)
     form.value.submit()
 }
 
 // 表单提交
 const handlerSubmit = async ({ data }) => {
-    console.log('handlerSubmit')
+    // console.log('handlerSubmit')
     // 克隆一份，把query中的参数过滤掉，不提交
     // const d = JSON.parse(JSON.stringify(data))
     // Object.keys(route.query).map((key) => {

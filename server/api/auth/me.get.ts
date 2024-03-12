@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-27 13:47:55
- * @LastEditTime: 2024-03-12 10:42:45
+ * @LastEditTime: 2024-03-12 18:16:38
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\auth\me.get.ts
@@ -91,7 +91,15 @@ export default defineEventHandler(async (evt) => {
                 value: 'level1',
                 children: [
                     { label: 'level1-1', value: 'level11' },
-                    { label: 'level1-2', value: 'level12' },
+                    {
+                        label: 'level1-2',
+                        value: 'level12',
+                        children: [
+                            { label: 'level1-2-1', value: 'level121' },
+                            { label: 'level1-2-2', value: 'level122' },
+                            { label: 'level1-2-3', value: 'level123' }
+                        ]
+                    },
                     { label: 'level1-3', value: 'level13' }
                 ]
             },

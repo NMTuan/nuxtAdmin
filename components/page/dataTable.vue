@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:30:33
- * @LastEditTime: 2024-03-12 16:33:06
+ * @LastEditTime: 2024-03-12 20:47:40
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\page\dataTable.vue
@@ -12,11 +12,17 @@
     <div class="bg-white border rounded">
 
         <div>q: {{ q }}</div>
+        <div>action: {{ action }}</div>
+        <div>pageActions: {{ pageActions }}</div>
         <div class="flex items-center justify-between m-6">
             <!-- 功能操作 -->
             <div>
-                <UButton v-for="item in pageActions.filter(action => action.positions.includes('top')) "
+                <!-- <UButton v-for="item in pageActions.filter(action => action.positions.includes('top')) "
                     :to="item.path">
+                    {{ item.label }}
+                </UButton> -->
+                <UButton v-for="item in pageActions.filter(action => action.positions.includes('top'))  "
+                    @click="handlerAction(item)">
                     {{ item.label }}
                 </UButton>
             </div>
@@ -31,8 +37,12 @@
         <UTable v-if="columns" :rows="list" :columns="columns" :loading="pending" class="border-b mx-6">
             <template v-for="col in columns" #[`${col.key}-data`]="{ row }">
                 <template v-if="col.key === 'actions'">
-                    <UButton v-for="action in pageActions.filter(action => action.positions.includes('row')) "
+                    <!-- <UButton v-for="action in pageActions.filter(action => action.positions.includes('row'))  "
                         :to="handlerActionTo(row, action)">
+                        {{ action.label }}
+                    </UButton> -->
+                    <UButton v-for="action in pageActions.filter(action => action.positions.includes('row'))  "
+                        @click="handlerAction(action, row)">
                         {{ action.label }}
                     </UButton>
                 </template>
@@ -51,7 +61,8 @@
         <div class="sticky bottom-0 p-6 bg-white/75 dark:bg-white/75 backdrop-blur">
             <UPagination v-model="q.page" :page-count="q.limit" :total="total" show-last show-first />
         </div>
-        <NuxtPage />
+        <!-- <NuxtPage /> -->
+        <Action v-model="action" :row="row" />
     </div>
 </template>
 
@@ -109,6 +120,9 @@ const filters = computed(() => {
     return data.value?.data.filters || []
 })
 
+const action = ref({})
+const row = ref({})
+
 // 处理action的query参数
 const handlerActionTo = (rowData, action) => {
     let query
@@ -124,6 +138,11 @@ const handlerActionTo = (rowData, action) => {
         path: action.path || '',
         query
     }
+}
+
+const handlerAction = (act, rowData) => {
+    action.value = act
+    row.value = rowData || {}
 }
 
 provide('pageRefresh', refresh)
