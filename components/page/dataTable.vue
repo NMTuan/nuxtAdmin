@@ -25,7 +25,7 @@
                 </UButton>
             </div>
             <!-- 搜索 -->
-            <PageDataTableSearch v-model="q" :fields="searchFields" />
+            <PageDataTableSearch v-model="q" :fields="searchFields" :adv-fields="advFields" />
         </div>
 
         <!-- 数据表格 -->
@@ -60,8 +60,6 @@
 const pageFetch = inject('pageFetch')
 const pageActions = inject('pageActions')
 
-const page = ref(1)
-const limit = ref(10)
 const q = ref({
     page: 1,
     limit: 10
@@ -85,6 +83,19 @@ const total = computed(() => {
 const searchFields = computed(() => {
     if (Array.isArray(data.value?.data.search)) {
         return data.value.data.search.reduce((total, item) => {
+            total.push({
+                label: columns.value.find(col => col.key === item.key)?.label,
+                ...item
+            })
+            return total
+        }, [])
+    }
+    return []
+})
+
+const advFields = computed(() => {
+    if (Array.isArray(data.value?.data.advSearch)) {
+        return data.value.data.advSearch.reduce((total, item) => {
             total.push({
                 label: columns.value.find(col => col.key === item.key)?.label,
                 ...item

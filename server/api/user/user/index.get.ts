@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 12:14:50
- * @LastEditTime: 2024-03-12 08:34:30
+ * @LastEditTime: 2024-03-12 10:48:48
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\user\user\index.get.ts
@@ -11,31 +11,25 @@
 import { users, userLabels, userColbumLabels, citys } from './data'
 
 export default defineEventHandler(async (evt) => {
-    let { limit = 10, page = 1, id, name, cid } = getQuery(evt)
+    let { limit = 10, page = 1, id, name, email, cid, country } = getQuery(evt)
     limit = Number(limit)
     page = Number(page)
     let data = users
 
     if (id) {
-        const user = users.find((u) => u.id === id)
-        const userData = Object.keys(user).reduce((total, key) => {
-            total.push({ key, label: userLabels[key], value: user[key] })
-            return total
-        }, [])
-
-        return rs({
-            data: userData,
-            columns: userColbumLabels
-        })
+        data = data.find((u) => u.id === id)
     }
     if (name) {
-        // 找到name字段含name的所有数据
-        data = users.filter((u) => u.name.includes(name))
+        data = data.filter((u) => u.name.includes(name))
+    }
+    if (email) {
+        data = data.filter((u) => u.email.includes(email))
     }
     if (cid) {
-        // 找到cid字段含cid的所有数据
-        data = data.filter((u) => u.cid.toString() === cid.toString())
-        // data = users.filter((u) => u.name.includes(name))
+        data = data.filter((u) => u.cid.toString() === cid)
+    }
+    if (country) {
+        data = data.filter((u) => u.country.includes(country))
     }
 
     const offset = (page - 1) * limit
@@ -74,6 +68,13 @@ export default defineEventHandler(async (evt) => {
                 type: 'select',
                 options: citys
             }
+        ],
+        advSearch: [
+            { key: 'id' },
+            { key: 'name' },
+            { key: 'email' },
+            { key: 'cid', type: 'select', options: citys },
+            { key: 'country' }
         ],
         total: data.length
     })
