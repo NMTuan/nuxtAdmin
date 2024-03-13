@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-27 13:47:55
- * @LastEditTime: 2024-03-13 13:50:28
+ * @LastEditTime: 2024-03-13 15:07:15
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\auth\me.get.ts
@@ -16,8 +16,7 @@ export default defineEventHandler(async (evt) => {
             {
                 label: '首页',
                 value: 'index',
-                icon: 'i-ri-home-3-line',
-                activeIcon: 'i-ri-home-3-fill'
+                icon: 'i-ri-home-3-line'
             },
             {
                 label: '用户管理',
@@ -27,7 +26,6 @@ export default defineEventHandler(async (evt) => {
                         label: '用户',
                         value: 'user',
                         icon: 'i-ri-user-line',
-                        activeIcon: 'i-ri-user-fill',
                         component: 'dataTable',
                         // fetchType: 'POST',
                         actions: [
@@ -50,7 +48,7 @@ export default defineEventHandler(async (evt) => {
                                     close: '关闭'
                                 },
                                 positions: ['row'],
-                                props: ['id', 'name'],
+                                props: ['id', 'name']
                                 // fetchPath: '/user/user'
                             },
                             {
@@ -95,7 +93,6 @@ export default defineEventHandler(async (evt) => {
                         label: 'level1-2',
                         value: 'level12',
                         icon: 'i-ri-bar-chart-box-line',
-                        activeIcon: 'i-ri-bar-chart-box-fill',
                         children: [
                             { label: 'level1-2-1', value: 'level121' },
                             { label: 'level1-2-2', value: 'level122' },

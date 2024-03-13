@@ -10,7 +10,7 @@
 <template>
     <ULink :to="item?.path" activeClass="text-primary" inactiveClass="text-gray-600 dark:text-gray-400"
         class="items-center h-[48px] px-4 my-1 rounded" :class="handlerClass">
-        <LayoutMenuIcon :current="current" :icon="item.icon" :active-icon="item.activeIcon" :level="level" />
+        <LayoutMenuIcon :current="current" :icon="item.icon" :level="level" />
         <div class="ml-2 text-base hidden xl:block">
             {{ item.label }}
         </div>

@@ -16,7 +16,7 @@
             <div class="flex items-center justify-center xl:justify-between h-[48px] px-4 mx-2 my-1 rounded relative hover:bg-gray-100 dark:hover:bg-gray-900"
                 @click="toggleOpen">
                 <div class="flex items-center">
-                    <LayoutMenuIcon :current="isOpen" :icon="item.icon" :active-icon="item.activeIcon" />
+                    <LayoutMenuIcon :current="isOpen" :icon="item.icon"  />
                     <div class="ml-2 text-base hidden xl:block">{{ item.label }}</div>
                 </div>
                 <UIcon name="i-tabler-chevron-down" class="flex-shrink-0 transition-all absolute xl:static bottom-0"
