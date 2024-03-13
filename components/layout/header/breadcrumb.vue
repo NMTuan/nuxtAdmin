@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-13 16:56:03
- * @LastEditTime: 2024-03-13 17:19:12
+ * @LastEditTime: 2024-03-13 17:21:44
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\layout\header\breadcrumb.vue
@@ -32,8 +32,8 @@ const breadcrumb = computed(() => {
     // 最后整理成组件需要的格式
     return routeInfos.map((item) => {
         return {
-            label: item.label,
-            icon: item.icon || null
+            label: item?.label || '',
+            icon: item?.icon || null
             // to: item.path
         }
     })
