@@ -2,13 +2,13 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-12 13:00:26
- * @LastEditTime: 2024-03-12 16:31:04
+ * @LastEditTime: 2024-03-13 16:51:18
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\page\dataTable\filter.vue
 -->
 <template>
-    <div v-if="filters.length > 0" class="bg-gray-50 border-y p-2 mb-4">
+    <div v-if="filters.length > 0" class="bg-gray-50 border-y py-2 px-4 mb-4">
         <UButton v-for="item in filters" :variant="handlerVariant(item)" class="ml-2" @click="handlerClick(item)"
             :color="handlerColor(item)">
             {{ item.label }}

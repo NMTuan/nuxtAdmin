@@ -27,6 +27,9 @@ const flat = (arr, pLabel = '', pValue = '') => {
             var child = flat(item.actions, label, value)
             child.map((i) => {
                 i.__type = 'action'
+                if (!i.showType) {
+                    i.showType = 'modal'
+                }
                 total.push(i)
             })
         }

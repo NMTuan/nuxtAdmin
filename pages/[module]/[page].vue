@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:18:04
- * @LastEditTime: 2024-03-11 15:16:22
+ * @LastEditTime: 2024-03-13 15:25:47
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\pages\[module]\[page].vue
@@ -11,12 +11,13 @@
 <template>
     <PageDataTable v-if="pageInfo.component === 'dataTable'"></PageDataTable>
     <NuxtPage v-else />
+    <pre>{{ routeStore.routes }}</pre>
 </template>
 
 <script setup>
 const route = useRoute()
 const routeStore = useRouteStore()
-const { token } = useAuth()
+const { token, } = useAuth()
 
 // const moduleInfo = inject('moduleInfo')
 const baseURL = inject('baseURL')
@@ -40,7 +41,11 @@ const pageFetch = (query = {}, watch = []) => {
 provide('pageFetch', pageFetch)
 
 const pageActions = computed(() => {
-    return routeStore.routes.filter(route => route.route.startsWith(`${module}__${page}__`))
+    return routeStore.routes.filter(route => route.route.startsWith(`${module}__${page}__`) && route.__type === 'action')
 })
 provide('pageActions', pageActions)
+
+const pageChildren = computed(() => {
+    return routeStore.routes.filter(route => route.route.startsWith(`${module}__${page}__`) && route.__type !== 'action')
+})
 </script>

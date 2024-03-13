@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-27 13:47:55
- * @LastEditTime: 2024-03-12 10:42:45
+ * @LastEditTime: 2024-03-13 15:59:30
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\auth\me.get.ts
@@ -16,8 +16,7 @@ export default defineEventHandler(async (evt) => {
             {
                 label: '首页',
                 value: 'index',
-                icon: 'i-ri-home-3-line',
-                activeIcon: 'i-ri-home-3-fill'
+                icon: 'i-ri-home-3-line'
             },
             {
                 label: '用户管理',
@@ -27,7 +26,6 @@ export default defineEventHandler(async (evt) => {
                         label: '用户',
                         value: 'user',
                         icon: 'i-ri-user-line',
-                        activeIcon: 'i-ri-user-fill',
                         component: 'dataTable',
                         // fetchType: 'POST',
                         actions: [
@@ -50,7 +48,7 @@ export default defineEventHandler(async (evt) => {
                                     close: '关闭'
                                 },
                                 positions: ['row'],
-                                props: ['id', 'name'],
+                                props: ['id', 'name']
                                 // fetchPath: '/user/user'
                             },
                             {
@@ -91,7 +89,20 @@ export default defineEventHandler(async (evt) => {
                 value: 'level1',
                 children: [
                     { label: 'level1-1', value: 'level11' },
-                    { label: 'level1-2', value: 'level12' },
+                    {
+                        label: 'level1-2',
+                        value: 'level12',
+                        icon: 'i-ri-bar-chart-box-line',
+                        children: [
+                            {
+                                label: 'level1-2-1',
+                                value: 'level121',
+                                icon: 'i-ri-archive-line'
+                            },
+                            { label: 'level1-2-2', value: 'level122' },
+                            { label: 'level1-2-3', value: 'level123' }
+                        ]
+                    },
                     { label: 'level1-3', value: 'level13' }
                 ]
             },
@@ -100,7 +111,15 @@ export default defineEventHandler(async (evt) => {
                 label: 'level3',
                 value: 'level3',
                 children: [
-                    { label: 'level3-1', value: 'level31' },
+                    {
+                        label: 'level3-1',
+                        value: 'level31',
+                        children: [
+                            { label: 'level3-1-1', value: 'level311', hidden: true },
+                            { label: 'level3-1-2', value: 'level312', hidden: false },
+                            { label: 'level3-1-3', value: 'level313', hidden: true }
+                        ]
+                    },
                     { label: 'level3-2', value: 'level32' },
                     { label: 'level3-3', value: 'level33' }
                 ]

@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-11 16:38:23
- * @LastEditTime: 2024-03-12 16:14:31
+ * @LastEditTime: 2024-03-13 16:48:42
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\page\dataTable\search.vue
@@ -20,17 +20,7 @@
         </UButtonGroup>
         <!-- 高级搜索 -->
         <USlideover :model-value="isOpen" @close="handlerClose">
-            <UCard>
-                <template #header>
-                    <div class="flex items-center justify-between">
-                        <h3 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">
-                            高级搜索
-                        </h3>
-                        <UButton color="gray" variant="ghost" icon="i-heroicons-x-mark-20-solid" class="-my-1"
-                            @click="handlerClose" />
-                    </div>
-                </template>
-
+            <ActionCard label="高级搜索" :close="handlerClose">
                 <ComForm :fields="advFields" v-model="q" :submit="submit"></ComForm>
 
                 <template #footer>
@@ -48,7 +38,7 @@
                         </div>
                     </div>
                 </template>
-            </UCard>
+            </ActionCard>
         </USlideover>
     </div>
 </template>
@@ -105,7 +95,9 @@ const items = [
     [
         { label: '高级搜索', click: () => isOpen.value = true },
         {
-            label: '重置搜索', click: () => reset
+            label: '重置搜索', click: () => {
+                reset()
+            }
         }
     ]
 ]
