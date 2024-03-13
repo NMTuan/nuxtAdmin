@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-27 13:47:55
- * @LastEditTime: 2024-03-12 18:16:38
+ * @LastEditTime: 2024-03-13 13:50:28
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\auth\me.get.ts
@@ -94,6 +94,8 @@ export default defineEventHandler(async (evt) => {
                     {
                         label: 'level1-2',
                         value: 'level12',
+                        icon: 'i-ri-bar-chart-box-line',
+                        activeIcon: 'i-ri-bar-chart-box-fill',
                         children: [
                             { label: 'level1-2-1', value: 'level121' },
                             { label: 'level1-2-2', value: 'level122' },

@@ -2,13 +2,14 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:18:04
- * @LastEditTime: 2024-03-11 15:16:22
+ * @LastEditTime: 2024-03-13 11:44:36
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\pages\[module]\[page].vue
 -->
 
 <template>
+    page
     <PageDataTable v-if="pageInfo.component === 'dataTable'"></PageDataTable>
     <NuxtPage v-else />
 </template>

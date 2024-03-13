@@ -9,6 +9,7 @@
 -->
 
 <template>
+    module
     <NuxtPage />
 </template>
 

@@ -1,6 +1,15 @@
+<!--
+ * @Author: NMTuan
+ * @Email: NMTuan@qq.com
+ * @Date: 2024-03-11 11:27:44
+ * @LastEditTime: 2024-03-13 13:09:10
+ * @LastEditors: NMTuan
+ * @Description: 
+ * @FilePath: \nuxtAdmin\components\layout\menu.vue
+-->
 <template>
     <simplebar class="h-full">
-        <LayoutMenuList :children="menus" />
+        <LayoutMenuList :children="menus" :level="1" />
         <!-- <pre>{{ menus }}</pre> -->
         <!-- <div v-for="i in 50">{{ i }}</div> -->
     </simplebar>
@@ -11,16 +20,21 @@ import simplebar from 'simplebar-vue';
 
 const { data } = useAuth()
 
-const handlerMenu = (menu, parent) => {
+const handlerMenu = (menu, parentPath) => {
     // 给menu增加path属性，用于跳转
+    // const path = `${parentPath ? ('/' + parentPath) : ''}/${item.value}`
     return menu.map(item => {
-        if (item.children) {
-            handlerMenu(item.children, item)
-        } else {
-            delete item.actions
-            item.path = parent ? `/${parent.value}/${item.value}` : `/${item.value}`
+        let path = ''
+        if (parentPath) {
+            path += parentPath
         }
-        return item
+        path += `/${item.value}`
+        if (item.children) {
+            handlerMenu(item.children, path)
+        }
+        delete item.actions
+        item.path = path
+       return item
     })
 }
 const menus = computed(() => {

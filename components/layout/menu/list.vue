@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-09 09:43:33
- * @LastEditTime: 2024-03-09 14:15:49
+ * @LastEditTime: 2024-03-13 14:13:43
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\layout\menu\list.vue
@@ -10,16 +10,16 @@
 <template>
     <div v-for="item in children">
         <template v-if="Array.isArray(item.children)">
-            <LayoutMenuGroup :item="item" />
-            <LayoutMenuList :children="item.children" />
+            <LayoutMenuGroup v-if="level === 1" :item="item">
+                <LayoutMenuList :children="item.children" :level="level + 1" />
+            </LayoutMenuGroup>
+            <LayoutMenuAccordion v-else :item="item">
+                <LayoutMenuList :children="item.children" :level="level + 1" />
+            </LayoutMenuAccordion>
         </template>
-        <template v-else>
-            <UTooltip class="block xl:hidden" :text="item.label" :popper="{ arrow: true, placement: 'right' }"
-                :ui="{ base: 'text-base h-10 px-4 py-2' }">
-                <LayoutMenuItem class="flex justify-center mx-2" :item="item" />
-            </UTooltip>
-            <LayoutMenuItem class="hidden xl:flex mx-2" :item="item" />
-        </template>
+        <LayoutMenuToolTip v-else :label="item.label">
+            <LayoutMenuItem class="flex  mx-2" :item="item" :level="level" />
+        </LayoutMenuToolTip>
     </div>
 </template>
 <script setup>
@@ -27,6 +27,10 @@ const props = defineProps({
     children: {
         type: Array,
         default: () => []
+    },
+    level: {
+        type: Number,
+        default: 1
     }
 })
 </script>
