@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-11 16:38:23
- * @LastEditTime: 2024-03-12 16:14:31
+ * @LastEditTime: 2024-03-13 14:40:14
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\page\dataTable\search.vue
@@ -105,7 +105,9 @@ const items = [
     [
         { label: '高级搜索', click: () => isOpen.value = true },
         {
-            label: '重置搜索', click: () => reset
+            label: '重置搜索', click: () => {
+                reset()
+            }
         }
     ]
 ]
