@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-11 11:27:44
- * @LastEditTime: 2024-03-13 13:09:10
+ * @LastEditTime: 2024-03-13 15:54:08
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\layout\menu.vue
@@ -34,7 +34,7 @@ const handlerMenu = (menu, parentPath) => {
         }
         delete item.actions
         item.path = path
-       return item
+        return item
     })
 }
 const menus = computed(() => {
