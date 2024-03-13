@@ -2,29 +2,21 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:31:12
- * @LastEditTime: 2024-03-12 21:03:13
+ * @LastEditTime: 2024-03-13 16:40:31
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\action\form.vue
 -->
 
 <template>
-    <UCard>
-        <template #header>
-            <div class="flex items-center justify-between">
-                <h3 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">
-                    {{ actionInfo.label }}
-                </h3>
-                <UButton color="gray" variant="ghost" icon="i-heroicons-x-mark-20-solid" class="-my-1"
-                    @click="handlerClose" />
-            </div>
-        </template>
+    <ActionCard :label="actionInfo.label" :close="actionBack">
         <ComForm ref="form" v-model="submitData" :fields="fields" :schema="schema" :submit="handlerSubmit"
             :loading="pending">
         </ComForm>
+        <p v-for="i in 100">{{ i }}</p>
         <template #footer>
             <div class="flex justify-end">
-                <UButton variant="ghost" class="mr-4" @click="handlerClose">
+                <UButton variant="ghost" class="mr-4" @click="actionBack">
                     {{ actionInfo.btns.cancel || 'cancel' }}
                 </UButton>
                 <UButton :loading="loading" @click="submit">
@@ -32,7 +24,7 @@
                 </UButton>
             </div>
         </template>
-    </UCard>
+    </ActionCard>
 </template>
 
 <script setup>
@@ -99,10 +91,6 @@ const schema = computed(() => {
     return z.object(rule)
 })
 
-const handlerClose = () => {
-    actionBack()
-}
-
 // 提交按钮,触发表单提交
 const submit = () => {
     // console.log('schema', schema.value)
@@ -128,7 +116,7 @@ const handlerSubmit = async ({ data }) => {
             title: res.message || 'success !'
         })
         pageRefresh()
-        handlerClose()
+        actionBack()
     }
 }
 

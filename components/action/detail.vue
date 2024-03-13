@@ -9,24 +9,9 @@
 -->
 
 <template>
-    <UCard>
-        <template #header>
-            <div class="flex items-center justify-between">
-                <h3 class="text-base font-semibold leading-6 text-gray-900 dark:text-white">
-                    {{ actionInfo.label }}
-                </h3>
-                <UButton color="gray" variant="ghost" icon="i-heroicons-x-mark-20-solid" class="-my-1"
-                    @click="handlerClose" />
-            </div>
-        </template>
-
+    <ActionCard :label="actionInfo.label" :close="actionBack">
         <UTable :rows="list" :loading="pending" :columns="columns">
         </UTable>
-
-        <!-- <div>{{ $route.params }}</div> -->
-        <!-- <div>{{ $route.query }}</div> -->
-        <!-- <div>{{ pageStore.actionConfig }}</div> -->
-
         <template #footer>
             <div class="flex justify-end">
                 <UButton @click="handlerClose">
@@ -34,7 +19,7 @@
                 </UButton>
             </div>
         </template>
-    </UCard>
+    </ActionCard>
 </template>
 
 <script setup>

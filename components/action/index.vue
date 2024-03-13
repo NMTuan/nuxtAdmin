@@ -15,9 +15,6 @@
             <ActionConfirm v-else-if="modelValue.component === 'confirm'" />
             <slot v-else />
             <input type="text" class="opacity-0 h-0 overflow-hidden" />
-            <!-- <pre>{{ actionInfo }}</pre> -->
-            <!-- <pre>{{ row }}</pre> -->
-            <!-- <pre>{{ query }}</pre> -->
         </UModal>
     </div>
 </template>

@@ -9,7 +9,7 @@
 -->
 
 <template>
-    <UModal :model-value="isOpen" @close="handlerClose">
+    <UModal :model-value="isOpen" @close="actionBack">
         <slot></slot>
         <input type="text" class="opacity-0 h-0 overflow-hidden" />
     </UModal>
@@ -20,12 +20,5 @@
 const actionBack = inject('actionBack')
 
 const isOpen = ref(true)
-
-const handlerClose = () => {
-    actionBack()
-}
-
-
-
 
 </script>
