@@ -2,14 +2,13 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:18:04
- * @LastEditTime: 2024-03-13 11:44:36
+ * @LastEditTime: 2024-03-13 15:25:47
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\pages\[module]\[page].vue
 -->
 
 <template>
-    page
     <PageDataTable v-if="pageInfo.component === 'dataTable'"></PageDataTable>
     <NuxtPage v-else />
 </template>
@@ -41,7 +40,11 @@ const pageFetch = (query = {}, watch = []) => {
 provide('pageFetch', pageFetch)
 
 const pageActions = computed(() => {
-    return routeStore.routes.filter(route => route.route.startsWith(`${module}__${page}__`))
+    return routeStore.routes.filter(route => route.route.startsWith(`${module}__${page}__`) && route.__type === 'action')
 })
 provide('pageActions', pageActions)
+
+const pageChildren = computed(() => {
+    return routeStore.routes.filter(route => route.route.startsWith(`${module}__${page}__`) && route.__type !== 'action')
+})
 </script>

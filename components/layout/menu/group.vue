@@ -13,7 +13,7 @@
             {{ item?.label }}
         </div>
         <slot />
-        <UDivider />
+        <UDivider class="mt-3" />
     </div>
 </template>
 <script setup>

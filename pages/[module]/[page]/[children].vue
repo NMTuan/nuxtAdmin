@@ -10,7 +10,6 @@
 
 <template>
     <div>
-        children
         <!-- <ActionSlideover v-if="actionInfo.showType === 'slideover'"
             :prevent-close="['form'].includes(actionInfo.component)">
             <ActionForm v-if="actionInfo.component === 'form'" />

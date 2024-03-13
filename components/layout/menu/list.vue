@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-09 09:43:33
- * @LastEditTime: 2024-03-13 14:13:43
+ * @LastEditTime: 2024-03-13 15:12:34
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\layout\menu\list.vue
@@ -18,7 +18,7 @@
             </LayoutMenuAccordion>
         </template>
         <LayoutMenuToolTip v-else :label="item.label">
-            <LayoutMenuItem class="flex  mx-2" :item="item" :level="level" />
+            <LayoutMenuItem class="flex mx-2" :item="item" :level="level" />
         </LayoutMenuToolTip>
     </div>
 </template>

@@ -94,7 +94,11 @@ export default defineEventHandler(async (evt) => {
                         value: 'level12',
                         icon: 'i-ri-bar-chart-box-line',
                         children: [
-                            { label: 'level1-2-1', value: 'level121' },
+                            {
+                                label: 'level1-2-1',
+                                value: 'level121',
+                                icon: 'i-ri-archive-line'
+                            },
                             { label: 'level1-2-2', value: 'level122' },
                             { label: 'level1-2-3', value: 'level123' }
                         ]
