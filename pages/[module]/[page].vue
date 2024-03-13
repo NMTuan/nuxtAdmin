@@ -11,12 +11,13 @@
 <template>
     <PageDataTable v-if="pageInfo.component === 'dataTable'"></PageDataTable>
     <NuxtPage v-else />
+    <pre>{{ routeStore.routes }}</pre>
 </template>
 
 <script setup>
 const route = useRoute()
 const routeStore = useRouteStore()
-const { token } = useAuth()
+const { token, } = useAuth()
 
 // const moduleInfo = inject('moduleInfo')
 const baseURL = inject('baseURL')

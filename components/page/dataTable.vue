@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:30:33
- * @LastEditTime: 2024-03-12 20:47:40
+ * @LastEditTime: 2024-03-13 16:50:51
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\page\dataTable.vue
@@ -10,10 +10,9 @@
 
 <template>
     <div class="bg-white border rounded">
-
-        <div>q: {{ q }}</div>
-        <div>action: {{ action }}</div>
-        <div>pageActions: {{ pageActions }}</div>
+        <!-- <div>q: {{ q }}</div> -->
+        <!-- <div>action: {{ action }}</div> -->
+        <!-- <div>pageActions: {{ pageActions }}</div> -->
         <div class="flex items-center justify-between m-6">
             <!-- 功能操作 -->
             <div>

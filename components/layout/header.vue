@@ -10,7 +10,7 @@
 <template>
     <div class="flex items-center justify-between px-8 h-full">
         <div>
-            left
+            <LayoutHeaderBreadcrumb />
         </div>
         <div class="flex items-center">
             <template v-for="(item) in topbar">
