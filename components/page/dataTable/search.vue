@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-11 16:38:23
- * @LastEditTime: 2024-03-14 14:16:07
+ * @LastEditTime: 2024-03-14 19:22:35
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\page\dataTable\search.vue
@@ -25,11 +25,11 @@
 
                 <template #footer>
                     <div class="flex justify-between">
-                        <UButton variant="ghost" class="mr-4" @click="reset">
+                        <UButton variant="ghost" color="gray" class="mr-4" @click="reset">
                             {{ 'reset' }}
                         </UButton>
                         <div class="flex items-center">
-                            <UButton variant="ghost" class="mr-4" @click="handlerClose">
+                            <UButton variant="ghost" color="gray" class="mr-4" @click="handlerClose">
                                 {{ 'cancel' }}
                             </UButton>
                             <UButton @click="submit">

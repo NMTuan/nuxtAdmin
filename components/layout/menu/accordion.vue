@@ -2,14 +2,14 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-13 09:50:29
- * @LastEditTime: 2024-03-14 18:47:13
+ * @LastEditTime: 2024-03-14 19:12:43
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\layout\menu\accordion.vue
 -->
 <template>
     <div class="overflow-hidden" :class="[
-        isOpen && 'bg-gray-100 shadow-inner'
+        isOpen && 'bg-gray-100 dark:bg-gray-900 shadow-inner'
     ]">
 
         <LayoutMenuToolTip :label="item.label">

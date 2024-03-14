@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-01-04 18:31:48
- * @LastEditTime: 2024-03-09 09:36:56
+ * @LastEditTime: 2024-03-14 19:24:39
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\app.vue
@@ -28,6 +28,7 @@ html {
 
     &.dark {
         @apply bg-gray-950;
+        @apply text-gray-200;
     }
 }
 

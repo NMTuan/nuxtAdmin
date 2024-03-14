@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-27 13:47:55
- * @LastEditTime: 2024-03-13 13:47:13
+ * @LastEditTime: 2024-03-14 19:33:40
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\layouts\default.vue
@@ -11,8 +11,8 @@
 <template>
     <div class="flex">
         <!-- 90 280 -->
-        <div class="flex flex-col flex-shrink-0 w-[90px] xl:w-[280px] shadow-xl xl:shadow-none h-screen border-r-none
-            xl:border-r sticky top-0 z-[11]  transition-all">
+        <div class="flex flex-col flex-shrink-0 w-[90px] xl:w-[280px] shadow-xl dark:shadow-gray-800 xl:shadow-none h-screen border-r-none
+            xl:border-r sticky top-0 z-[11]  transition-all dark:border-gray-800">
             <div class="h-[74px] flex-shrink-0">
                 <LayoutLogo />
             </div>

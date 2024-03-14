@@ -2,14 +2,14 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:30:33
- * @LastEditTime: 2024-03-14 14:47:59
+ * @LastEditTime: 2024-03-14 19:29:50
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\page\dataTable.vue
 -->
 
 <template>
-    <div class="bg-white border rounded">
+    <div class="bg-white dark:bg-gray-900 border dark:border-gray-800 rounded">
         <div class="flex items-center justify-between m-6">
             <!-- 功能操作 -->
             <div>
@@ -26,7 +26,8 @@
         <PageDataTableFilter v-model="q" :filters="filters" />
 
         <!-- 数据表格 -->
-        <UTable v-if="columns" :rows="list" :columns="columns" :loading="pending" class="border-b mx-6">
+        <UTable v-if="columns" :rows="list" :columns="columns" :loading="pending"
+            class="border-b dark:border-gray-700 mx-6">
             <template v-for="col in columns" #[`${col.key}-data`]="{ row }">
                 <template v-if="col.key === 'actions'">
                     <div class="flex items-center gap-1">
@@ -49,7 +50,7 @@
             </template>
         </UTable>
         <!-- 底部分页 -->
-        <div class="sticky bottom-0 p-6 bg-white/75 dark:bg-white/75 backdrop-blur">
+        <div class="sticky bottom-0 p-6 bg-white/75 dark:bg-gray-900/75 backdrop-blur">
             <div class="flex items-center justify-between">
                 <UPagination v-model="q.page" :page-count="q.limit" :total="total" show-last show-first />
                 <div class="flex items-center">

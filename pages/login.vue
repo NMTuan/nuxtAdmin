@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-08 16:56:10
- * @LastEditTime: 2024-03-12 12:38:25
+ * @LastEditTime: 2024-03-14 19:46:16
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\pages\login.vue
@@ -20,8 +20,7 @@
                 </div>
                 <div class="relative">
                     <div
-                        class="w-[520px] px-10 py-14 border rounded bg-white shadow y relative z-10 dark:bg-primary-900 dark:border-primary-700">
-                        <!-- <div class="mb-6 text-center text-primary font-bold"> Welcome Back !</div> -->
+                        class="w-[520px] px-10 py-14 border rounded bg-white shadow y relative z-10 dark:bg-gray-900 dark:border-gray-800">
                         <UFormGroup size="xl" label="Username" class="mb-6">
                             <UInput v-model="username"></UInput>
                         </UFormGroup>
@@ -36,7 +35,7 @@
                         </UFormGroup>
                     </div>
                     <div
-                        class="absolute inset-0 w-full h-full p-8 border rounded bg-white opacity-75 shadow y -rotate-3 dark:bg-primary-900 dark:border-primary-700">
+                        class="absolute inset-0 w-full h-full p-8 border rounded bg-white opacity-75 shadow y -rotate-3 dark:bg-gray-900 dark:border-gray-700">
                     </div>
                 </div>
             </div>
