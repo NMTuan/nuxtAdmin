@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-14 11:30:19
- * @LastEditTime: 2024-03-14 12:45:50
+ * @LastEditTime: 2024-03-14 13:36:58
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\stores\notice.ts
@@ -17,11 +17,15 @@ export const useNoticeStore = defineStore('notice', () => {
         if (!userData.value?.notice) {
             return
         }
-        const { data } = await useLazyFetch(
+        // const { data } = await useLazyFetch(
+        //     `${config.public.auth.baseURL}${userData.value.notice}`
+        // )
+        const data = await $fetch(
             `${config.public.auth.baseURL}${userData.value.notice}`
         )
-        if (data.value.data) {
-            state.value = data.value.data
+        console.log('x', data)
+        if (data.data) {
+            state.value = data.data
         }
     }
 

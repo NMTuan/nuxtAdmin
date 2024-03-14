@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-11 11:27:44
- * @LastEditTime: 2024-03-13 15:54:08
+ * @LastEditTime: 2024-03-14 13:42:05
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\layout\menu.vue
@@ -38,7 +38,7 @@ const handlerMenu = (menu, parentPath) => {
     })
 }
 const menus = computed(() => {
-    const menu = JSON.parse(JSON.stringify(data.value.menu))
+    const menu = JSON.parse(JSON.stringify(data.value?.menu || []) )
     return handlerMenu(menu, null)
 })
 </script>

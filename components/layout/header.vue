@@ -23,7 +23,7 @@
 
 const { data } = useAuth()
 const topbar = computed(() => {
-    return data.value.topbar
+    return data.value?.topbar || []
 })
 
 const handlerItems = ({ items }) => {

@@ -4,7 +4,7 @@ import fullScreen from '~/components/layout/header/fullScreen.vue'
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-27 13:47:55
- * @LastEditTime: 2024-03-14 12:43:04
+ * @LastEditTime: 2024-03-14 13:20:33
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\auth\me.get.ts
@@ -176,8 +176,8 @@ export default defineEventHandler(async (evt) => {
                     [
                         {
                             label: 'exit',
-                            icon: 'i-ri-logout-box-r-line'
-                            // to: '/logout'
+                            icon: 'i-ri-logout-box-r-line',
+                            to: '/logout'
                         }
                     ]
                 ]
@@ -185,7 +185,8 @@ export default defineEventHandler(async (evt) => {
             {
                 type: 'exit',
                 label: '退出',
-                icon: 'i-ri-logout-box-r-line'
+                icon: 'i-ri-logout-box-r-line',
+                to: '/logout'
             }
         ],
         notice: '/auth/notice'
