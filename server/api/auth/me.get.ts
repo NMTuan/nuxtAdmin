@@ -1,8 +1,10 @@
+import fullScreen from '~/components/layout/header/fullScreen.vue'
+
 /*
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-27 13:47:55
- * @LastEditTime: 2024-03-13 15:59:30
+ * @LastEditTime: 2024-03-14 10:54:38
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\auth\me.get.ts
@@ -11,7 +13,8 @@ export default defineEventHandler(async (evt) => {
     // const auth = evt.auth
     return {
         id: 123456,
-        name: 'Floyd Fletcher',
+        // name: 'Floyd Fletcher',
+        // avatar: 'https://www.loliapi.com/acg/pp/',
         menu: [
             {
                 label: '首页',
@@ -21,11 +24,12 @@ export default defineEventHandler(async (evt) => {
             {
                 label: '用户管理',
                 value: 'user',
+                icon: 'i-ri-user-4-line',
                 children: [
                     {
                         label: '用户',
                         value: 'user',
-                        icon: 'i-ri-user-line',
+                        icon: 'i-ri-file-user-line',
                         component: 'dataTable',
                         // fetchType: 'POST',
                         actions: [
@@ -115,9 +119,21 @@ export default defineEventHandler(async (evt) => {
                         label: 'level3-1',
                         value: 'level31',
                         children: [
-                            { label: 'level3-1-1', value: 'level311', hidden: true },
-                            { label: 'level3-1-2', value: 'level312', hidden: false },
-                            { label: 'level3-1-3', value: 'level313', hidden: true }
+                            {
+                                label: 'level3-1-1',
+                                value: 'level311',
+                                hidden: true
+                            },
+                            {
+                                label: 'level3-1-2',
+                                value: 'level312',
+                                hidden: false
+                            },
+                            {
+                                label: 'level3-1-3',
+                                value: 'level313',
+                                hidden: true
+                            }
                         ]
                     },
                     { label: 'level3-2', value: 'level32' },
@@ -127,12 +143,45 @@ export default defineEventHandler(async (evt) => {
         ],
         topbar: [
             {
-                icon: 'i-ri-notification-3-line',
-                path: ''
+                label: '设置',
+                to: '/level1/level13'
             },
-            'darkMode',
-            'fullScreen',
-            'user'
+            {
+                icon: 'i-ri-notification-3-line',
+                to: ''
+            },
+            {
+                type: 'darkMode'
+            },
+            {
+                type: 'fullScreen',
+            },
+            {
+                type: 'dropdown',
+                label: 'Floyd Fletcher',
+                avatar: 'https://www.loliapi.com/acg/pp/',
+                items: [
+                    [
+                        {
+                            label: 'profile',
+                            icon: 'i-ri-user-3-line',
+                            to: '/level3/level32'
+                        }
+                    ],
+                    [
+                        {
+                            label: 'exit',
+                            icon: 'i-ri-logout-box-r-line'
+                            // to: '/logout'
+                        }
+                    ]
+                ]
+            },
+            {
+                type: 'exit',
+                label: '退出',
+                icon: 'i-ri-logout-box-r-line'
+            }
         ]
     }
 })

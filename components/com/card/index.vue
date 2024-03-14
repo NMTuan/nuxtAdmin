@@ -2,10 +2,10 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-13 16:25:12
- * @LastEditTime: 2024-03-13 16:44:38
+ * @LastEditTime: 2024-03-14 08:29:10
  * @LastEditors: NMTuan
  * @Description: 
- * @FilePath: \nuxtAdmin\components\action\card.vue
+ * @FilePath: \nuxtAdmin\components\com\card.vue
 -->
 <template>
     <UCard

@@ -2,14 +2,14 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:31:00
- * @LastEditTime: 2024-03-07 20:18:52
+ * @LastEditTime: 2024-03-14 08:30:23
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\action\detail.vue
 -->
 
 <template>
-    <ActionCard :label="actionInfo.label" :close="actionBack">
+    <ComCard :label="actionInfo.label" :close="actionBack">
         <UTable :rows="list" :loading="pending" :columns="columns">
         </UTable>
         <template #footer>
@@ -19,7 +19,7 @@
                 </UButton>
             </div>
         </template>
-    </ActionCard>
+    </ComCard>
 </template>
 
 <script setup>
