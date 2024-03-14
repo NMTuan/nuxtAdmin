@@ -13,10 +13,9 @@
         <ComForm ref="form" v-model="submitData" :fields="fields" :schema="schema" :submit="handlerSubmit"
             :loading="pending">
         </ComForm>
-        <p v-for="i in 100">{{ i }}</p>
         <template #footer>
             <div class="flex justify-end">
-                <UButton variant="ghost" class="mr-4" @click="actionBack">
+                <UButton variant="ghost" color="gray" class="mr-4" @click="actionBack">
                     {{ actionInfo.btns.cancel || 'cancel' }}
                 </UButton>
                 <UButton :loading="loading" @click="submit">

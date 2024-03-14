@@ -4,7 +4,7 @@ import fullScreen from '~/components/layout/header/fullScreen.vue'
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-27 13:47:55
- * @LastEditTime: 2024-03-14 13:20:33
+ * @LastEditTime: 2024-03-14 14:54:46
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\auth\me.get.ts
@@ -37,6 +37,7 @@ export default defineEventHandler(async (evt) => {
                                 label: '创建',
                                 value: 'create',
                                 component: 'form',
+                                icon: 'i-ri-add-circle-line',
                                 btns: {
                                     submit: '提交',
                                     cancel: '取消'
@@ -47,6 +48,7 @@ export default defineEventHandler(async (evt) => {
                                 label: '查看',
                                 value: 'view',
                                 component: 'detail',
+                                icon: 'i-ri-list-view',
                                 // showType: 'slideover',
                                 btns: {
                                     close: '关闭'
@@ -59,6 +61,7 @@ export default defineEventHandler(async (evt) => {
                                 label: '编辑',
                                 value: 'edit',
                                 component: 'form',
+                                icon: 'i-ri-edit-line',
                                 showType: 'slideover',
                                 btns: {
                                     submit: '更新',
@@ -71,6 +74,10 @@ export default defineEventHandler(async (evt) => {
                                 label: '删除',
                                 value: 'delete',
                                 component: 'confirm',
+                                icon: 'i-ri-delete-bin-line',
+                                hideLabel: true,
+                                color: 'red',
+                                message: '确定要删除此信息么？',
                                 btns: {
                                     submit: '删除',
                                     cancel: '取消'

@@ -23,7 +23,6 @@ export const useNoticeStore = defineStore('notice', () => {
         const data = await $fetch(
             `${config.public.auth.baseURL}${userData.value.notice}`
         )
-        console.log('x', data)
         if (data.data) {
             state.value = data.data
         }

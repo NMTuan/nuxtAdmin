@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-07 19:23:22
- * @LastEditTime: 2024-03-11 16:32:59
+ * @LastEditTime: 2024-03-14 14:56:30
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\action\confirm.vue
@@ -10,14 +10,13 @@
 
 <template>
     <ComCard :label="actionInfo.label" :close="actionBack">
-        confirm
-
+        {{ actionInfo.message }}
         <template #footer>
             <div class="flex justify-end">
-                <UButton variant="ghost" class="mr-4" @click="actionBack">
+                <UButton variant="ghost" color="gray" class="mr-4" @click="actionBack">
                     {{ actionInfo.btns?.cancel || 'cancel' }}
                 </UButton>
-                <UButton :loading="loading" @click="submit">
+                <UButton :loading="loading" :color="actionInfo.color || 'primary'" @click="submit">
                     {{ actionInfo.btns?.submit || 'submit' }}
                 </UButton>
             </div>

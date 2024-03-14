@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-11 16:38:23
- * @LastEditTime: 2024-03-14 08:31:50
+ * @LastEditTime: 2024-03-14 14:16:07
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\page\dataTable\search.vue
@@ -12,8 +12,8 @@
         <!-- 搜索 -->
         <ComForm :fields="fields" v-model="q" horizontal :submit="submit"></ComForm>
         <!-- 按钮 -->
-        <UButtonGroup orientation="horizontal" class="ml-2">
-            <UButton @click="submit">搜索</UButton>
+        <UButtonGroup orientation="horizontal">
+            <UButton @click="submit" icon="i-ri-search-2-line">搜索</UButton>
             <UDropdown :items="items" :popper="{ placement: 'bottom-end', arrow: true }" :ui="{ width: 'w-auto' }">
                 <UButton icon="i-heroicons-chevron-down-20-solid" class="border-l" />
             </UDropdown>
@@ -93,9 +93,11 @@ const handlerClose = () => {
 
 const items = [
     [
-        { label: '高级搜索', click: () => isOpen.value = true },
+        { label: '高级搜索', icon: 'i-ri-search-eye-line', click: () => isOpen.value = true },
         {
-            label: '重置搜索', click: () => {
+            label: '重置搜索',
+            icon: 'i-ri-refresh-line',
+            click: () => {
                 reset()
             }
         }

@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-13 09:50:29
- * @LastEditTime: 2024-03-13 14:25:12
+ * @LastEditTime: 2024-03-14 14:36:23
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\layout\menu\accordion.vue
@@ -25,7 +25,7 @@
             </div>
         </LayoutMenuToolTip>
 
-        <div ref="el" :style="{ height: chldrenHeight }" class="transition-all overflow-hidden mb-2">
+        <div ref="el" :style="{ height: chldrenHeight }" class="transition-all overflow-hidden">
             <slot />
         </div>
     </div>

@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-12 13:00:26
- * @LastEditTime: 2024-03-13 16:51:18
+ * @LastEditTime: 2024-03-14 14:34:39
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\page\dataTable\filter.vue
@@ -30,42 +30,6 @@ const props = defineProps({
 const emits = defineEmits(['update:modelValue'])
 
 const oriQ = JSON.stringify(props.modelValue)  // 原始表单值
-
-// const filters = ref([
-//     { label: '全部', query: {} },
-//     { label: '未处理', query: { name: 'a' } },
-//     { label: '已处理', query: { email: 'b' } }
-// ])
-
-const links = [{
-    label: 'All',
-    click: () => {
-        reset()
-    }
-    // badge: 100,
-    // to: '/user/user'
-}, {
-    label: 'name === a',
-    icon: 'i-heroicons-home',
-    click: () => {
-        props.modelValue.name = 'a'
-    }
-    // to: '/getting-started/installation'
-}, {
-    label: 'query url',
-    icon: 'i-heroicons-chart-bar',
-    to: {
-        path: '/user/user',
-        query: {
-            name: 'b'
-        },
-        hash: '#hash'
-    }
-}, {
-    label: 'test',
-    icon: 'i-heroicons-command-line',
-    to: '/user/user/test'
-}]
 
 const handlerClick = (item) => {
     const newQ = JSON.parse(oriQ)
@@ -98,7 +62,7 @@ const handlerColor = (item) => {
 }
 const handlerVariant = (item) => {
     if (handlerColor(item) === 'primary') {
-        return 'solid'
+        return 'outline'
     } else {
         return 'soft'
     }

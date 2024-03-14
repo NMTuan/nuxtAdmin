@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:18:04
- * @LastEditTime: 2024-03-13 15:25:47
+ * @LastEditTime: 2024-03-14 13:59:05
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\pages\[module]\[page].vue
@@ -11,7 +11,6 @@
 <template>
     <PageDataTable v-if="pageInfo.component === 'dataTable'"></PageDataTable>
     <NuxtPage v-else />
-    <pre>{{ routeStore.routes }}</pre>
 </template>
 
 <script setup>

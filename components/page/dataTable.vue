@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:30:33
- * @LastEditTime: 2024-03-13 16:50:51
+ * @LastEditTime: 2024-03-14 14:47:59
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\page\dataTable.vue
@@ -16,12 +16,8 @@
         <div class="flex items-center justify-between m-6">
             <!-- 功能操作 -->
             <div>
-                <!-- <UButton v-for="item in pageActions.filter(action => action.positions.includes('top')) "
-                    :to="item.path">
-                    {{ item.label }}
-                </UButton> -->
-                <UButton v-for="item in pageActions.filter(action => action.positions.includes('top'))  "
-                    @click="handlerAction(item)">
+                <UButton v-for="item in pageActions.filter(action => action.positions.includes('top'))"
+                    @click="handlerAction(item)" :icon="item.icon">
                     {{ item.label }}
                 </UButton>
             </div>
@@ -36,14 +32,13 @@
         <UTable v-if="columns" :rows="list" :columns="columns" :loading="pending" class="border-b mx-6">
             <template v-for="col in columns" #[`${col.key}-data`]="{ row }">
                 <template v-if="col.key === 'actions'">
-                    <!-- <UButton v-for="action in pageActions.filter(action => action.positions.includes('row'))  "
-                        :to="handlerActionTo(row, action)">
-                        {{ action.label }}
-                    </UButton> -->
-                    <UButton v-for="action in pageActions.filter(action => action.positions.includes('row'))  "
-                        @click="handlerAction(action, row)">
-                        {{ action.label }}
-                    </UButton>
+                    <div class="flex items-center gap-1">
+                        <UButton v-for="action in pageActions.filter(action => action.positions.includes('row'))  "
+                            @click="handlerAction(action, row)" :icon="action.icon" :color="action.color || 'primary'"
+                            :variant="action.variant || 'link'">
+                            {{ action.hideLabel ? '' : action.label }}
+                        </UButton>
+                    </div>
                 </template>
 
                 <template v-else-if="col?.component">
@@ -58,7 +53,13 @@
         </UTable>
         <!-- 底部分页 -->
         <div class="sticky bottom-0 p-6 bg-white/75 dark:bg-white/75 backdrop-blur">
-            <UPagination v-model="q.page" :page-count="q.limit" :total="total" show-last show-first />
+            <div class="flex items-center justify-between">
+                <UPagination v-model="q.page" :page-count="q.limit" :total="total" show-last show-first />
+                <div class="flex items-center">
+                    <div class="text-sm mr-3">共 {{ total }} 条</div>
+                    <USelect v-model="q.limit" :options="limitOptions" option-attribute="label" />
+                </div>
+            </div>
         </div>
         <!-- <NuxtPage /> -->
         <Action v-model="action" :row="row" />
@@ -121,6 +122,12 @@ const filters = computed(() => {
 
 const action = ref({})
 const row = ref({})
+const limitOptions = ref([
+    { value: '10', label: '10 条/页' },
+    { value: '20', label: '20 条/页' },
+    { value: '50', label: '50 条/页' },
+    { value: '100', label: '100 条/页' },
+])
 
 // 处理action的query参数
 const handlerActionTo = (rowData, action) => {
