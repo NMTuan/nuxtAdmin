@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 12:14:50
- * @LastEditTime: 2024-03-14 16:59:44
+ * @LastEditTime: 2024-03-14 17:43:39
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\user\user\index.get.ts
@@ -43,12 +43,7 @@ export default defineEventHandler(async (evt) => {
                 component: 'detail',
                 showType: 'modal',
                 path: '/user/user/view',
-                query: ['id'],
-                props: {
-                    class: 'hover:underline',
-                    activeClass: 'text-red-500',
-                    exactQuery: true
-                }
+                query: ['id']
             },
             { key: 'name', label: '姓名' },
             { key: 'email', label: '邮箱' },
