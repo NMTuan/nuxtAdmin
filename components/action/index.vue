@@ -1,6 +1,6 @@
 <template>
     <div v-if="Object.keys(modelValue).length > 0">
-        <USlideover :model-value="modelValue.showType === 'slideover'"
+        <USlideover v-if="modelValue.showType === 'slideover'" :model-value="true"
             :prevent-close="['form'].includes(modelValue.component)" @close="actionBack">
             <ActionForm v-if="modelValue.component === 'form'" />
             <ActionDetail v-else-if="modelValue.component === 'detail'" />
@@ -8,8 +8,7 @@
             <slot v-else />
             <input type="text" class="opacity-0 h-0 overflow-hidden" />
         </USlideover>
-        <UModal :model-value="modelValue.showType === 'modal'" :prevent-close="['form'].includes(modelValue.component)"
-            @close="actionBack">
+        <UModal v-else :model-value="true" :prevent-close="['form'].includes(modelValue.component)" @close="actionBack">
             <ActionForm v-if="modelValue.component === 'form'" />
             <ActionDetail v-else-if="modelValue.component === 'detail'" />
             <ActionConfirm v-else-if="modelValue.component === 'confirm'" />

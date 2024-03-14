@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-27 13:47:55
- * @LastEditTime: 2024-03-14 14:54:46
+ * @LastEditTime: 2024-03-14 18:45:17
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\auth\me.get.ts
@@ -73,7 +73,7 @@ export default defineEventHandler(async (evt) => {
                                 value: 'delete',
                                 component: 'confirm',
                                 icon: 'i-ri-delete-bin-line',
-                                hideLabel: true,
+                                // hideLabel: true,
                                 color: 'red',
                                 message: '确定要删除此信息么？',
                                 btns: {

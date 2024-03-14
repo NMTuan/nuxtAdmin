@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 12:14:50
- * @LastEditTime: 2024-03-14 17:43:39
+ * @LastEditTime: 2024-03-14 18:58:16
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\user\user\index.get.ts
@@ -41,7 +41,7 @@ export default defineEventHandler(async (evt) => {
                 key: 'id',
                 label: '编号',
                 component: 'detail',
-                showType: 'modal',
+                // showType: 'modal',
                 path: '/user/user/view',
                 query: ['id']
             },
@@ -55,11 +55,12 @@ export default defineEventHandler(async (evt) => {
         search: [
             {
                 key: 'name',
-                name: '姓名', // 如不指定，则从columns中找
+                label: '姓名!', // 如不指定，则从columns中找
                 placeholder: '姓名啊啊啊'
             },
             {
                 key: 'cid',
+                label: '城市啊',
                 placeholder: '城市',
                 type: 'select',
                 options: citys
@@ -70,7 +71,7 @@ export default defineEventHandler(async (evt) => {
             { key: 'name' },
             { key: 'email' },
             { key: 'cid', type: 'select', options: citys },
-            { key: 'country' }
+            { key: 'country', placeholder: '国家' }
         ],
         filters: [
             { label: '全部', query: {} },

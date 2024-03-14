@@ -30,4 +30,9 @@ html {
         @apply bg-gray-950;
     }
 }
+
+// 滚动区域focus时有一圈黑框，去掉
+.simplebar-content-wrapper {
+    @apply outline-none;
+}
 </style>

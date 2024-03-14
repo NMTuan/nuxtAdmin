@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-13 09:50:29
- * @LastEditTime: 2024-03-14 14:36:23
+ * @LastEditTime: 2024-03-14 18:47:13
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\layout\menu\accordion.vue
@@ -13,10 +13,10 @@
     ]">
 
         <LayoutMenuToolTip :label="item.label">
-            <div class="flex items-center justify-center xl:justify-between h-[48px] px-4 mx-2 my-1 rounded relative hover:bg-gray-100 dark:hover:bg-gray-900"
+            <div class="flex items-center justify-center xl:justify-between h-[48px] px-4 mx-2 my-1 rounded relative cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-900"
                 @click="toggleOpen">
                 <div class="flex items-center">
-                    <LayoutMenuIcon :current="isOpen" :icon="item.icon"  />
+                    <LayoutMenuIcon :current="isOpen" :icon="item.icon" />
                     <div class="ml-2 text-base hidden xl:block">{{ item.label }}</div>
                 </div>
                 <UIcon name="i-tabler-chevron-down" class="flex-shrink-0 transition-all absolute xl:static bottom-0"
