@@ -2,22 +2,26 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-14 09:03:14
- * @LastEditTime: 2024-03-14 10:51:03
+ * @LastEditTime: 2024-03-14 12:40:07
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\layout\header\item.vue
 -->
 <template>
-    <UButton :icon="data.icon" :to="data.to" color="gray" square variant="soft" size="lg" class="mr-2"
-        @click="handlerClick">
-        <template #leading v-if="data.avatar">
-            <UAvatar :src="data.avatar" size="2xs" />
-        </template>
-        {{ data.label }}
-    </UButton>
+    <UChip :text="chipText > 1 ? chipText : ''" :size="chipText > 1 ? 'xl' : 'sm'" :show="chipText > 0" :color="color"
+        class="mr-2">
+        <UButton :icon="data.icon" :to="data.to" color="gray" :square="(data.icon || data.avatar) && !data.label"
+            variant="soft" @click="handlerClick">
+            <template #leading v-if="data.avatar">
+                <UAvatar :src="data.avatar" size="2xs" />
+            </template>
+            {{ data.label }}
+        </UButton>
+    </UChip>
 </template>
 <script setup>
 const colorMode = useColorMode()
+const noticeStore = useNoticeStore()
 const props = defineProps({
     item: {
         type: [Object, String],
@@ -53,6 +57,20 @@ const data = computed(() => {
         }
     }
     return cfg
+})
+
+const chipText = computed(() => {
+    if (props.item?.noticeKey && noticeStore.state[props.item.noticeKey]) {
+        return noticeStore.state[props.item.noticeKey].count || 0
+    }
+    return 0
+})
+const color = computed(() => {
+    if (props.item?.noticeKey && noticeStore.state[props.item.noticeKey]) {
+        return noticeStore.state[props.item.noticeKey].color || 'primary'
+    }
+    return 'primary'
+
 })
 
 const handlerClick = () => {

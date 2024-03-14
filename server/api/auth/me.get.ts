@@ -4,7 +4,7 @@ import fullScreen from '~/components/layout/header/fullScreen.vue'
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-27 13:47:55
- * @LastEditTime: 2024-03-14 10:54:38
+ * @LastEditTime: 2024-03-14 12:43:04
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\auth\me.get.ts
@@ -148,13 +148,18 @@ export default defineEventHandler(async (evt) => {
             },
             {
                 icon: 'i-ri-notification-3-line',
-                to: ''
+                to: '/user/role',
+                noticeKey: 'notice'
+            },
+            {
+                icon: 'i-ri-message-2-line',
+                noticeKey: 'chat'
             },
             {
                 type: 'darkMode'
             },
             {
-                type: 'fullScreen',
+                type: 'fullScreen'
             },
             {
                 type: 'dropdown',
@@ -182,6 +187,7 @@ export default defineEventHandler(async (evt) => {
                 label: '退出',
                 icon: 'i-ri-logout-box-r-line'
             }
-        ]
+        ],
+        notice: '/auth/notice'
     }
 })

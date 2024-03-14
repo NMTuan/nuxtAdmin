@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-08 21:51:51
- * @LastEditTime: 2024-03-14 10:49:36
+ * @LastEditTime: 2024-03-14 12:34:15
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\layout\header.vue
@@ -13,13 +13,9 @@
             <LayoutHeaderBreadcrumb />
         </div>
         <div class="flex items-center">
-            <template v-for="(item) in topbar">
-                <UDropdown v-if="item.type === 'dropdown'" :items="handlerItems(item)" mode="click"
-                    :popper="{ arrow: true }">
-                    <LayoutHeaderItem :item="item" />
-                </UDropdown>
-                <LayoutHeaderItem v-else :item="item" />
-            </template>
+            <UDropdown v-for="(item) in topbar" :items="handlerItems(item)" mode="click" :popper="{ arrow: true }">
+                <LayoutHeaderItem :item="item" />
+            </UDropdown>
         </div>
     </div>
 </template>
