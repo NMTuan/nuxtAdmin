@@ -1,11 +1,8 @@
-import type { componentNames } from '#build/components';
-
-import type { LayoutPageDataTableLink } from '#build/components';
 <!--
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-04 16:29:57
- * @LastEditTime: 2024-03-07 19:10:45
+ * @LastEditTime: 2024-03-14 12:09:48
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\page\dataTable\column.vue

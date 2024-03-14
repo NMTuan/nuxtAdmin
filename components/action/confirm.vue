@@ -9,7 +9,7 @@
 -->
 
 <template>
-    <ActionCard :label="actionInfo.label" :close="actionBack">
+    <ComCard :label="actionInfo.label" :close="actionBack">
         confirm
 
         <template #footer>
@@ -22,7 +22,7 @@
                 </UButton>
             </div>
         </template>
-    </ActionCard>
+    </ComCard>
 </template>
 
 <script setup>

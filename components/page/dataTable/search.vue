@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-11 16:38:23
- * @LastEditTime: 2024-03-13 16:48:42
+ * @LastEditTime: 2024-03-14 08:31:50
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\page\dataTable\search.vue
@@ -20,7 +20,7 @@
         </UButtonGroup>
         <!-- 高级搜索 -->
         <USlideover :model-value="isOpen" @close="handlerClose">
-            <ActionCard label="高级搜索" :close="handlerClose">
+            <ComCard label="高级搜索" :close="handlerClose">
                 <ComForm :fields="advFields" v-model="q" :submit="submit"></ComForm>
 
                 <template #footer>
@@ -38,7 +38,7 @@
                         </div>
                     </div>
                 </template>
-            </ActionCard>
+            </ComCard>
         </USlideover>
     </div>
 </template>
