@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-08 16:56:10
- * @LastEditTime: 2024-03-14 19:46:16
+ * @LastEditTime: 2024-03-14 21:30:19
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\pages\login.vue
@@ -10,10 +10,9 @@
 
 <template>
     <ClientOnly>
-        <UtilBackgroundImage class="flex flex-col items-center justify-between w-screen h-screen overflow-hidden">
+        <div class="flex flex-col items-center justify-between w-screen h-screen overflow-hidden" :style="handlerStyle">
             <div></div>
             <div>
-                <UtilColorMode></UtilColorMode>
                 <div class="text-center mb-6">
                     <h1 class="text-4xl font-bold">Nuxt Admin</h1>
                     <p class="mt-4 mb-12 opacity-50">Admin template with zero front-end development</p>
@@ -31,7 +30,7 @@
                             <UCheckbox label="Remember me"></UCheckbox>
                         </UFormGroup>
                         <UFormGroup size="xl" class="mt-8">
-                            <UButton @click="submit" block size="xl">Login</UButton>
+                            <UButton @click="submit" block size="xl" :loading="loading">Login</UButton>
                         </UFormGroup>
                     </div>
                     <div
@@ -45,7 +44,7 @@
                     <UIcon name="i-ri-github-fill" size="24" />
                 </ULink>
             </div>
-        </UtilBackgroundImage>
+        </div>
     </ClientOnly>
 </template>
 
@@ -55,10 +54,36 @@ definePageMeta({
     auth: false
 })
 const { signIn } = useAuth()
+const color = useColor()
+const colorMode = useColorMode()
+
+const loading = ref(false)
 const username = ref('test')
 const password = ref('test1234')
 
+const handlerStyle = computed(() => {
+    return {
+        'background-image': `linear-gradient(to bottom, ${handlerColor('white')},${handlerColor('white')},${handlerColor(100, 'gray')}, ${handlerColor(200)})`
+    }
+})
+
+const handlerColor = (shades, c) => {
+    if (colorMode.value !== 'dark') {
+        return color(shades, c)
+    } else {
+        // dark 模式下翻转一下颜色和色调
+        if (shades === 'white') {
+            return color('black')
+        } else if (shades === 'black') {
+            return color('white')
+        } else {
+            return color(1000 - shades, c)
+        }
+    }
+}
+
 const submit = async () => {
+    loading.value = true
     await signIn({
         username: username.value,
         password: password.value

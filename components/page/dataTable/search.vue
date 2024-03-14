@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-11 16:38:23
- * @LastEditTime: 2024-03-14 19:22:35
+ * @LastEditTime: 2024-03-14 19:48:52
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\page\dataTable\search.vue
@@ -15,7 +15,7 @@
         <UButtonGroup orientation="horizontal">
             <UButton @click="submit" icon="i-ri-search-2-line">搜索</UButton>
             <UDropdown :items="items" :popper="{ placement: 'bottom-end', arrow: true }" :ui="{ width: 'w-auto' }">
-                <UButton icon="i-heroicons-chevron-down-20-solid" class="border-l" />
+                <UButton icon="i-heroicons-chevron-down-20-solid" class="border-l dark:border-gray-800" />
             </UDropdown>
         </UButtonGroup>
         <!-- 高级搜索 -->

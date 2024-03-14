@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-14 09:03:14
- * @LastEditTime: 2024-03-14 12:40:07
+ * @LastEditTime: 2024-03-14 20:09:29
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\layout\header\item.vue
@@ -89,7 +89,6 @@ const handlerClick = () => {
 onMounted(() => {
     if (props.item === 'fullScreen' || props.item?.type === 'fullScreen') {
         evt = document.addEventListener('fullscreenchange', () => {
-            console.log('listener')
             isFull.value = document?.fullscreenElement !== null
         })
     }
