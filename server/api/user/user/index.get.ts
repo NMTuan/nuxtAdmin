@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 12:14:50
- * @LastEditTime: 2024-03-12 10:48:48
+ * @LastEditTime: 2024-03-14 16:59:44
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\user\user\index.get.ts
@@ -40,9 +40,10 @@ export default defineEventHandler(async (evt) => {
             {
                 key: 'id',
                 label: '编号',
-                component: 'link',
-                to: '/user/user/view',
-                query: ['id', 'name'],
+                component: 'detail',
+                showType: 'modal',
+                path: '/user/user/view',
+                query: ['id'],
                 props: {
                     class: 'hover:underline',
                     activeClass: 'text-red-500',

@@ -1,5 +1,3 @@
-import fullScreen from '~/components/layout/header/fullScreen.vue'
-
 /*
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
@@ -54,7 +52,7 @@ export default defineEventHandler(async (evt) => {
                                     close: '关闭'
                                 },
                                 positions: ['row'],
-                                props: ['id', 'name']
+                                query: ['id', 'name']
                                 // fetchPath: '/user/user'
                             },
                             {
@@ -68,7 +66,7 @@ export default defineEventHandler(async (evt) => {
                                     cancel: '取消'
                                 },
                                 positions: ['row'],
-                                props: ['id']
+                                query: ['id']
                             },
                             {
                                 label: '删除',
@@ -83,7 +81,7 @@ export default defineEventHandler(async (evt) => {
                                     cancel: '取消'
                                 },
                                 positions: ['row'],
-                                props: ['id']
+                                query: ['id']
                             }
                         ]
                     },

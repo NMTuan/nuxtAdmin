@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div v-if="Object.keys(modelValue).length > 0">
         <USlideover :model-value="modelValue.showType === 'slideover'"
             :prevent-close="['form'].includes(modelValue.component)" @close="actionBack">
             <ActionForm v-if="modelValue.component === 'form'" />
@@ -40,8 +40,8 @@ const actionInfo = computed(() => {
 provide('actionInfo', actionInfo)
 
 const query = computed(() => {
-    if (Array.isArray(props.modelValue.props)) {
-        return props.modelValue.props.reduce((total, key) => {
+    if (Array.isArray(props.modelValue.query)) {
+        return props.modelValue.query.reduce((total, key) => {
             total[key] = props.row[key]
             return total
         }, {})

@@ -10,9 +10,6 @@
 
 <template>
     <div class="bg-white border rounded">
-        <!-- <div>q: {{ q }}</div> -->
-        <!-- <div>action: {{ action }}</div> -->
-        <!-- <div>pageActions: {{ pageActions }}</div> -->
         <div class="flex items-center justify-between m-6">
             <!-- 功能操作 -->
             <div>
@@ -128,23 +125,6 @@ const limitOptions = ref([
     { value: '50', label: '50 条/页' },
     { value: '100', label: '100 条/页' },
 ])
-
-// 处理action的query参数
-const handlerActionTo = (rowData, action) => {
-    let query
-    const props = action.props || []
-
-    if (Array.isArray(props)) {
-        query = props.reduce((total, item) => {
-            total[item] = rowData[item]
-            return total
-        }, {})
-    }
-    return {
-        path: action.path || '',
-        query
-    }
-}
 
 const handlerAction = (act, rowData) => {
     action.value = act

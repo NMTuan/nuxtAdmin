@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-04 16:29:57
- * @LastEditTime: 2024-03-14 12:09:48
+ * @LastEditTime: 2024-03-14 16:42:53
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\page\dataTable\column.vue
@@ -10,7 +10,10 @@
 
 
 <template>
-    <PageDataTableLink v-if="column?.component === 'link'" :row="row" :column="column" :value="value" />
+    <div>
+        <UButton @click="handlerClick" variant="link">{{ value }}</UButton>
+        <Action v-model="action" :row="row" />
+    </div>
 </template>
 
 <script setup>
@@ -28,5 +31,10 @@ const props = defineProps({
         default: ''
     }
 })
+
+const action = ref({})
+const handlerClick = () => {
+    action.value = props.column
+}
 
 </script>
