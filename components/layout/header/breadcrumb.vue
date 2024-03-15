@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-13 16:56:03
- * @LastEditTime: 2024-03-14 13:11:50
+ * @LastEditTime: 2024-03-15 15:07:52
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\layout\header\breadcrumb.vue
@@ -19,7 +19,7 @@ const breadcrumb = computed(() => {
     // 先根据name和params拼接路由名称
     const routes = route.matched.reduce((total, item) => {
         total.push(item.name.split('-').map(item => {
-            return route.params[item]
+            return route.params[item.split('___')[0]]
         }).join('__'))
         return total
     }, [])
