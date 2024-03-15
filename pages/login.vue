@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-08 16:56:10
- * @LastEditTime: 2024-03-14 21:30:19
+ * @LastEditTime: 2024-03-15 14:25:55
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\pages\login.vue
@@ -14,8 +14,8 @@
             <div></div>
             <div>
                 <div class="text-center mb-6">
-                    <h1 class="text-4xl font-bold">Nuxt Admin</h1>
-                    <p class="mt-4 mb-12 opacity-50">Admin template with zero front-end development</p>
+                    <h1 class="text-4xl font-bold">{{ $t('siteName') }}</h1>
+                    <p class="mt-4 mb-12 opacity-50">{{ $t('slogan') }}</p>
                 </div>
                 <div class="relative">
                     <div

@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:31:12
- * @LastEditTime: 2024-03-13 16:40:31
+ * @LastEditTime: 2024-03-15 14:31:25
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\action\form.vue
@@ -16,10 +16,10 @@
         <template #footer>
             <div class="flex justify-end">
                 <UButton variant="ghost" color="gray" class="mr-4" @click="actionBack">
-                    {{ actionInfo.btns.cancel || 'cancel' }}
+                    {{ actionInfo.btns.cancel || $t('action.form.cancel') }}
                 </UButton>
                 <UButton :loading="loading" @click="submit">
-                    {{ actionInfo.btns.submit || 'submit' }}
+                    {{ actionInfo.btns.submit || $t('action.form.submit') }}
                 </UButton>
             </div>
         </template>

@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:30:33
- * @LastEditTime: 2024-03-14 19:29:50
+ * @LastEditTime: 2024-03-15 14:47:32
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\page\dataTable.vue
@@ -54,8 +54,8 @@
             <div class="flex items-center justify-between">
                 <UPagination v-model="q.page" :page-count="q.limit" :total="total" show-last show-first />
                 <div class="flex items-center">
-                    <div class="text-sm mr-3">共 {{ total }} 条</div>
-                    <USelect v-model="q.limit" :options="limitOptions" option-attribute="label" />
+                    <div class="text-sm mr-3">{{ $t('page.dataTable.total', { total: total }) }}</div>
+                    <USelect v-model="q.limit" :options="pageSizeOptions" option-attribute="label" />
                 </div>
             </div>
         </div>
@@ -67,6 +67,7 @@
 <script setup>
 const pageFetch = inject('pageFetch')
 const pageActions = inject('pageActions')
+const { t } = useI18n()
 
 const q = ref({
     page: 1,
@@ -120,12 +121,15 @@ const filters = computed(() => {
 
 const action = ref({})
 const row = ref({})
-const limitOptions = ref([
-    { value: '10', label: '10 条/页' },
-    { value: '20', label: '20 条/页' },
-    { value: '50', label: '50 条/页' },
-    { value: '100', label: '100 条/页' },
-])
+
+const pageSizeOptions = computed(() => {
+    return [10, 20, 50, 100].map((item) => {
+        return {
+            value: item,
+            label: t('page.dataTable.pageSize', { size: item })
+        }
+    })
+})
 
 const handlerAction = (act, rowData) => {
     action.value = act

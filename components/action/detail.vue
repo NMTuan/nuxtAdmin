@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:31:00
- * @LastEditTime: 2024-03-14 08:30:23
+ * @LastEditTime: 2024-03-15 14:28:49
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\action\detail.vue
@@ -15,7 +15,7 @@
         <template #footer>
             <div class="flex justify-end">
                 <UButton @click="handlerClose">
-                    {{ actionInfo.btns?.close || 'close' }}
+                    {{ actionInfo.btns?.close || $t('action.detail.close') }}
                 </UButton>
             </div>
         </template>

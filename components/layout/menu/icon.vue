@@ -9,8 +9,6 @@
 -->
 <template>
     <div class="w-[32px] flex items-center justify-center">
-        <!-- <UIcon v-if="current" :name="activeIcon || icon || 'i-tabler-point-filled'" :size="level >= 3 ? '16' : '22'"
-            class="flex-shrink-0" /> -->
         <UIcon :name="icon" size="22" class="flex-shrink-0" />
     </div>
 
@@ -21,14 +19,6 @@ const props = defineProps({
         type: String,
         default: 'i-tabler-point'
     },
-    // activeIcon: {
-    //     type: String,
-    //     default: ''
-    // },
-    // level: {
-    //     type: Number,
-    //     default: 1
-    // },
     current: {
         type: Boolean,
         default: false

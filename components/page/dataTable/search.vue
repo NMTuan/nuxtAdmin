@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-11 16:38:23
- * @LastEditTime: 2024-03-14 19:48:52
+ * @LastEditTime: 2024-03-15 14:42:49
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\page\dataTable\search.vue
@@ -13,27 +13,27 @@
         <ComForm :fields="fields" v-model="q" horizontal :submit="submit"></ComForm>
         <!-- 按钮 -->
         <UButtonGroup orientation="horizontal">
-            <UButton @click="submit" icon="i-ri-search-2-line">搜索</UButton>
+            <UButton @click="submit" icon="i-ri-search-2-line">{{$t('page.dataTable.search')}}</UButton>
             <UDropdown :items="items" :popper="{ placement: 'bottom-end', arrow: true }" :ui="{ width: 'w-auto' }">
                 <UButton icon="i-heroicons-chevron-down-20-solid" class="border-l dark:border-gray-800" />
             </UDropdown>
         </UButtonGroup>
         <!-- 高级搜索 -->
         <USlideover :model-value="isOpen" @close="handlerClose">
-            <ComCard label="高级搜索" :close="handlerClose">
+            <ComCard :label="$t('page.dataTable.advSearch')" :close="handlerClose">
                 <ComForm :fields="advFields" v-model="q" :submit="submit"></ComForm>
 
                 <template #footer>
                     <div class="flex justify-between">
                         <UButton variant="ghost" color="gray" class="mr-4" @click="reset">
-                            {{ 'reset' }}
+                            {{ $t('page.dataTable.reset') }}
                         </UButton>
                         <div class="flex items-center">
                             <UButton variant="ghost" color="gray" class="mr-4" @click="handlerClose">
-                                {{ 'cancel' }}
+                                {{ $t('page.dataTable.cancel') }}
                             </UButton>
                             <UButton @click="submit">
-                                {{ 'submit' }}
+                                {{ $t('page.dataTable.search') }}
                             </UButton>
                         </div>
                     </div>
@@ -43,6 +43,7 @@
     </div>
 </template>
 <script setup>
+const { t } = useI18n()
 const props = defineProps({
     modelValue: {
         type: Object,
@@ -93,9 +94,9 @@ const handlerClose = () => {
 
 const items = [
     [
-        { label: '高级搜索', icon: 'i-ri-search-eye-line', click: () => isOpen.value = true },
+        { label: t('page.dataTable.advSearch'), icon: 'i-ri-search-eye-line', click: () => isOpen.value = true },
         {
-            label: '重置搜索',
+            label: t('page.dataTable.resetSearch'),
             icon: 'i-ri-refresh-line',
             click: () => {
                 reset()

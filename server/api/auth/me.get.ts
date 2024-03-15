@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-27 13:47:55
- * @LastEditTime: 2024-03-14 18:45:17
+ * @LastEditTime: 2024-03-15 10:59:23
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\auth\me.get.ts
@@ -166,6 +166,7 @@ export default defineEventHandler(async (evt) => {
             {
                 type: 'fullScreen'
             },
+            'i18n',
             {
                 type: 'dropdown',
                 label: 'Floyd Fletcher',
