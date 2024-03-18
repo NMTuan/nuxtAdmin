@@ -70,7 +70,7 @@ export default defineEventHandler(async (evt) => {
             { key: 'id' },
             { key: 'name' },
             { key: 'email' },
-            { key: 'cid', type: 'select', options: citys },
+            { key: 'cid', component: 'select', options: citys },
             { key: 'country', placeholder: '国家' }
         ],
         filters: [
