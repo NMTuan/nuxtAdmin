@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-18 11:49:05
- * @LastEditTime: 2024-03-18 15:01:02
+ * @LastEditTime: 2024-03-18 15:58:05
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\student\index.get.ts
@@ -67,7 +67,8 @@ export default defineEventHandler(async (evt) => {
                     { key: '2', label: '二年级' },
                     { key: '3', label: '三年级' }
                 ]
-            }
+            },
+            { key: 'actions', label: '操作' }
         ],
         search: [
             {
@@ -111,6 +112,11 @@ export default defineEventHandler(async (evt) => {
                     { label: '三年级', value: '3' }
                 ]
             }
+        ],
+        filters: [
+            { label: '全部学生', query: {} },
+            { label: '一年级女生', query: { sex: '2', groudId: '1' } },
+            { label: '二年级男生', query: { sex: '1', groudId: '2' } }
         ],
         total: 4
     })
