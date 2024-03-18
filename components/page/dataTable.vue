@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:30:33
- * @LastEditTime: 2024-03-15 14:47:32
+ * @LastEditTime: 2024-03-18 14:30:20
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\page\dataTable.vue
@@ -19,7 +19,8 @@
                 </UButton>
             </div>
             <!-- 搜索 -->
-            <PageDataTableSearch v-model="q" :fields="searchFields" :adv-fields="advFields" />
+            <PageDataTableSearch v-show="searchFields.length > 0" v-model="q" :fields="searchFields"
+                :adv-fields="advFields" />
         </div>
 
         <!-- 快捷筛选 -->
@@ -40,7 +41,7 @@
                 </template>
 
                 <template v-else-if="col?.component">
-                    <PageDataTableColumn :row="row" :column="col" :value="row[col.key]">
+                    <PageDataTableColumn :component="col.component" :row="row" :column="col" :value="row[col.key]">
                     </PageDataTableColumn>
                 </template>
 
@@ -78,19 +79,35 @@ const { data, pending, error, refresh } = await pageFetch(q)
 
 // 数据
 const list = computed(() => {
-    return data.value?.data.data || []
+    return pending.value ? [] : data.value?.data?.data || []
 })
+
 // 列配置
 const columns = computed(() => {
-    return data.value?.data.columns || []
+    if (Array.isArray(data.value?.data?.columns)) {
+        return data.value.data.columns
+    }
+    // 没有声明columns，则用data里的第一条数据构建columns
+    if (list.value.length > 0) {
+        return Object.keys(list.value[0]).map(key => {
+            return {
+                key: key,
+                label: key
+            }
+        })
+    }
+    return []
 })
 // 总条数
 const total = computed(() => {
-    return data.value?.data.total || 0
+    return pending.value ? 0 : data.value?.data?.total || 0
 })
 
 const searchFields = computed(() => {
-    if (Array.isArray(data.value?.data.search)) {
+    if (pending.value) {
+        return []
+    }
+    if (Array.isArray(data.value?.data?.search)) {
         return data.value.data.search.reduce((total, item) => {
             total.push({
                 label: columns.value.find(col => col.key === item.key)?.label,
@@ -103,8 +120,11 @@ const searchFields = computed(() => {
 })
 
 const advFields = computed(() => {
-    if (Array.isArray(data.value?.data.advSearch)) {
-        return data.value.data.advSearch.reduce((total, item) => {
+    if (pending.value) {
+        return []
+    }
+    if (Array.isArray(data.value?.data?.advSearch)) {
+        return data.value.data?.advSearch.reduce((total, item) => {
             total.push({
                 label: columns.value.find(col => col.key === item.key)?.label,
                 ...item
@@ -116,7 +136,7 @@ const advFields = computed(() => {
 })
 
 const filters = computed(() => {
-    return data.value?.data.filters || []
+    return pending.value ? [] : data.value?.data?.filters || []
 })
 
 const action = ref({})
