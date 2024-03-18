@@ -16,7 +16,7 @@
 <script setup>
 const route = useRoute()
 const routeStore = useRouteStore()
-const { token, } = useAuth()
+const { token } = useAuth()
 
 // const moduleInfo = inject('moduleInfo')
 const baseURL = inject('baseURL')
@@ -44,7 +44,4 @@ const pageActions = computed(() => {
 })
 provide('pageActions', pageActions)
 
-const pageChildren = computed(() => {
-    return routeStore.routes.filter(route => route.route.startsWith(`${module}__${page}__`) && route.__type !== 'action')
-})
 </script>

@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-27 13:47:55
- * @LastEditTime: 2024-03-15 10:59:23
+ * @LastEditTime: 2024-03-18 10:43:45
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\auth\me.get.ts
@@ -18,6 +18,34 @@ export default defineEventHandler(async (evt) => {
                 label: '首页',
                 value: 'index',
                 icon: 'i-ri-home-3-line'
+            },
+            {
+                label: '学生管理',
+                value: 'student',
+                component: 'dataTable',
+                // actions: [
+                //     {
+                //         label: '创建',
+                //         value: 'create',
+                //         component: 'from',
+                //         positions: ['top']
+                //     },
+                //     {
+                //         label: '编辑',
+                //         value: 'edit',
+                //         component: 'form',
+                //         positions: ['row'],
+                //         query: ['id']
+                //     },
+                //     {
+                //         label: '删除',
+                //         value: 'delete',
+                //         component: 'confirm',
+                //         message: '确定要删除此学生吗？',
+                //         positions: ['row'],
+                //         query: ['id']
+                //     }
+                // ]
             },
             {
                 label: '用户管理',
