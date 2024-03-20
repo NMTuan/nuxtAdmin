@@ -2,19 +2,19 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-14 09:03:14
- * @LastEditTime: 2024-03-15 13:38:58
+ * @LastEditTime: 2024-03-20 14:12:07
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\layout\header\item.vue
 -->
 <template>
-    <UDropdown :items="data.items" mode="click" :popper="{ arrow: true }">
+    <UDropdown :items="data.dropDown" mode="click" :popper="{ arrow: true }">
         <UChip :text="chipText > 1 ? chipText : ''" :size="chipText > 1 ? 'xl' : 'sm'" :show="chipText > 0"
             :color="color" class="mr-2">
-            <UButton :icon="data.icon" :to="data.to" color="gray" :square="(data.icon || data.avatar) && !data.label"
+            <UButton :icon="data.icon" :to="data.to" color="gray" :square="(data.icon || data.image) && !data.label"
                 variant="soft" @click="handlerClick">
-                <template #leading v-if="data.avatar">
-                    <UAvatar :src="data.avatar" size="2xs" />
+                <template #leading v-if="data.image">
+                    <UAvatar :src="data.image" size="2xs" />
                 </template>
                 {{ data.label }}
             </UButton>
@@ -69,11 +69,11 @@ const data = computed(() => {
             }
             return item
         })
-        cfg.items = items
+        cfg.dropDown = items
     }
-    if (Array.isArray(cfg.items)) {
-        if (!Array.isArray(cfg.items[0])) {
-            cfg.items = [cfg.items]
+    if (Array.isArray(cfg.dropDown)) {
+        if (!Array.isArray(cfg.dropDown[0])) {
+            cfg.dropDown = [cfg.dropDown]
         }
     }
 
@@ -82,7 +82,17 @@ const data = computed(() => {
 
 const chipText = computed(() => {
     if (props.item?.noticeKey && noticeStore.state[props.item.noticeKey]) {
-        return noticeStore.state[props.item.noticeKey].count || 0
+        let count
+        if (['string', 'number'].includes(typeof noticeStore.state[props.item.noticeKey])) {
+            count = noticeStore.state[props.item.noticeKey]
+        } else {
+            count = noticeStore.state[props.item.noticeKey].count || 0
+        }
+        if (typeof count === 'string') {
+            return Number(count)
+        } else {
+            return count
+        }
     }
     return 0
 })

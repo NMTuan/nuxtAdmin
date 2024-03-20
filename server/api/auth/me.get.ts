@@ -202,8 +202,8 @@ export default defineEventHandler(async (evt) => {
             {
                 type: 'dropdown',
                 label: 'Floyd Fletcher',
-                avatar: 'https://www.loliapi.com/acg/pp/',
-                items: [
+                image: 'https://www.loliapi.com/acg/pp/',
+                dropDown: [
                     [
                         {
                             label: 'profile',
