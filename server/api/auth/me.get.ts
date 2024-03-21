@@ -193,14 +193,14 @@ export default defineEventHandler(async (evt) => {
                 noticeKey: 'chat'
             },
             {
-                type: 'darkMode'
+                component: 'darkMode'
             },
             {
-                type: 'fullScreen'
+                component: 'fullScreen'
             },
             'i18n',
             {
-                type: 'dropdown',
+                component: 'dropdown',
                 label: 'Floyd Fletcher',
                 image: 'https://www.loliapi.com/acg/pp/',
                 dropDown: [
@@ -221,7 +221,7 @@ export default defineEventHandler(async (evt) => {
                 ]
             },
             {
-                type: 'exit',
+                component: 'exit',
                 label: '退出',
                 icon: 'i-ri-logout-box-r-line',
                 to: '/logout'

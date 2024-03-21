@@ -61,19 +61,19 @@ const handlerTopbar = (topbar) => {
         let newItem = JSON.parse(JSON.stringify(item))
         if (typeof newItem === 'string') {
             newItem = {
-                type: newItem
+                component: newItem
             }
         }
-        if (newItem.type === 'darkMode') {
+        if (newItem.component === 'darkMode') {
             newItem.icon = newItem.icon || 'i-ri-sun-line'
             newItem.activeIcon = newItem.activeIcon || 'i-ri-moon-line'
         }
-        if (newItem.type === 'fullScreen') {
+        if (newItem.component === 'fullScreen') {
             newItem.icon = newItem.icon || 'i-ri-fullscreen-line'
             newItem.activeIcon =
                 newItem.activeIcon || 'i-ri-fullscreen-exit-line'
         }
-        if (newItem.type === 'i18n') {
+        if (newItem.component === 'i18n') {
             newItem.icon = newItem.icon || 'i-ri-translate-2'
         }
 

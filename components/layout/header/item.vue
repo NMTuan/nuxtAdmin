@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-14 09:03:14
- * @LastEditTime: 2024-03-21 12:27:00
+ * @LastEditTime: 2024-03-21 13:38:49
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\layout\header\item.vue
@@ -41,13 +41,13 @@ const isDark = computed(() => {
 const isFull = ref(false)
 
 const icon = computed(() => {
-    if (props.item.type === 'darkMode') {
+    if (props.item.component === 'darkMode') {
         if (isDark.value) {
             return props.item.activeIcon
         }
         return props.item.icon
     }
-    if (props.item.type === 'fullScreen') {
+    if (props.item.component === 'fullScreen') {
         if (isFull.value) {
             return props.item.activeIcon
         }
@@ -57,7 +57,7 @@ const icon = computed(() => {
 })
 
 const dropDown = computed(() => {
-    if (props.item.type === 'i18n') {
+    if (props.item.component === 'i18n') {
         return locales.value.reduce((total, item) => {
             const newItem = JSON.parse(JSON.stringify(item))
             newItem.click = () => {
@@ -97,10 +97,10 @@ const color = computed(() => {
 })
 
 const handlerClick = () => {
-    if (props.item.type === 'darkMode') {
+    if (props.item.component === 'darkMode') {
         colorMode.preference = isDark.value ? 'light' : 'dark'
     }
-    if (props.item.type === 'fullScreen') {
+    if (props.item.component === 'fullScreen') {
         if (isFull.value) {
             document.exitFullscreen()
         } else {
@@ -110,14 +110,14 @@ const handlerClick = () => {
 }
 
 onMounted(() => {
-    if (props.item === 'fullScreen' || props.item?.type === 'fullScreen') {
+    if (props.item === 'fullScreen' || props.item.component === 'fullScreen') {
         evt = document.addEventListener('fullscreenchange', () => {
             isFull.value = document?.fullscreenElement !== null
         })
     }
 })
 onBeforeUnmount(() => {
-    if (props.item === 'fullScreen' || props.item?.type === 'fullScreen') {
+    if (props.item === 'fullScreen' || props.item.component === 'fullScreen') {
         document.removeEventListener('fullscreenchange', evt)
     }
 })
