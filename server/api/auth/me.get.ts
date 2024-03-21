@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-27 13:47:55
- * @LastEditTime: 2024-03-21 12:28:31
+ * @LastEditTime: 2024-03-21 13:42:14
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\auth\me.get.ts
@@ -16,32 +16,32 @@ export default defineEventHandler(async (evt) => {
         menu: [
             {
                 label: '首页',
-                value: 'index',
+                key: 'index',
                 icon: 'i-ri-home-3-line'
             },
             {
                 label: '学生管理',
-                value: 'student',
+                key: 'student',
                 component: 'dataTable',
                 actions: [
                     {
+                        key: 'create',
                         label: '创建',
-                        value: 'create',
                         icon: 'i-ri-add-circle-line',
                         component: 'form',
                         positions: ['top']
                     },
                     {
+                        key: 'edit',
                         label: '编辑',
-                        value: 'edit',
                         icon: 'i-ri-edit-line',
                         component: 'form',
                         positions: ['row'],
                         query: ['id']
                     },
                     {
+                        key: 'delete',
                         label: '删除',
-                        value: 'delete',
                         icon: 'i-ri-delete-bin-line',
                         color: 'red',
                         component: 'confirm',
@@ -53,19 +53,19 @@ export default defineEventHandler(async (evt) => {
             },
             {
                 label: '用户管理',
-                value: 'user',
+                key: 'user',
                 icon: 'i-ri-user-4-line',
                 children: [
                     {
                         label: '用户',
-                        value: 'user',
+                        key: 'user',
                         icon: 'i-ri-file-user-line',
                         component: 'dataTable',
                         // fetchType: 'POST',
                         actions: [
                             {
+                                key: 'create',
                                 label: '创建',
-                                value: 'create',
                                 component: 'form',
                                 icon: 'i-ri-add-circle-line',
                                 btns: {
@@ -75,8 +75,8 @@ export default defineEventHandler(async (evt) => {
                                 positions: ['top']
                             },
                             {
+                                key: 'view',
                                 label: '查看',
-                                value: 'view',
                                 component: 'detail',
                                 icon: 'i-ri-list-view',
                                 // showType: 'slideover',
@@ -88,8 +88,8 @@ export default defineEventHandler(async (evt) => {
                                 // fetchPath: '/user/user'
                             },
                             {
+                                key: 'edit',
                                 label: '编辑',
-                                value: 'edit',
                                 component: 'form',
                                 icon: 'i-ri-edit-line',
                                 showType: 'slideover',
@@ -101,8 +101,8 @@ export default defineEventHandler(async (evt) => {
                                 query: ['id']
                             },
                             {
+                                key: 'delete',
                                 label: '删除',
-                                value: 'delete',
                                 component: 'confirm',
                                 icon: 'i-ri-delete-bin-line',
                                 // hideLabel: true,
@@ -119,62 +119,62 @@ export default defineEventHandler(async (evt) => {
                     },
                     {
                         label: '角色',
-                        value: 'role',
+                        key: 'role',
                         component: 'view'
                     },
-                    { label: '权限', value: 'permission' }
+                    { label: '权限', key: 'permission' }
                 ]
             },
             {
                 label: 'level1',
-                value: 'level1',
+                key: 'level1',
                 children: [
-                    { label: 'level1-1', value: 'level11' },
+                    { label: 'level1-1', key: 'level11' },
                     {
                         label: 'level1-2',
-                        value: 'level12',
+                        key: 'level12',
                         icon: 'i-ri-bar-chart-box-line',
                         children: [
                             {
                                 label: 'level1-2-1',
-                                value: 'level121',
+                                key: 'level121',
                                 icon: 'i-ri-archive-line'
                             },
-                            { label: 'level1-2-2', value: 'level122' },
-                            { label: 'level1-2-3', value: 'level123' }
+                            { label: 'level1-2-2', key: 'level122' },
+                            { label: 'level1-2-3', key: 'level123' }
                         ]
                     },
-                    { label: 'level1-3', value: 'level13' }
+                    { label: 'level1-3', key: 'level13' }
                 ]
             },
-            { label: 'level2', value: 'level2' },
+            { label: 'level2', key: 'level2' },
             {
                 label: 'level3',
-                value: 'level3',
+                key: 'level3',
                 children: [
                     {
                         label: 'level3-1',
-                        value: 'level31',
+                        key: 'level31',
                         children: [
                             {
                                 label: 'level3-1-1',
-                                value: 'level311',
+                                key: 'level311',
                                 hidden: true
                             },
                             {
                                 label: 'level3-1-2',
-                                value: 'level312',
+                                key: 'level312',
                                 hidden: false
                             },
                             {
                                 label: 'level3-1-3',
-                                value: 'level313',
+                                key: 'level313',
                                 hidden: true
                             }
                         ]
                     },
-                    { label: 'level3-2', value: 'level32' },
-                    { label: 'level3-3', value: 'level33' }
+                    { label: 'level3-2', key: 'level32' },
+                    { label: 'level3-3', key: 'level33' }
                 ]
             }
         ],

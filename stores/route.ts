@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-09 14:29:39
- * @LastEditTime: 2024-03-21 12:33:01
+ * @LastEditTime: 2024-03-21 13:52:05
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\stores\route.ts
@@ -12,19 +12,19 @@ import { defineStore } from 'pinia'
 const flat = (arr, pLabel = '', pValue = '') => {
     return arr.reduce((total, item, index) => {
         const label = pLabel ? `${pLabel}-${item.label}` : item.label
-        const value = pValue ? `${pValue}__${item.value}` : item.value
-        const path = value.replaceAll('__', '/')
+        const key = pValue ? `${pValue}__${item.key}` : item.key
+        const path = key.replaceAll('__', '/')
         const clone = JSON.parse(JSON.stringify(item))
         delete clone.children
         delete clone.actions
         total.push({
             name: label,
-            route: value,
+            route: key,
             path: `/${path}`,
             ...clone
         })
         if (Array.isArray(item.actions) && item.actions.length > 0) {
-            var child = flat(item.actions, label, value)
+            var child = flat(item.actions, label, key)
             child.map((i) => {
                 i.__type = 'action'
                 if (!i.showType) {
@@ -34,7 +34,7 @@ const flat = (arr, pLabel = '', pValue = '') => {
             })
         }
         if (Array.isArray(item.children) && item.children.length > 0) {
-            var child = flat(item.children, label, value)
+            var child = flat(item.children, label, key)
             child.map((i) => total.push(i))
         }
 
@@ -45,7 +45,7 @@ const flat = (arr, pLabel = '', pValue = '') => {
 const handlerMenu = (menu, parentPath?: string) => {
     return menu.reduce((total, item) => {
         const newItem = JSON.parse(JSON.stringify(item))
-        let path = (parentPath || '') + `/${newItem.value}`
+        let path = (parentPath || '') + `/${newItem.key}`
         if (newItem.children) {
             newItem.children = handlerMenu(newItem.children, path)
         }
