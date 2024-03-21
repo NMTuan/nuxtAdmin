@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:18:04
- * @LastEditTime: 2024-03-18 10:40:17
+ * @LastEditTime: 2024-03-21 11:48:32
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\pages\[module].vue
@@ -11,13 +11,17 @@
 <template>
     <PageDataTable v-if="moduleInfo.component === 'dataTable'"></PageDataTable>
     <NuxtPage v-else />
+    <div class="flex">
+        <pre>{{ data.topbar }}</pre>
+        <pre>{{ routeStore.topbar }}</pre>
+    </div>
 </template>
 
 <script setup>
 
 const route = useRoute()
 const routeStore = useRouteStore()
-const { token } = useAuth()
+const { data, token } = useAuth()
 const baseURL = inject('baseURL')
 const { module } = route.params
 

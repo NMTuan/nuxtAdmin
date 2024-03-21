@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-09 14:29:39
- * @LastEditTime: 2024-03-11 10:44:10
+ * @LastEditTime: 2024-03-21 12:33:01
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\stores\route.ts
@@ -42,16 +42,80 @@ const flat = (arr, pLabel = '', pValue = '') => {
     }, [])
 }
 
+const handlerMenu = (menu, parentPath?: string) => {
+    return menu.reduce((total, item) => {
+        const newItem = JSON.parse(JSON.stringify(item))
+        let path = (parentPath || '') + `/${newItem.value}`
+        if (newItem.children) {
+            newItem.children = handlerMenu(newItem.children, path)
+        }
+        delete newItem.actions
+        newItem.path = path
+        total.push(newItem)
+        return total
+    }, [])
+}
+
+const handlerTopbar = (topbar) => {
+    return topbar.reduce((total, item) => {
+        let newItem = JSON.parse(JSON.stringify(item))
+        if (typeof newItem === 'string') {
+            newItem = {
+                type: newItem
+            }
+        }
+        if (newItem.type === 'darkMode') {
+            newItem.icon = newItem.icon || 'i-ri-sun-line'
+            newItem.activeIcon = newItem.activeIcon || 'i-ri-moon-line'
+        }
+        if (newItem.type === 'fullScreen') {
+            newItem.icon = newItem.icon || 'i-ri-fullscreen-line'
+            newItem.activeIcon =
+                newItem.activeIcon || 'i-ri-fullscreen-exit-line'
+        }
+        if (newItem.type === 'i18n') {
+            newItem.icon = newItem.icon || 'i-ri-translate-2'
+        }
+
+        total.push(newItem)
+        return total
+    }, [])
+}
+
 export const useRouteStore = defineStore('route', () => {
     const { data, status } = useAuth()
+
     // 根据菜单整理的路由权限，一维数组
     const routes = computed(() => {
-        if (status.value === 'authenticated') {
-            return flat(data.value.menu)
+        if (status.value !== 'authenticated') {
+            return []
         }
-        // unauthenticated
+        return flat(data.value.data.menu)
+    })
+    // 菜单
+    const menus = computed(() => {
+        if (status.value !== 'authenticated') {
+            return []
+        }
+        if (Array.isArray(data.value.data.menu)) {
+            return handlerMenu(data.value.data.menu)
+        }
         return []
     })
 
-    return { routes }
+    const topbar = computed(() => {
+        if (status.value !== 'authenticated') {
+            return []
+        }
+        if (Array.isArray(data.value.data.topbar)) {
+            return handlerTopbar(data.value.data.topbar)
+        }
+        return []
+    })
+
+    return {
+        routes,
+        menus,
+        topbar
+    }
 })

@@ -2,14 +2,14 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-27 13:47:55
- * @LastEditTime: 2024-03-18 15:59:15
+ * @LastEditTime: 2024-03-21 12:28:31
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\auth\me.get.ts
  */
 export default defineEventHandler(async (evt) => {
     // const auth = evt.auth
-    return {
+    return rs({
         id: 123456,
         // name: 'Floyd Fletcher',
         // avatar: 'https://www.loliapi.com/acg/pp/',
@@ -228,5 +228,5 @@ export default defineEventHandler(async (evt) => {
             }
         ],
         notice: '/auth/notice'
-    }
+    })
 })

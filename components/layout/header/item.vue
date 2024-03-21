@@ -2,21 +2,21 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-14 09:03:14
- * @LastEditTime: 2024-03-20 14:12:07
+ * @LastEditTime: 2024-03-21 12:27:00
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\layout\header\item.vue
 -->
 <template>
-    <UDropdown :items="data.dropDown" mode="click" :popper="{ arrow: true }">
+    <UDropdown :items="dropDown" mode="click" :popper="{ arrow: true }">
         <UChip :text="chipText > 1 ? chipText : ''" :size="chipText > 1 ? 'xl' : 'sm'" :show="chipText > 0"
             :color="color" class="mr-2">
-            <UButton :icon="data.icon" :to="data.to" color="gray" :square="(data.icon || data.image) && !data.label"
+            <UButton :icon="icon" :to="item.to" color="gray" :square="(icon || item.image) && !item.label"
                 variant="soft" @click="handlerClick">
-                <template #leading v-if="data.image">
-                    <UAvatar :src="data.image" size="2xs" />
+                <template #leading v-if="item.image">
+                    <UAvatar :src="item.image" size="2xs" />
                 </template>
-                {{ data.label }}
+                {{ item.label }}
             </UButton>
         </UChip>
     </UDropdown>
@@ -40,44 +40,35 @@ const isDark = computed(() => {
 })
 const isFull = ref(false)
 
-const data = computed(() => {
-    let cfg = {}
-    if (typeof props.item === 'string') {
-        cfg.type = props.item
-    } else {
-        cfg = { ...props.item }
-    }
-    if (cfg.type === 'darkMode') {
+const icon = computed(() => {
+    if (props.item.type === 'darkMode') {
         if (isDark.value) {
-            cfg.icon = cfg.activeIcon || 'i-ri-moon-line'
-        } else {
-            cfg.icon = cfg.icon || 'i-ri-sun-line'
+            return props.item.activeIcon
         }
+        return props.item.icon
     }
-    if (cfg.type === 'fullScreen') {
+    if (props.item.type === 'fullScreen') {
         if (isFull.value) {
-            cfg.icon = cfg.activeIcon || 'i-ri-fullscreen-exit-line'
-        } else {
-            cfg.icon = cfg.icon || 'i-ri-fullscreen-line'
+            return props.item.activeIcon
         }
+        return props.item.icon
     }
-    if (cfg.type === 'i18n') {
-        cfg.icon = cfg.icon || 'i-ri-translate-2'
-        const items = JSON.parse(JSON.stringify(locales.value)).map((item) => {
-            item.click = () => {
-                setLocale(item.code)
-            }
-            return item
-        })
-        cfg.dropDown = items
-    }
-    if (Array.isArray(cfg.dropDown)) {
-        if (!Array.isArray(cfg.dropDown[0])) {
-            cfg.dropDown = [cfg.dropDown]
-        }
-    }
+    return props.item.icon || undefined
+})
 
-    return cfg
+const dropDown = computed(() => {
+    if (props.item.type === 'i18n') {
+        return locales.value.reduce((total, item) => {
+            const newItem = JSON.parse(JSON.stringify(item))
+            newItem.click = () => {
+                setLocale(newItem.code)
+            }
+            total[0].push(newItem)
+            return total
+        }, [[]])
+
+    }
+    return props.item.dropDown || undefined
 })
 
 const chipText = computed(() => {
@@ -96,6 +87,7 @@ const chipText = computed(() => {
     }
     return 0
 })
+
 const color = computed(() => {
     if (props.item?.noticeKey && noticeStore.state[props.item.noticeKey]) {
         return noticeStore.state[props.item.noticeKey].color || 'primary'
@@ -105,10 +97,10 @@ const color = computed(() => {
 })
 
 const handlerClick = () => {
-    if (data.value.type === 'darkMode') {
+    if (props.item.type === 'darkMode') {
         colorMode.preference = isDark.value ? 'light' : 'dark'
     }
-    if (data.value.type === 'fullScreen') {
+    if (props.item.type === 'fullScreen') {
         if (isFull.value) {
             document.exitFullscreen()
         } else {
