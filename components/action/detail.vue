@@ -14,7 +14,7 @@
         </UTable>
         <template #footer>
             <div class="flex justify-end">
-                <UButton @click="handlerClose">
+                <UButton @click="actionBack">
                     {{ actionInfo.btns?.close || $t('action.detail.close') }}
                 </UButton>
             </div>
@@ -36,8 +36,4 @@ const list = computed(() => {
 const columns = computed(() => {
     return data.value?.data.columns || []
 })
-
-const handlerClose = () => {
-    actionBack()
-}
 </script>

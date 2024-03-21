@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-07 19:23:22
- * @LastEditTime: 2024-03-15 14:30:05
+ * @LastEditTime: 2024-03-21 13:57:50
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\action\confirm.vue
@@ -45,7 +45,7 @@ const submit = async () => {
             title: res.message || 'success !'
         })
         pageRefresh()
-        handlerClose()
+        actionBack()
     }
 }
 </script>
