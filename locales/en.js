@@ -24,7 +24,7 @@ export default {
             cancel: 'cancel',
             reset: 'reset',
             total: 'total {total}',
-            pageSize: '{size} 条/页'
+            pageSize: '{size} row per page'
         }
     }
 }
