@@ -1,7 +1,13 @@
 export default {
     siteName: 'Nuxt Admin',
     shortName: 'NA',
-    slogan: '零前端开发的admin管理模板',
+    slogan: '“零”前端开发的中后台数据管理解决方案',
+    login: {
+        username: '用户名',
+        password: '密码',
+        rememberMe: '记住我',
+        login: '登录'
+    },
     action: {
         confirm: {
             submit: '确认',

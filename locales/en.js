@@ -1,7 +1,13 @@
 export default {
     siteName: 'Nuxt Admin',
     shortName: 'NA',
-    slogan: 'Admin template with zero front-end development',
+    slogan: '"Zero" front-end developments backend data management solution',
+    login: {
+        username: 'Username',
+        password: 'Password',
+        rememberMe: 'Remember Me',
+        login: 'Login'
+    },
     action: {
         confirm: {
             submit: 'submit',

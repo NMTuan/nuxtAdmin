@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-08 16:56:10
- * @LastEditTime: 2024-03-15 14:25:55
+ * @LastEditTime: 2024-03-22 17:12:17
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\pages\login.vue
@@ -20,18 +20,23 @@
                 <div class="relative">
                     <div
                         class="w-[520px] px-10 py-14 border rounded bg-white shadow y relative z-10 dark:bg-gray-900 dark:border-gray-800">
-                        <UFormGroup size="xl" label="Username" class="mb-6">
-                            <UInput v-model="username"></UInput>
-                        </UFormGroup>
-                        <UFormGroup size="xl" label="Password" class="mb-4">
-                            <UInput v-model="password" type="password"></UInput>
-                        </UFormGroup>
-                        <UFormGroup size="xl">
-                            <UCheckbox label="Remember me"></UCheckbox>
-                        </UFormGroup>
-                        <UFormGroup size="xl" class="mt-8">
-                            <UButton @click="submit" block size="xl" :loading="loading">Login</UButton>
-                        </UFormGroup>
+                        <UForm ref="form" :state="formData" @submit="onSubmit">
+                            <UFormGroup size="xl" :label="$t('login.username')" class="mb-6">
+                                <UInput v-model="formData.username" autocomplete="off"></UInput>
+                            </UFormGroup>
+                            <UFormGroup size="xl" :label="$t('login.password')" class="mb-4">
+                                <UInput v-model="formData.password" type="password" autocomplete="off"></UInput>
+                            </UFormGroup>
+                            <UFormGroup size="xl">
+                                <UCheckbox v-model="formData.keep_login" :label="$t('login.rememberMe')"
+                                    autocomplete="off">
+                                </UCheckbox>
+                            </UFormGroup>
+                            <UFormGroup size="xl" class="mt-8">
+                                <UButton @click="submit" block size="xl" :loading="loading">{{ $t('login.login') }}
+                                </UButton>
+                            </UFormGroup>
+                        </UForm>
                     </div>
                     <div
                         class="absolute inset-0 w-full h-full p-8 border rounded bg-white opacity-75 shadow y -rotate-3 dark:bg-gray-900 dark:border-gray-700">
@@ -57,15 +62,23 @@ const { signIn } = useAuth()
 const color = useColor()
 const colorMode = useColorMode()
 
-const loading = ref(false)
-const username = ref('test')
-const password = ref('test1234')
 
-const handlerStyle = computed(() => {
-    return {
-        'background-image': `linear-gradient(to bottom, ${handlerColor('white')},${handlerColor('white')},${handlerColor(100, 'gray')}, ${handlerColor(200)})`
-    }
+const loading = ref(false)
+const form = ref()
+const formData = ref({
+    username: '',
+    password: '',
+    keep_login: false
 })
+
+const submit = async () => {
+    form.value.submit()
+}
+
+const onSubmit = async () => {
+    loading.value = true
+    await signIn(formData.value, { callbackUrl: '/index' })
+}
 
 const handlerColor = (shades, c) => {
     if (colorMode.value !== 'dark') {
@@ -82,11 +95,10 @@ const handlerColor = (shades, c) => {
     }
 }
 
-const submit = async () => {
-    loading.value = true
-    await signIn({
-        username: username.value,
-        password: password.value
-    }, { callbackUrl: '/index' })
-}
+const handlerStyle = computed(() => {
+    return {
+        'background-image': `linear-gradient(to bottom, ${handlerColor('white')},${handlerColor('white')},${handlerColor(100, 'gray')}, ${handlerColor(200)})`
+    }
+})
+
 </script>
