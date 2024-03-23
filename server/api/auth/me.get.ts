@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-27 13:47:55
- * @LastEditTime: 2024-03-21 13:42:14
+ * @LastEditTime: 2024-03-23 14:31:09
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\auth\me.get.ts
@@ -136,9 +136,37 @@ export default defineEventHandler(async (evt) => {
                         icon: 'i-ri-bar-chart-box-line',
                         children: [
                             {
-                                label: 'level1-2-1',
-                                key: 'level121',
-                                icon: 'i-ri-archive-line'
+                                label: '学生管理',
+                                key: 'student',
+                                component: 'dataTable',
+                                fetchUrl: '/student',
+                                actions: [
+                                    {
+                                        key: 'create',
+                                        label: '创建',
+                                        icon: 'i-ri-add-circle-line',
+                                        component: 'form',
+                                        positions: ['top']
+                                    },
+                                    {
+                                        key: 'edit',
+                                        label: '编辑',
+                                        icon: 'i-ri-edit-line',
+                                        component: 'form',
+                                        positions: ['row'],
+                                        query: ['id']
+                                    },
+                                    {
+                                        key: 'delete',
+                                        label: '删除',
+                                        icon: 'i-ri-delete-bin-line',
+                                        color: 'red',
+                                        component: 'confirm',
+                                        message: '确定要删除此学生吗？',
+                                        positions: ['row'],
+                                        query: ['id']
+                                    }
+                                ]
                             },
                             { label: 'level1-2-2', key: 'level122' },
                             { label: 'level1-2-3', key: 'level123' }
