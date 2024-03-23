@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:16:40
- * @LastEditTime: 2024-03-23 15:03:00
+ * @LastEditTime: 2024-03-23 15:19:45
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\pages\[module]\[page]\[children].vue
@@ -51,5 +51,7 @@ const pageActions = computed(() => {
     return routeStore.routes.filter(route => route.route.startsWith(`${module}__${page}__${children}__`) && route.__type === 'action')
 })
 provide('pageActions', pageActions)
+
+provide('pageChildren', [])
 
 </script>

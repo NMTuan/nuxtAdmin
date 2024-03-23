@@ -9,12 +9,13 @@
 -->
 <template>
     <div class="border p-4">
-        <div>page:</div>
-        <div>{{ pageInfo }}</div>
+        <div>pageChildren:</div>
+        <div>{{ pageChildren }}</div>
         <PageDataTable v-if="pageInfo?.component === 'dataTable'"></PageDataTable>
         <NuxtPage v-else />
     </div>
 </template>
 <script setup>
 const pageInfo = inject('pageInfo')
+const pageChildren = inject('pageChildren')
 </script>
