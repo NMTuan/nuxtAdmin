@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-14 09:03:14
- * @LastEditTime: 2024-03-21 13:38:49
+ * @LastEditTime: 2024-03-23 12:46:40
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\layout\header\item.vue
@@ -11,8 +11,8 @@
     <UDropdown :items="dropDown" mode="click" :popper="{ arrow: true }">
         <UChip :text="chipText > 1 ? chipText : ''" :size="chipText > 1 ? 'xl' : 'sm'" :show="chipText > 0"
             :color="color" class="mr-2">
-            <UButton :icon="icon" :to="item.to" color="gray" :square="(icon || item.image) && !item.label"
-                variant="soft" @click="handlerClick">
+            <UButton :icon="icon" :to="item.to ? localePath(item.to) : undefined" color="gray"
+                :square="(icon || item.image) && !item.label" variant="soft" @click="handlerClick">
                 <template #leading v-if="item.image">
                     <UAvatar :src="item.image" size="2xs" />
                 </template>
@@ -26,6 +26,7 @@
 const colorMode = useColorMode()
 const noticeStore = useNoticeStore()
 const { locales, setLocale } = useI18n()
+const localePath = useLocalePath()
 
 const props = defineProps({
     item: {

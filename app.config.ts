@@ -14,6 +14,11 @@ export default defineAppConfig({
         notifications: {
             position: 'top-0 bottom-auto'
         },
+        button: {
+            default: {
+                loadingIcon: 'i-ri-loader-2-line'
+            }
+        },
         icons: {
             dynamic: true
         },
