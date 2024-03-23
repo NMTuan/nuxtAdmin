@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-27 13:47:55
- * @LastEditTime: 2024-03-23 14:31:09
+ * @LastEditTime: 2024-03-23 15:51:25
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\auth\me.get.ts
@@ -61,13 +61,13 @@ export default defineEventHandler(async (evt) => {
                         key: 'user',
                         icon: 'i-ri-file-user-line',
                         component: 'dataTable',
-                        // fetchType: 'POST',
                         actions: [
                             {
                                 key: 'create',
                                 label: '创建',
                                 component: 'form',
                                 icon: 'i-ri-add-circle-line',
+                                fetchType: 'POST',
                                 btns: {
                                     submit: '提交',
                                     cancel: '取消'
@@ -79,13 +79,11 @@ export default defineEventHandler(async (evt) => {
                                 label: '查看',
                                 component: 'detail',
                                 icon: 'i-ri-list-view',
-                                // showType: 'slideover',
                                 btns: {
                                     close: '关闭'
                                 },
                                 positions: ['row'],
                                 query: ['id', 'name']
-                                // fetchPath: '/user/user'
                             },
                             {
                                 key: 'edit',

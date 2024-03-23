@@ -1,3 +1,12 @@
+<!--
+ * @Author: NMTuan
+ * @Email: NMTuan@qq.com
+ * @Date: 2024-03-12 18:43:08
+ * @LastEditTime: 2024-03-23 15:45:37
+ * @LastEditors: NMTuan
+ * @Description: 
+ * @FilePath: \nuxtAdmin\components\action\index.vue
+-->
 <template>
     <div v-if="Object.keys(modelValue).length > 0">
         <USlideover v-if="modelValue.showType === 'slideover'" :model-value="true"
@@ -47,18 +56,15 @@ const query = computed(() => {
     }
     return {}
 })
-provide('query', query)
-
-const path = computed(() => {
-    return `${baseURL}${props.modelValue.path}`
-})
-
+// provide('query', query)
 
 // 获取数据
 const actionFetch = () => {
-    return useLazyFetch(path.value, {
+    const path = props.modelValue.fetchUrl || props.modelValue.path
+    return useLazyFetch(`${baseURL}${path}`, {
         method: props.modelValue.fetchType || 'GET',
         query: query.value,
+        params: props.modelValue.params,
         headers: {
             Authorization: token.value
         }
@@ -67,9 +73,11 @@ const actionFetch = () => {
 provide('actionFetch', actionFetch)
 
 const actionPost = (body) => {
-    return $fetch(path.value, {
+    const path = props.modelValue.submitUrl || props.modelValue.path
+    return $fetch(`${baseURL}${path}`, {
         method: 'POST',
         query: query.value,
+        params: props.modelValue.params,
         body,
         headers: {
             Authorization: token.value
