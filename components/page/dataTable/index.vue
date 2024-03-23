@@ -2,14 +2,14 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:30:33
- * @LastEditTime: 2024-03-18 14:30:20
+ * @LastEditTime: 2024-03-23 16:04:31
  * @LastEditors: NMTuan
  * @Description: 
- * @FilePath: \nuxtAdmin\components\page\dataTable.vue
+ * @FilePath: \nuxtAdmin\components\page\dataTable\index.vue
 -->
 
 <template>
-    <div class="bg-white dark:bg-gray-900 border dark:border-gray-800 rounded">
+    <div class="bg-white dark:bg-gray-900 border dark:border-gray-950 rounded">
         <div class="flex items-center justify-between m-6">
             <!-- 功能操作 -->
             <div>

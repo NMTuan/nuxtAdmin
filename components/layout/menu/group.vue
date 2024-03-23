@@ -8,7 +8,7 @@
  * @FilePath: \nuxtAdmin\components\layout\menu\group.vue
 -->
 <template>
-    <div class="flex flex-col  py-3 text-gray-500 dark:text-gray-400">
+    <div class="flex flex-col py-3 text-gray-500 dark:text-gray-400">
         <div class="px-4 text-xs font-bold hidden xl:block">
             {{ item?.label }}
         </div>
