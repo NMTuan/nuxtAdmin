@@ -77,6 +77,7 @@ export default defineEventHandler(async (evt) => {
                             {
                                 key: 'view',
                                 label: '查看',
+                                title: '看一看',
                                 component: 'detail',
                                 icon: 'i-ri-list-view',
                                 btns: {
@@ -100,10 +101,10 @@ export default defineEventHandler(async (evt) => {
                             },
                             {
                                 key: 'delete',
-                                label: '删除',
+                                label: '',
+                                title: '删一下',
                                 component: 'confirm',
                                 icon: 'i-ri-delete-bin-line',
-                                // hideLabel: true,
                                 color: 'red',
                                 message: '确定要删除此信息么？',
                                 btns: {

@@ -35,7 +35,7 @@
                         <UButton v-for="action in pageActions.filter(action => action.positions.includes('row'))  "
                             @click="handlerAction(action, row)" :icon="action.icon" :color="action.color || 'primary'"
                             :variant="action.variant || 'link'">
-                            {{ action.hideLabel ? '' : action.label }}
+                            {{action.label}}
                         </UButton>
                     </div>
                 </template>
