@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-27 13:47:55
- * @LastEditTime: 2024-03-23 15:51:25
+ * @LastEditTime: 2024-03-24 17:30:59
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\auth\me.get.ts
@@ -68,10 +68,10 @@ export default defineEventHandler(async (evt) => {
                                 component: 'form',
                                 icon: 'i-ri-add-circle-line',
                                 fetchType: 'POST',
-                                btns: {
-                                    submit: '提交',
-                                    cancel: '取消'
-                                },
+                                // local: {
+                                //     submit: '提交',
+                                //     cancel: '取消'
+                                // },
                                 positions: ['top']
                             },
                             {
@@ -80,9 +80,9 @@ export default defineEventHandler(async (evt) => {
                                 title: '看一看',
                                 component: 'detail',
                                 icon: 'i-ri-list-view',
-                                btns: {
-                                    close: '关闭'
-                                },
+                                // local: {
+                                //     close: '关闭'
+                                // },
                                 positions: ['row'],
                                 query: ['id', 'name']
                             },
@@ -92,10 +92,10 @@ export default defineEventHandler(async (evt) => {
                                 component: 'form',
                                 icon: 'i-ri-edit-line',
                                 showType: 'slideover',
-                                btns: {
-                                    submit: '更新',
-                                    cancel: '取消'
-                                },
+                                // local: {
+                                //     submit: '更新',
+                                //     cancel: '取消'
+                                // },
                                 positions: ['row'],
                                 query: ['id']
                             },
@@ -107,7 +107,7 @@ export default defineEventHandler(async (evt) => {
                                 icon: 'i-ri-delete-bin-line',
                                 color: 'red',
                                 message: '确定要删除此信息么？',
-                                btns: {
+                                local: {
                                     submit: '删除',
                                     cancel: '取消'
                                 },

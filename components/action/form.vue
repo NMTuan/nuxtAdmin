@@ -16,10 +16,10 @@
         <template #footer>
             <div class="flex justify-end">
                 <UButton variant="ghost" color="gray" class="mr-4" @click="actionBack">
-                    {{ actionInfo.btns?.cancel || $t('action.form.cancel') }}
+                    {{ actionInfo.local?.cancel || $t('action.form.cancel') }}
                 </UButton>
                 <UButton :loading="loading" @click="submit">
-                    {{ actionInfo.btns?.submit || $t('action.form.submit') }}
+                    {{ actionInfo.local?.submit || $t('action.form.submit') }}
                 </UButton>
             </div>
         </template>

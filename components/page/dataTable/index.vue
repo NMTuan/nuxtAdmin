@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:30:33
- * @LastEditTime: 2024-03-23 16:04:31
+ * @LastEditTime: 2024-03-24 17:27:40
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\page\dataTable\index.vue
@@ -35,7 +35,7 @@
                         <UButton v-for="action in pageActions.filter(action => action.positions.includes('row'))  "
                             @click="handlerAction(action, row)" :icon="action.icon" :color="action.color || 'primary'"
                             :variant="action.variant || 'link'">
-                            {{action.label}}
+                            {{ action.label }}
                         </UButton>
                     </div>
                 </template>

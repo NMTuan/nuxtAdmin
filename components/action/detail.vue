@@ -15,7 +15,7 @@
         <template #footer>
             <div class="flex justify-end">
                 <UButton @click="actionBack">
-                    {{ actionInfo.btns?.close || $t('action.detail.close') }}
+                    {{ actionInfo.local?.close || $t('action.detail.close') }}
                 </UButton>
             </div>
         </template>
