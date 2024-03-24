@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-27 13:47:55
- * @LastEditTime: 2024-03-23 16:29:21
+ * @LastEditTime: 2024-03-23 20:28:42
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\layouts\default.vue
@@ -21,7 +21,8 @@
             </div>
         </div>
         <div class="flex-1">
-            <div class="h-[74px] sticky top-0 z-10 bg-gray-50/75 dark:bg-gray-900 backdrop-blur ">
+            <div
+                class="h-[74px] sticky top-0 z-10 bg-gray-50/75 dark:bg-gray-900 backdrop-blur dark:border-b dark:border-gray-950">
                 <LayoutHeader />
             </div>
             <div class="pt-8 pb-8 px-8">

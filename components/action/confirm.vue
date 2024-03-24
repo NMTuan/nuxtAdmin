@@ -2,14 +2,14 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-07 19:23:22
- * @LastEditTime: 2024-03-21 13:57:50
+ * @LastEditTime: 2024-03-24 17:23:33
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\action\confirm.vue
 -->
 
 <template>
-    <ComCard :label="actionInfo.label" :close="actionBack">
+    <ComCard :label="actionInfo.title || actionInfo.label" :close="actionBack">
         {{ actionInfo.message }}
         <template #footer>
             <div class="flex justify-end">

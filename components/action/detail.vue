@@ -9,7 +9,7 @@
 -->
 
 <template>
-    <ComCard :label="actionInfo.label" :close="actionBack">
+    <ComCard :label="actionInfo.title || actionInfo.label" :close="actionBack">
         <UTable :rows="list" :loading="pending" :columns="columns">
         </UTable>
         <template #footer>

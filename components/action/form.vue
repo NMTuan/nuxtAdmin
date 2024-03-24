@@ -9,7 +9,7 @@
 -->
 
 <template>
-    <ComCard :label="actionInfo.label" :close="actionBack">
+    <ComCard :label="actionInfo.title || actionInfo.label" :close="actionBack">
         <ComForm ref="form" v-model="submitData" :fields="fields" :schema="schema" :submit="handlerSubmit"
             :loading="pending">
         </ComForm>
