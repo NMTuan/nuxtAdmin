@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 12:14:50
- * @LastEditTime: 2024-03-14 18:58:16
+ * @LastEditTime: 2024-03-25 13:28:11
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\user\user\index.get.ts
@@ -35,7 +35,7 @@ export default defineEventHandler(async (evt) => {
     const offset = (page - 1) * limit
     return rs({
         data: data.slice(offset, offset + limit),
-        columns: [
+        fields: [
             { key: 'index', label: '序号' },
             {
                 key: 'id',

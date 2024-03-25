@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:30:33
- * @LastEditTime: 2024-03-24 17:27:40
+ * @LastEditTime: 2024-03-25 13:29:20
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\page\dataTable\index.vue
@@ -27,7 +27,7 @@
         <PageDataTableFilter v-model="q" :filters="filters" />
 
         <!-- 数据表格 -->
-        <UTable v-if="columns" :rows="list" :columns="columns" :loading="pending"
+        <UTable :rows="list" :columns="columns" :loading="pending"
             class="border-b dark:border-gray-700 mx-6">
             <template v-for="col in columns" #[`${col.key}-data`]="{ row }">
                 <template v-if="col.key === 'actions'">
@@ -84,8 +84,8 @@ const list = computed(() => {
 
 // 列配置
 const columns = computed(() => {
-    if (Array.isArray(data.value?.data?.columns)) {
-        return data.value.data.columns
+    if (Array.isArray(data.value?.data?.fields)) {
+        return data.value.data.fields
     }
     // 没有声明columns，则用data里的第一条数据构建columns
     if (list.value.length > 0) {

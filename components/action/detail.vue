@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:31:00
- * @LastEditTime: 2024-03-15 14:28:49
+ * @LastEditTime: 2024-03-25 13:30:30
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\action\detail.vue
@@ -34,6 +34,9 @@ const list = computed(() => {
     return data.value?.data.data || []
 })
 const columns = computed(() => {
-    return data.value?.data.columns || []
+    if (Array.isArray(data.value?.data.fields)) {
+        return data.value?.data.fields || []
+    }
+    // return Object.keys(list)
 })
 </script>

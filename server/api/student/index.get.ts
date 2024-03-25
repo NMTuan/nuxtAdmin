@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-18 11:49:05
- * @LastEditTime: 2024-03-18 15:58:05
+ * @LastEditTime: 2024-03-25 13:29:42
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\student\index.get.ts
@@ -43,7 +43,7 @@ export default defineEventHandler(async (evt) => {
                 gradeId: '2'
             }
         ],
-        columns: [
+        fields: [
             { key: 'id', label: '编号' },
             { key: 'name', label: '姓名' },
             {

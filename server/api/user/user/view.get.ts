@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-04 11:25:18
- * @LastEditTime: 2024-03-04 14:51:04
+ * @LastEditTime: 2024-03-25 13:36:06
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\user\user\view.get.ts
@@ -17,7 +17,8 @@ export default defineEventHandler(async (evt) => {
         return total
     }, [])
     return rs({
+        user,
         data: userData,
-        columns: userColbumLabels
+        fields: userColbumLabels
     })
 })
