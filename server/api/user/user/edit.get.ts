@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-04 11:25:18
- * @LastEditTime: 2024-03-12 11:41:45
+ * @LastEditTime: 2024-03-25 16:46:18
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\user\user\edit.get.ts
@@ -35,6 +35,13 @@ export default defineEventHandler(async (evt) => {
                 //     min: 5,
                 //     max: 10
                 // }
+            },
+            {
+                key: 'createAt',
+                label: '创建时间',
+                component: 'date',
+                format: 'yyyy-MM-dd',
+                showFormat: 'y-M-d'
             },
             {
                 key: 'email',
