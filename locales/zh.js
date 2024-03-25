@@ -1,3 +1,12 @@
+/*
+ * @Author: NMTuan
+ * @Email: NMTuan@qq.com
+ * @Date: 2024-03-15 10:39:45
+ * @LastEditTime: 2024-03-25 14:40:01
+ * @LastEditors: NMTuan
+ * @Description:
+ * @FilePath: \nuxtAdmin\locales\zh.js
+ */
 export default {
     siteName: 'Nuxt Admin',
     shortName: 'NA',
@@ -14,6 +23,8 @@ export default {
             cancel: '取消'
         },
         detail: {
+            label: '项',
+            value: '值',
             close: '关闭'
         },
         form: {

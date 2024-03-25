@@ -1,3 +1,12 @@
+/*
+ * @Author: NMTuan
+ * @Email: NMTuan@qq.com
+ * @Date: 2024-03-15 10:40:02
+ * @LastEditTime: 2024-03-25 14:40:24
+ * @LastEditors: NMTuan
+ * @Description:
+ * @FilePath: \nuxtAdmin\locales\en.js
+ */
 export default {
     siteName: 'Nuxt Admin',
     shortName: 'NA',
@@ -14,6 +23,8 @@ export default {
             cancel: 'cancel'
         },
         detail: {
+            label: 'label',
+            value: 'value',
             close: 'close'
         },
         form: {

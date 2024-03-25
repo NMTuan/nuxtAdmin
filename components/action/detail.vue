@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:31:00
- * @LastEditTime: 2024-03-25 13:30:30
+ * @LastEditTime: 2024-03-25 14:40:50
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\action\detail.vue
@@ -24,6 +24,7 @@
 
 <script setup>
 const route = useRoute()
+const { t } = useI18n()
 const actionInfo = inject('actionInfo')
 const actionFetch = inject('actionFetch')
 const actionBack = inject('actionBack')
@@ -31,12 +32,24 @@ const actionBack = inject('actionBack')
 const { data, pending } = await actionFetch(route.query)
 
 const list = computed(() => {
-    return data.value?.data.data || []
+    if (typeof data.value?.data.data === 'object') {
+        return Object.keys(data.value.data.data).reduce((total, key) => {
+            total.push({
+                key: key,
+                label: data.value.data.fields?.[key] || 'key',
+                value: data.value.data.data[key]
+            })
+            return total
+        }, [])
+    }
+
+    return []
 })
 const columns = computed(() => {
-    if (Array.isArray(data.value?.data.fields)) {
-        return data.value?.data.fields || []
-    }
-    // return Object.keys(list)
+    return [
+        { key: 'label', label: data.value?.data.local?.label || t('action.detail.label') },
+        // { key: 'key', label: '字段' },
+        { key: 'value', label: data.value?.data.local?.value || t('action.detail.value') },
+    ]
 })
 </script>
