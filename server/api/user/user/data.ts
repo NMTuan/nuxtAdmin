@@ -5,7 +5,8 @@ const users = [
         email: 'henurdi@nucma.org',
         city: 'Mejzupaj',
         cid: '1',
-        country: 'New Caledonia'
+        country: 'New Caledonia',
+        createAt: '2022-12-12'
     },
     {
         id: '12c8c36931f5',
@@ -13,7 +14,11 @@ const users = [
         email: 'jo@wonrok.jo',
         city: 'Nunagwar',
         cid: '2',
-        country: 'Ascension Island'
+        country: 'Ascension Island',
+        range: {
+            start: '2012-12-12',
+            end: '2012-12-29'
+        }
     },
     {
         id: 'e4293bf948ff',

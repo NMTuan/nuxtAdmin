@@ -10,6 +10,7 @@
 <template>
     <ComFormSelect v-if="field.component === 'select'" />
     <ComFormDate v-else-if="field.component === 'date'" />
+    <ComFormDateRange v-else-if="field.component === 'dateRange'" />
     <ComFormInput v-else />
 </template>
 <script setup>

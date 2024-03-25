@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-04 11:25:18
- * @LastEditTime: 2024-03-25 16:46:18
+ * @LastEditTime: 2024-03-25 17:16:15
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\user\user\edit.get.ts
@@ -40,6 +40,13 @@ export default defineEventHandler(async (evt) => {
                 key: 'createAt',
                 label: '创建时间',
                 component: 'date',
+                format: 'yyyy-MM-dd',
+                showFormat: 'y-M-d'
+            },
+            {
+                key: 'range',
+                label: '时间范围',
+                component: 'dateRange',
                 format: 'yyyy-MM-dd',
                 showFormat: 'y-M-d'
             },
