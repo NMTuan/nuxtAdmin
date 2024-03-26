@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-04 11:25:18
- * @LastEditTime: 2024-03-26 11:43:11
+ * @LastEditTime: 2024-03-26 14:51:48
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\user\user\edit.get.ts
@@ -73,8 +73,9 @@ export default defineEventHandler(async (evt) => {
             {
                 key: 'cid',
                 label: '城市',
-                type: 'select',
+                component: 'select',
                 options: citys
+                // multiple: true
             },
             {
                 key: 'country',
