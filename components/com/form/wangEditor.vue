@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-26 11:40:42
- * @LastEditTime: 2024-03-26 14:25:49
+ * @LastEditTime: 2024-03-26 14:38:45
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\com\form\wangEditor.vue
@@ -11,9 +11,9 @@
     <ClientOnly>
         <div class="formWangEditor">
             <Toolbar :editor="editorRef" class="border-b dark:border-b-gray-700" :defaultConfig="toolbarConfig"
-                :mode="mode" />
+                :mode="field.mode || 'default'" />
             <Editor class="overflow-y" :style="{ height: field.height || '300px' }" v-model="formData[field.key]"
-                :defaultConfig="editorConfig" :mode="mode" @onCreated="handleCreated" />
+                :defaultConfig="editorConfig" :mode="field.mode || 'default'" @onCreated="handleCreated" />
         </div>
     </ClientOnly>
 </template>
