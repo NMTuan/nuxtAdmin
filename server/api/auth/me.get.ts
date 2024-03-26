@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-27 13:47:55
- * @LastEditTime: 2024-03-24 17:30:59
+ * @LastEditTime: 2024-03-26 14:52:25
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\auth\me.get.ts
@@ -67,7 +67,7 @@ export default defineEventHandler(async (evt) => {
                                 label: '创建',
                                 component: 'form',
                                 icon: 'i-ri-add-circle-line',
-                                fetchType: 'POST',
+                                // fetchType: 'POST',
                                 // local: {
                                 //     submit: '提交',
                                 //     cancel: '取消'

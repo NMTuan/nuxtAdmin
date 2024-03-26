@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-13 16:25:12
- * @LastEditTime: 2024-03-14 19:25:28
+ * @LastEditTime: 2024-03-26 15:17:04
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\com\card\index.vue
@@ -18,7 +18,7 @@
                 <UButton color="gray" variant="ghost" icon="i-heroicons-x-mark-20-solid" class="-my-1" @click="close" />
             </div>
         </template>
-        <simplebar class="h-full px-4 py-5 sm:p-6">
+        <simplebar class="h-full px-4 py-5">
             <slot />
         </simplebar>
         <template #footer>
@@ -42,3 +42,9 @@ const props = defineProps({
 })
 
 </script>
+<style>
+/* fix model 弹窗中， select 下拉菜单异常 */
+.simplebar-content-wrapper {
+    height: 100% !important;
+}
+</style>
