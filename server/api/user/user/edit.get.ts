@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-04 11:25:18
- * @LastEditTime: 2024-03-26 14:51:48
+ * @LastEditTime: 2024-03-26 17:18:54
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\user\user\edit.get.ts
@@ -54,8 +54,10 @@ export default defineEventHandler(async (evt) => {
                 key: 'description',
                 label: '描述',
                 component: 'textarea',
-                placeholder: '请填写描述信息'
-                // rows: 10
+                placeholder: '请填写描述信息',
+                autoresize: true,
+                maxrows: '5'
+                // rows: '20'
             },
             {
                 key: 'content',
