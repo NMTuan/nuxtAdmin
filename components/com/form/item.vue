@@ -12,6 +12,7 @@
     <ComFormDate v-else-if="field.component === 'date'" />
     <ComFormDateRange v-else-if="field.component === 'dateRange'" />
     <ComFormTextarea v-else-if="field.component === 'textarea'" />
+    <ComFormWangEditor v-else-if="field.component === 'wangEditor'" />
     <ComFormInput v-else />
 </template>
 <script setup>

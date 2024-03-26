@@ -21,6 +21,8 @@
   "dependencies": {
     "@nuxt/ui": "^2.13.0",
     "@pinia/nuxt": "^0.5.1",
+    "@wangeditor/editor": "^5.1.23",
+    "@wangeditor/editor-for-vue": "^5.1.12",
     "date-fns": "^3.6.0",
     "jsonwebtoken": "^9.0.2",
     "simplebar-vue": "^2.3.3",
