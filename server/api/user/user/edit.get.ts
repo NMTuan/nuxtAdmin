@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-04 11:25:18
- * @LastEditTime: 2024-03-25 17:16:15
+ * @LastEditTime: 2024-03-26 11:28:35
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\user\user\edit.get.ts
@@ -49,6 +49,13 @@ export default defineEventHandler(async (evt) => {
                 component: 'dateRange',
                 format: 'yyyy-MM-dd',
                 showFormat: 'y-M-d'
+            },
+            {
+                key: 'description',
+                label: '描述',
+                component: 'textarea',
+                placeholder: '请填写描述信息',
+                rows: 10
             },
             {
                 key: 'email',
