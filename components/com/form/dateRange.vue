@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-25 15:36:02
- * @LastEditTime: 2024-03-25 17:22:16
+ * @LastEditTime: 2024-03-26 11:07:44
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\com\form\dateRange.vue
@@ -17,8 +17,6 @@
             <ComDatePicker v-model="date" @close="close" />
         </template>
     </UPopover>
-    <pre>{{ field }}</pre>
-    <pre>{{ formData }}</pre>
 </template>
 <script setup>
 import { format } from 'date-fns'
@@ -29,11 +27,14 @@ const formData = inject('formData')
 
 const date = computed({
     set(val) {
-        // formData.value[field.key] = format(val, field.format || 'yyyy-MM-dd')
+        formData.value[field.key] = {
+            start: val.start ? format(val.start, field.format || 'yyyy-MM-dd') : null,
+            end: val.end ? format(val.end, field.format || 'yyyy-MM-dd') : null
+        }
 
     },
     get() {
-        // return formData.value[field.key] ? new Date(formData.value[field.key]) : null
+        if (!formData.value[field.key]) return { start: null, end: null }
         return {
             start: formData.value[field.key].start ? new Date(formData.value[field.key].start) : null,
             end: formData.value[field.key].end ? new Date(formData.value[field.key].end) : null
@@ -43,8 +44,12 @@ const date = computed({
 
 const showVal = computed(() => {
     if (date.value) {
-        return JSON.stringify(date.value)
-        // return format(date.value, field.showFormat || field.format || 'yyyy-MM-dd')
+        const start = date.value.start ? format(date.value.start, field.showFormat || field.format || 'yyyy-MM-dd') : ''
+        const end = date.value.end ? format(date.value.end, field.showFormat || field.format || 'yyyy-MM-dd') : ''
+        if (start || end) {
+            return `${start} ~ ${end}`
+        }
+        return ''
     }
     return ''
 })
