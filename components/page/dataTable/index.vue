@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:30:33
- * @LastEditTime: 2024-03-25 13:29:20
+ * @LastEditTime: 2024-03-27 09:39:36
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\page\dataTable\index.vue
@@ -30,7 +30,7 @@
         <UTable :rows="list" :columns="columns" :loading="pending"
             class="border-b dark:border-gray-700 mx-6">
             <template v-for="col in columns" #[`${col.key}-data`]="{ row }">
-                <template v-if="col.key === 'actions'">
+                <template v-if="col.component === 'actions'">
                     <div class="flex items-center gap-1">
                         <UButton v-for="action in pageActions.filter(action => action.positions.includes('row'))  "
                             @click="handlerAction(action, row)" :icon="action.icon" :color="action.color || 'primary'"

@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 12:14:50
- * @LastEditTime: 2024-03-25 13:28:11
+ * @LastEditTime: 2024-03-27 09:39:21
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\user\user\index.get.ts
@@ -50,7 +50,7 @@ export default defineEventHandler(async (evt) => {
             { key: 'city', label: '城市' },
             { key: 'cid', label: '城市编号' },
             { key: 'country', label: '国家' },
-            { key: 'actions', label: '操作' }
+            {  label: '操作', component: 'actions' }
         ],
         search: [
             {
