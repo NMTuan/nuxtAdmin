@@ -215,7 +215,7 @@ const users = [
 ]
 
 export const citys = [
-    { value: '1', label: 'Mejzupaj' },
+    { value: '1', label: 'Mejzupaj', color: 'red' },
     { value: '2', label: 'Nunagwar' },
     { value: '3', label: 'Mavizo' },
     { value: '4', label: 'Bawelebu' },

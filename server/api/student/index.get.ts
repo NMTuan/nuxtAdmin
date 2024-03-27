@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-18 11:49:05
- * @LastEditTime: 2024-03-27 10:23:58
+ * @LastEditTime: 2024-03-27 15:43:27
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\student\index.get.ts
@@ -51,7 +51,7 @@ export default defineEventHandler(async (evt) => {
                 label: '性别',
                 component: 'enum',
                 items: [
-                    { label: '男', value: '1' },
+                    { label: '男', value: '1', color: 'green' },
                     { label: '女', value: '2' },
                     { label: '未知', value: '0' }
                 ]

@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-09 14:29:39
- * @LastEditTime: 2024-03-21 13:52:05
+ * @LastEditTime: 2024-03-27 15:39:10
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\stores\route.ts
@@ -20,7 +20,7 @@ const flat = (arr, pLabel = '', pValue = '') => {
         total.push({
             name: label,
             route: key,
-            path: `/${path}`,
+            path: `${path}`,
             ...clone
         })
         if (Array.isArray(item.actions) && item.actions.length > 0) {
