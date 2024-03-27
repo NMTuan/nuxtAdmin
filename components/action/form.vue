@@ -2,25 +2,24 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:31:12
- * @LastEditTime: 2024-03-13 16:40:31
+ * @LastEditTime: 2024-03-18 16:26:59
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\action\form.vue
 -->
 
 <template>
-    <ComCard :label="actionInfo.label" :close="actionBack">
+    <ComCard :label="actionInfo.title || actionInfo.label" :close="actionBack">
         <ComForm ref="form" v-model="submitData" :fields="fields" :schema="schema" :submit="handlerSubmit"
             :loading="pending">
         </ComForm>
-        <p v-for="i in 100">{{ i }}</p>
         <template #footer>
             <div class="flex justify-end">
-                <UButton variant="ghost" class="mr-4" @click="actionBack">
-                    {{ actionInfo.btns.cancel || 'cancel' }}
+                <UButton variant="ghost" color="gray" class="mr-4" @click="actionBack">
+                    {{ actionInfo.local?.cancel || $t('action.form.cancel') }}
                 </UButton>
                 <UButton :loading="loading" @click="submit">
-                    {{ actionInfo.btns.submit || 'submit' }}
+                    {{ actionInfo.local?.submit || $t('action.form.submit') }}
                 </UButton>
             </div>
         </template>

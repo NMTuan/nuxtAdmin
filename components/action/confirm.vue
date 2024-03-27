@@ -2,23 +2,22 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-07 19:23:22
- * @LastEditTime: 2024-03-11 16:32:59
+ * @LastEditTime: 2024-03-24 17:29:50
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\action\confirm.vue
 -->
 
 <template>
-    <ComCard :label="actionInfo.label" :close="actionBack">
-        confirm
-
+    <ComCard :label="actionInfo.title || actionInfo.label" :close="actionBack">
+        {{ actionInfo.message }}
         <template #footer>
             <div class="flex justify-end">
-                <UButton variant="ghost" class="mr-4" @click="actionBack">
-                    {{ actionInfo.btns?.cancel || 'cancel' }}
+                <UButton variant="ghost" color="gray" class="mr-4" @click="actionBack">
+                    {{ actionInfo.local?.cancel || $t('action.confirm.cancel') }}
                 </UButton>
-                <UButton :loading="loading" @click="submit">
-                    {{ actionInfo.btns?.submit || 'submit' }}
+                <UButton :loading="loading" :color="actionInfo.color || 'primary'" @click="submit">
+                    {{ actionInfo.local?.submit || $t('action.confirm.submit') }}
                 </UButton>
             </div>
         </template>
@@ -26,8 +25,6 @@
 </template>
 
 <script setup>
-const route = useRoute()
-
 const pageRefresh = inject('pageRefresh')
 const actionInfo = inject('actionInfo')
 const actionBack = inject('actionBack')
@@ -48,10 +45,7 @@ const submit = async () => {
             title: res.message || 'success !'
         })
         pageRefresh()
-        handlerClose()
+        actionBack()
     }
 }
-
-
-
 </script>

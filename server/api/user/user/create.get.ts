@@ -2,12 +2,12 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-04 11:25:18
- * @LastEditTime: 2024-03-08 11:43:10
+ * @LastEditTime: 2024-03-26 14:52:59
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\user\user\create.get.ts
  */
-import { users, userLabels, citys } from './data'
+import { citys } from './data'
 
 export default defineEventHandler(async (evt) => {
     return rs({
@@ -40,7 +40,7 @@ export default defineEventHandler(async (evt) => {
             {
                 key: 'cid',
                 label: '城市',
-                type: 'select',
+                component: 'select',
                 options: citys
             },
             {

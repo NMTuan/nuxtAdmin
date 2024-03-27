@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-11 16:38:23
- * @LastEditTime: 2024-03-14 08:31:50
+ * @LastEditTime: 2024-03-18 14:33:22
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\page\dataTable\search.vue
@@ -12,28 +12,28 @@
         <!-- 搜索 -->
         <ComForm :fields="fields" v-model="q" horizontal :submit="submit"></ComForm>
         <!-- 按钮 -->
-        <UButtonGroup orientation="horizontal" class="ml-2">
-            <UButton @click="submit">搜索</UButton>
+        <UButtonGroup orientation="horizontal">
+            <UButton @click="submit" icon="i-ri-search-2-line">{{ $t('page.dataTable.search') }}</UButton>
             <UDropdown :items="items" :popper="{ placement: 'bottom-end', arrow: true }" :ui="{ width: 'w-auto' }">
-                <UButton icon="i-heroicons-chevron-down-20-solid" class="border-l" />
+                <UButton icon="i-heroicons-chevron-down-20-solid" class="border-l dark:border-gray-800" />
             </UDropdown>
         </UButtonGroup>
         <!-- 高级搜索 -->
         <USlideover :model-value="isOpen" @close="handlerClose">
-            <ComCard label="高级搜索" :close="handlerClose">
+            <ComCard :label="$t('page.dataTable.advSearch')" :close="handlerClose">
                 <ComForm :fields="advFields" v-model="q" :submit="submit"></ComForm>
 
                 <template #footer>
                     <div class="flex justify-between">
-                        <UButton variant="ghost" class="mr-4" @click="reset">
-                            {{ 'reset' }}
+                        <UButton variant="ghost" color="gray" class="mr-4" @click="reset">
+                            {{ $t('page.dataTable.reset') }}
                         </UButton>
                         <div class="flex items-center">
-                            <UButton variant="ghost" class="mr-4" @click="handlerClose">
-                                {{ 'cancel' }}
+                            <UButton variant="ghost" color="gray" class="mr-4" @click="handlerClose">
+                                {{ $t('page.dataTable.cancel') }}
                             </UButton>
                             <UButton @click="submit">
-                                {{ 'submit' }}
+                                {{ $t('page.dataTable.search') }}
                             </UButton>
                         </div>
                     </div>
@@ -43,6 +43,7 @@
     </div>
 </template>
 <script setup>
+const { t } = useI18n()
 const props = defineProps({
     modelValue: {
         type: Object,
@@ -63,6 +64,10 @@ const q = ref({})   // 查询项
 const oriQ = JSON.stringify(props.modelValue)  // 原始表单值
 const isOpen = ref(false)
 
+onMounted(() => {
+    console.log('onMounted')
+})
+
 const submit = () => {
     handlerClose()
     const newQ = JSON.parse(JSON.stringify(props.modelValue))
@@ -82,6 +87,7 @@ const submit = () => {
 }
 
 const reset = () => {
+    console.log('reset', q.value)
     handlerClose()
     q.value = {}
     emits('update:modelValue', JSON.parse(oriQ))
@@ -90,17 +96,26 @@ const reset = () => {
 const handlerClose = () => {
     isOpen.value = false
 }
+const items = computed(() => {
+    let items = []
+    if (Array.isArray(props.advFields) && props.advFields.length > 0) {
+        items.push(
+            { label: t('page.dataTable.advSearch'), icon: 'i-ri-search-eye-line', click: () => isOpen.value = true },
+        )
+    }
 
-const items = [
-    [
-        { label: '高级搜索', click: () => isOpen.value = true },
+    items.push(
         {
-            label: '重置搜索', click: () => {
+            label: t('page.dataTable.resetSearch'),
+            icon: 'i-ri-refresh-line',
+            click: () => {
                 reset()
             }
         }
-    ]
-]
+
+    )
+    return [items]
+})
 
 // 监听组件外的变动. 更新到组件内
 watchEffect(() => {

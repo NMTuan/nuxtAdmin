@@ -8,7 +8,7 @@
  * @FilePath: \nuxtAdmin\components\com\form\input.vue
 -->
 <template>
-    <UInput v-bind="field" v-model="formData[field.key]" autocomplete="off" />
+    <UTextarea v-bind="field" v-model="formData[field.key]" autocomplete="off" />
 </template>
 <script setup>
 const field = inject('field')

@@ -2,24 +2,22 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:18:04
- * @LastEditTime: 2024-03-13 15:25:47
+ * @LastEditTime: 2024-03-23 15:19:12
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\pages\[module]\[page].vue
 -->
 
 <template>
-    <PageDataTable v-if="pageInfo.component === 'dataTable'"></PageDataTable>
-    <NuxtPage v-else />
-    <pre>{{ routeStore.routes }}</pre>
+    <!-- <ModuleComponent /> -->
+    <PageComponent />
 </template>
 
 <script setup>
 const route = useRoute()
 const routeStore = useRouteStore()
-const { token, } = useAuth()
+const { token } = useAuth()
 
-// const moduleInfo = inject('moduleInfo')
 const baseURL = inject('baseURL')
 const { module, page } = route.params
 const pageInfo = computed(() => {
@@ -27,10 +25,20 @@ const pageInfo = computed(() => {
 })
 provide('pageInfo', pageInfo)
 
+const url = computed(() => {
+    let url
+    if (pageInfo.value.fetchUrl) {
+        url = pageInfo.value.fetchUrl
+    } else {
+        url = pageInfo.value.path
+    }
+    return `${baseURL}${url}`
+})
+
 // 获取数据
 const pageFetch = (query = {}, watch = []) => {
-    return useLazyFetch(`${baseURL}${pageInfo.value.path}`, {
-        method: pageInfo.fetchType || 'GET',
+    return useLazyFetch(url.value, {
+        method: pageInfo.value.fetchType || 'GET',
         headers: {
             Authorization: token.value
         },
@@ -46,6 +54,10 @@ const pageActions = computed(() => {
 provide('pageActions', pageActions)
 
 const pageChildren = computed(() => {
-    return routeStore.routes.filter(route => route.route.startsWith(`${module}__${page}__`) && route.__type !== 'action')
+    return routeStore.routes.filter(
+        route => route.route.startsWith(`${module}__${page}__`) && route.__type !== 'action'
+            && route.route.split('__').length === 3
+    )
 })
+provide('pageChildren', pageChildren)
 </script>

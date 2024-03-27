@@ -2,13 +2,13 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 12:14:50
- * @LastEditTime: 2024-03-12 10:48:48
+ * @LastEditTime: 2024-03-27 09:39:21
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\user\user\index.get.ts
  */
 
-import { users, userLabels, userColbumLabels, citys } from './data'
+import { users, citys } from './data'
 
 export default defineEventHandler(async (evt) => {
     let { limit = 10, page = 1, id, name, email, cid, country } = getQuery(evt)
@@ -35,35 +35,32 @@ export default defineEventHandler(async (evt) => {
     const offset = (page - 1) * limit
     return rs({
         data: data.slice(offset, offset + limit),
-        columns: [
+        fields: [
             { key: 'index', label: '序号' },
             {
                 key: 'id',
                 label: '编号',
-                component: 'link',
-                to: '/user/user/view',
-                query: ['id', 'name'],
-                props: {
-                    class: 'hover:underline',
-                    activeClass: 'text-red-500',
-                    exactQuery: true
-                }
+                component: 'detail',
+                // showType: 'modal',
+                path: '/user/user/view',
+                query: ['id']
             },
             { key: 'name', label: '姓名' },
             { key: 'email', label: '邮箱' },
             { key: 'city', label: '城市' },
             { key: 'cid', label: '城市编号' },
             { key: 'country', label: '国家' },
-            { key: 'actions', label: '操作' }
+            { label: '操作', component: 'actions' }
         ],
         search: [
             {
                 key: 'name',
-                name: '姓名', // 如不指定，则从columns中找
+                label: '姓名!', // 如不指定，则从columns中找
                 placeholder: '姓名啊啊啊'
             },
             {
                 key: 'cid',
+                label: '城市啊',
                 placeholder: '城市',
                 type: 'select',
                 options: citys
@@ -73,8 +70,8 @@ export default defineEventHandler(async (evt) => {
             { key: 'id' },
             { key: 'name' },
             { key: 'email' },
-            { key: 'cid', type: 'select', options: citys },
-            { key: 'country' }
+            { key: 'cid', component: 'select', options: citys },
+            { key: 'country', placeholder: '国家' }
         ],
         filters: [
             { label: '全部', query: {} },

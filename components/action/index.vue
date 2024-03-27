@@ -1,6 +1,15 @@
+<!--
+ * @Author: NMTuan
+ * @Email: NMTuan@qq.com
+ * @Date: 2024-03-12 18:43:08
+ * @LastEditTime: 2024-03-23 15:45:37
+ * @LastEditors: NMTuan
+ * @Description: 
+ * @FilePath: \nuxtAdmin\components\action\index.vue
+-->
 <template>
-    <div>
-        <USlideover :model-value="modelValue.showType === 'slideover'"
+    <div v-if="Object.keys(modelValue).length > 0">
+        <USlideover v-if="modelValue.showType === 'slideover'" :model-value="true"
             :prevent-close="['form'].includes(modelValue.component)" @close="actionBack">
             <ActionForm v-if="modelValue.component === 'form'" />
             <ActionDetail v-else-if="modelValue.component === 'detail'" />
@@ -8,8 +17,7 @@
             <slot v-else />
             <input type="text" class="opacity-0 h-0 overflow-hidden" />
         </USlideover>
-        <UModal :model-value="modelValue.showType === 'modal'" :prevent-close="['form'].includes(modelValue.component)"
-            @close="actionBack">
+        <UModal v-else :model-value="true" :prevent-close="['form'].includes(modelValue.component)" @close="actionBack">
             <ActionForm v-if="modelValue.component === 'form'" />
             <ActionDetail v-else-if="modelValue.component === 'detail'" />
             <ActionConfirm v-else-if="modelValue.component === 'confirm'" />
@@ -40,26 +48,23 @@ const actionInfo = computed(() => {
 provide('actionInfo', actionInfo)
 
 const query = computed(() => {
-    if (Array.isArray(props.modelValue.props)) {
-        return props.modelValue.props.reduce((total, key) => {
+    if (Array.isArray(props.modelValue.query)) {
+        return props.modelValue.query.reduce((total, key) => {
             total[key] = props.row[key]
             return total
         }, {})
     }
     return {}
 })
-provide('query', query)
-
-const path = computed(() => {
-    return `${baseURL}${props.modelValue.path}`
-})
-
+// provide('query', query)
 
 // 获取数据
 const actionFetch = () => {
-    return useLazyFetch(path.value, {
+    const path = props.modelValue.fetchUrl || props.modelValue.path
+    return useLazyFetch(`${baseURL}${path}`, {
         method: props.modelValue.fetchType || 'GET',
         query: query.value,
+        params: props.modelValue.params,
         headers: {
             Authorization: token.value
         }
@@ -68,9 +73,11 @@ const actionFetch = () => {
 provide('actionFetch', actionFetch)
 
 const actionPost = (body) => {
-    return $fetch(path.value, {
+    const path = props.modelValue.submitUrl || props.modelValue.path
+    return $fetch(`${baseURL}${path}`, {
         method: 'POST',
         query: query.value,
+        params: props.modelValue.params,
         body,
         headers: {
             Authorization: token.value

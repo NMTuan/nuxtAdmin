@@ -1,143 +1,207 @@
-import fullScreen from '~/components/layout/header/fullScreen.vue'
-
 /*
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-27 13:47:55
- * @LastEditTime: 2024-03-14 12:43:04
+ * @LastEditTime: 2024-03-26 14:52:25
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\auth\me.get.ts
  */
 export default defineEventHandler(async (evt) => {
     // const auth = evt.auth
-    return {
+    return rs({
         id: 123456,
         // name: 'Floyd Fletcher',
         // avatar: 'https://www.loliapi.com/acg/pp/',
         menu: [
             {
                 label: '首页',
-                value: 'index',
+                key: 'index',
                 icon: 'i-ri-home-3-line'
             },
             {
+                label: '学生管理',
+                key: 'student',
+                component: 'dataTable',
+                actions: [
+                    {
+                        key: 'create',
+                        label: '创建',
+                        icon: 'i-ri-add-circle-line',
+                        component: 'form',
+                        positions: ['top']
+                    },
+                    {
+                        key: 'edit',
+                        label: '编辑',
+                        icon: 'i-ri-edit-line',
+                        component: 'form',
+                        positions: ['row'],
+                        query: ['id']
+                    },
+                    {
+                        key: 'delete',
+                        label: '删除',
+                        icon: 'i-ri-delete-bin-line',
+                        color: 'red',
+                        component: 'confirm',
+                        message: '确定要删除此学生吗？',
+                        positions: ['row'],
+                        query: ['id']
+                    }
+                ]
+            },
+            {
                 label: '用户管理',
-                value: 'user',
+                key: 'user',
                 icon: 'i-ri-user-4-line',
                 children: [
                     {
                         label: '用户',
-                        value: 'user',
+                        key: 'user',
                         icon: 'i-ri-file-user-line',
                         component: 'dataTable',
-                        // fetchType: 'POST',
                         actions: [
                             {
+                                key: 'create',
                                 label: '创建',
-                                value: 'create',
                                 component: 'form',
-                                btns: {
-                                    submit: '提交',
-                                    cancel: '取消'
-                                },
+                                icon: 'i-ri-add-circle-line',
+                                // fetchType: 'POST',
+                                // local: {
+                                //     submit: '提交',
+                                //     cancel: '取消'
+                                // },
                                 positions: ['top']
                             },
                             {
+                                key: 'view',
                                 label: '查看',
-                                value: 'view',
+                                title: '看一看',
                                 component: 'detail',
-                                // showType: 'slideover',
-                                btns: {
-                                    close: '关闭'
-                                },
+                                icon: 'i-ri-list-view',
+                                // local: {
+                                //     close: '关闭'
+                                // },
                                 positions: ['row'],
-                                props: ['id', 'name']
-                                // fetchPath: '/user/user'
+                                query: ['id', 'name']
                             },
                             {
+                                key: 'edit',
                                 label: '编辑',
-                                value: 'edit',
                                 component: 'form',
+                                icon: 'i-ri-edit-line',
                                 showType: 'slideover',
-                                btns: {
-                                    submit: '更新',
-                                    cancel: '取消'
-                                },
+                                // local: {
+                                //     submit: '更新',
+                                //     cancel: '取消'
+                                // },
                                 positions: ['row'],
-                                props: ['id']
+                                query: ['id']
                             },
                             {
-                                label: '删除',
-                                value: 'delete',
+                                key: 'delete',
+                                label: '',
+                                title: '删一下',
                                 component: 'confirm',
-                                btns: {
+                                icon: 'i-ri-delete-bin-line',
+                                color: 'red',
+                                message: '确定要删除此信息么？',
+                                local: {
                                     submit: '删除',
                                     cancel: '取消'
                                 },
                                 positions: ['row'],
-                                props: ['id']
+                                query: ['id']
                             }
                         ]
                     },
                     {
                         label: '角色',
-                        value: 'role',
+                        key: 'role',
                         component: 'view'
                     },
-                    { label: '权限', value: 'permission' }
+                    { label: '权限', key: 'permission' }
                 ]
             },
             {
                 label: 'level1',
-                value: 'level1',
+                key: 'level1',
                 children: [
-                    { label: 'level1-1', value: 'level11' },
+                    { label: 'level1-1', key: 'level11' },
                     {
                         label: 'level1-2',
-                        value: 'level12',
+                        key: 'level12',
                         icon: 'i-ri-bar-chart-box-line',
                         children: [
                             {
-                                label: 'level1-2-1',
-                                value: 'level121',
-                                icon: 'i-ri-archive-line'
+                                label: '学生管理',
+                                key: 'student',
+                                component: 'dataTable',
+                                fetchUrl: '/student',
+                                actions: [
+                                    {
+                                        key: 'create',
+                                        label: '创建',
+                                        icon: 'i-ri-add-circle-line',
+                                        component: 'form',
+                                        positions: ['top']
+                                    },
+                                    {
+                                        key: 'edit',
+                                        label: '编辑',
+                                        icon: 'i-ri-edit-line',
+                                        component: 'form',
+                                        positions: ['row'],
+                                        query: ['id']
+                                    },
+                                    {
+                                        key: 'delete',
+                                        label: '删除',
+                                        icon: 'i-ri-delete-bin-line',
+                                        color: 'red',
+                                        component: 'confirm',
+                                        message: '确定要删除此学生吗？',
+                                        positions: ['row'],
+                                        query: ['id']
+                                    }
+                                ]
                             },
-                            { label: 'level1-2-2', value: 'level122' },
-                            { label: 'level1-2-3', value: 'level123' }
+                            { label: 'level1-2-2', key: 'level122' },
+                            { label: 'level1-2-3', key: 'level123' }
                         ]
                     },
-                    { label: 'level1-3', value: 'level13' }
+                    { label: 'level1-3', key: 'level13' }
                 ]
             },
-            { label: 'level2', value: 'level2' },
+            { label: 'level2', key: 'level2' },
             {
                 label: 'level3',
-                value: 'level3',
+                key: 'level3',
                 children: [
                     {
                         label: 'level3-1',
-                        value: 'level31',
+                        key: 'level31',
                         children: [
                             {
                                 label: 'level3-1-1',
-                                value: 'level311',
+                                key: 'level311',
                                 hidden: true
                             },
                             {
                                 label: 'level3-1-2',
-                                value: 'level312',
+                                key: 'level312',
                                 hidden: false
                             },
                             {
                                 label: 'level3-1-3',
-                                value: 'level313',
+                                key: 'level313',
                                 hidden: true
                             }
                         ]
                     },
-                    { label: 'level3-2', value: 'level32' },
-                    { label: 'level3-3', value: 'level33' }
+                    { label: 'level3-2', key: 'level32' },
+                    { label: 'level3-3', key: 'level33' }
                 ]
             }
         ],
@@ -156,16 +220,17 @@ export default defineEventHandler(async (evt) => {
                 noticeKey: 'chat'
             },
             {
-                type: 'darkMode'
+                component: 'darkMode'
             },
             {
-                type: 'fullScreen'
+                component: 'fullScreen'
             },
+            'i18n',
             {
-                type: 'dropdown',
+                component: 'dropdown',
                 label: 'Floyd Fletcher',
-                avatar: 'https://www.loliapi.com/acg/pp/',
-                items: [
+                image: 'https://www.loliapi.com/acg/pp/',
+                dropDown: [
                     [
                         {
                             label: 'profile',
@@ -176,18 +241,19 @@ export default defineEventHandler(async (evt) => {
                     [
                         {
                             label: 'exit',
-                            icon: 'i-ri-logout-box-r-line'
-                            // to: '/logout'
+                            icon: 'i-ri-logout-box-r-line',
+                            to: '/logout'
                         }
                     ]
                 ]
             },
             {
-                type: 'exit',
+                component: 'exit',
                 label: '退出',
-                icon: 'i-ri-logout-box-r-line'
+                icon: 'i-ri-logout-box-r-line',
+                to: '/logout'
             }
         ],
         notice: '/auth/notice'
-    }
+    })
 })

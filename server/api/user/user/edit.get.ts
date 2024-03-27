@@ -2,20 +2,16 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-04 11:25:18
- * @LastEditTime: 2024-03-12 11:41:45
+ * @LastEditTime: 2024-03-26 17:18:54
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\user\user\edit.get.ts
  */
-import { users, userLabels, citys } from './data'
+import { users, citys } from './data'
 
 export default defineEventHandler(async (evt) => {
     const { id } = getQuery(evt)
     const user = users.find((u) => u.id === id)
-    const userData = Object.keys(user).reduce((total, key) => {
-        total.push({ key, label: userLabels[key], value: user[key] })
-        return total
-    }, [])
     return rs({
         data: user,
         fields: [
@@ -37,6 +33,34 @@ export default defineEventHandler(async (evt) => {
                 // }
             },
             {
+                key: 'createAt',
+                label: '创建时间',
+                component: 'date',
+                format: 'yyyy-MM-dd',
+                showFormat: 'y-M-d'
+            },
+            {
+                key: 'range',
+                label: '时间范围',
+                component: 'dateRange',
+                format: 'yyyy-MM-dd',
+                showFormat: 'y-M-d'
+            },
+            {
+                key: 'description',
+                label: '描述',
+                component: 'textarea',
+                placeholder: '请填写描述信息',
+                autoresize: true,
+                maxrows: '5'
+                // rows: '20'
+            },
+            {
+                key: 'content',
+                label: '内容',
+                component: 'wangEditor'
+            },
+            {
                 key: 'email',
                 label: '邮箱',
                 valids: [
@@ -47,8 +71,9 @@ export default defineEventHandler(async (evt) => {
             {
                 key: 'cid',
                 label: '城市',
-                type: 'select',
+                component: 'select',
                 options: citys
+                // multiple: true
             },
             {
                 key: 'country',

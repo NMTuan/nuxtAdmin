@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-01-04 18:31:48
- * @LastEditTime: 2024-03-12 12:39:02
+ * @LastEditTime: 2024-03-27 15:23:38
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\nuxt.config.ts
@@ -14,13 +14,14 @@ export default defineNuxtConfig({
         '@nuxt/ui',
         '@pinia/nuxt',
         '@sidebase/nuxt-auth',
-        '@nuxtjs/color-mode'
+        '@nuxtjs/color-mode',
+        '@nuxtjs/i18n'
     ],
     colorMode: {
         preference: 'light'
     },
     auth: {
-        baseURL: '/api',
+        baseURL: '/api/',
         globalAppMiddleware: true, // 全局鉴权，需要开放的请手工配置
         provider: {
             type: 'local',
@@ -38,6 +39,20 @@ export default defineNuxtConfig({
                 login: '/login'
             }
         }
+    },
+    i18n: {
+        locales: [
+            {
+                code: 'zh',
+                label: '中文'
+            },
+            {
+                code: 'en',
+                label: 'English'
+            }
+        ],
+        defaultLocale: 'zh',
+        vueI18n: './i18n.config.ts'
     },
     imports: {
         dirs: ['stores']

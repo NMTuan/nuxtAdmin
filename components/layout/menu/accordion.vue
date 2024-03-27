@@ -2,21 +2,21 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-13 09:50:29
- * @LastEditTime: 2024-03-13 14:25:12
+ * @LastEditTime: 2024-03-23 16:26:35
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\layout\menu\accordion.vue
 -->
 <template>
     <div class="overflow-hidden" :class="[
-        isOpen && 'bg-gray-100 shadow-inner'
+        isOpen && 'bg-gray-100 dark:bg-gray-950/30 shadow-inner'
     ]">
 
         <LayoutMenuToolTip :label="item.label">
-            <div class="flex items-center justify-center xl:justify-between h-[48px] px-4 mx-2 my-1 rounded relative hover:bg-gray-100 dark:hover:bg-gray-900"
+            <div class="flex items-center justify-center xl:justify-between h-[48px] px-4 mx-2 my-1 rounded relative cursor-pointer hover:bg-gray-100 dark:hover:bg-gray-950/30"
                 @click="toggleOpen">
                 <div class="flex items-center">
-                    <LayoutMenuIcon :current="isOpen" :icon="item.icon"  />
+                    <LayoutMenuIcon :current="isOpen" :icon="item.icon" />
                     <div class="ml-2 text-base hidden xl:block">{{ item.label }}</div>
                 </div>
                 <UIcon name="i-tabler-chevron-down" class="flex-shrink-0 transition-all absolute xl:static bottom-0"
@@ -25,7 +25,7 @@
             </div>
         </LayoutMenuToolTip>
 
-        <div ref="el" :style="{ height: chldrenHeight }" class="transition-all overflow-hidden mb-2">
+        <div ref="el" :style="{ height: chldrenHeight }" class="transition-all overflow-hidden">
             <slot />
         </div>
     </div>

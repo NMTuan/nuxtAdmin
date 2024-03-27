@@ -7,7 +7,7 @@
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\user\user\delete.post.ts
  */
-import { users, userLabels, userColbumLabels } from './data'
+import { users } from './data'
 
 export default defineEventHandler(async (evt) => {
     const { id } = getQuery(evt)
