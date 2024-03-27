@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-18 11:49:05
- * @LastEditTime: 2024-03-25 13:29:42
+ * @LastEditTime: 2024-03-27 10:23:58
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\student\index.get.ts
@@ -51,9 +51,9 @@ export default defineEventHandler(async (evt) => {
                 label: '性别',
                 component: 'enum',
                 items: [
-                    { key: '1', label: '男' },
-                    { key: '2', label: '女' },
-                    { key: '0', label: '未知' }
+                    { label: '男', value: '1' },
+                    { label: '女', value: '2' },
+                    { label: '未知', value: '0' }
                 ]
             },
             { key: 'height', label: '身高（cm）' },
@@ -63,9 +63,9 @@ export default defineEventHandler(async (evt) => {
                 label: '所在年级',
                 component: 'enum',
                 items: [
-                    { key: '1', label: '一年级' },
-                    { key: '2', label: '二年级' },
-                    { key: '3', label: '三年级' }
+                    { label: '一年级', value: '1' },
+                    { label: '二年级', value: '2' },
+                    { label: '三年级', value: '3' }
                 ]
             },
             { key: 'actions', label: '操作' }

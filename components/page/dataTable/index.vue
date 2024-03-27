@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:30:33
- * @LastEditTime: 2024-03-27 09:39:36
+ * @LastEditTime: 2024-03-27 11:28:20
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\page\dataTable\index.vue
@@ -27,8 +27,7 @@
         <PageDataTableFilter v-model="q" :filters="filters" />
 
         <!-- 数据表格 -->
-        <UTable :rows="list" :columns="columns" :loading="pending"
-            class="border-b dark:border-gray-700 mx-6">
+        <UTable :rows="list" :columns="columns" :loading="pending" class="border-b dark:border-gray-700 mx-6">
             <template v-for="col in columns" #[`${col.key}-data`]="{ row }">
                 <template v-if="col.component === 'actions'">
                     <div class="flex items-center gap-1">
@@ -41,8 +40,7 @@
                 </template>
 
                 <template v-else-if="col?.component">
-                    <PageDataTableColumn :component="col.component" :row="row" :column="col" :value="row[col.key]">
-                    </PageDataTableColumn>
+                    <ComField :component="col.component" :row="row" :column="col" :value="row[col.key]" />
                 </template>
 
                 <template v-else>

@@ -7,7 +7,7 @@
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\user\user\create.get.ts
  */
-import { users, userLabels, citys } from './data'
+import { citys } from './data'
 
 export default defineEventHandler(async (evt) => {
     return rs({

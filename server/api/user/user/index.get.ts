@@ -8,7 +8,7 @@
  * @FilePath: \nuxtAdmin\server\api\user\user\index.get.ts
  */
 
-import { users, userLabels, userColbumLabels, citys } from './data'
+import { users, citys } from './data'
 
 export default defineEventHandler(async (evt) => {
     let { limit = 10, page = 1, id, name, email, cid, country } = getQuery(evt)
@@ -50,7 +50,7 @@ export default defineEventHandler(async (evt) => {
             { key: 'city', label: '城市' },
             { key: 'cid', label: '城市编号' },
             { key: 'country', label: '国家' },
-            {  label: '操作', component: 'actions' }
+            { label: '操作', component: 'actions' }
         ],
         search: [
             {
