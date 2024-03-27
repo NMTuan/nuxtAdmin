@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-01-04 18:31:48
- * @LastEditTime: 2024-03-15 11:45:13
+ * @LastEditTime: 2024-03-27 15:23:38
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\nuxt.config.ts
@@ -21,7 +21,7 @@ export default defineNuxtConfig({
         preference: 'light'
     },
     auth: {
-        baseURL: '/api',
+        baseURL: '/api/',
         globalAppMiddleware: true, // 全局鉴权，需要开放的请手工配置
         provider: {
             type: 'local',
