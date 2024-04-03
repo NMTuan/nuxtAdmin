@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-14 09:03:14
- * @LastEditTime: 2024-03-23 12:46:40
+ * @LastEditTime: 2024-04-03 14:31:19
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\layout\header\item.vue
@@ -68,6 +68,10 @@ const dropDown = computed(() => {
             return total
         }, [[]])
 
+    }
+    // 如果是一维数组，强制转换成二维
+    if (Array.isArray(props.item.dropDown) && props.item.dropDown.length === props.item.dropDown.flat().length) {
+        return [props.item.dropDown]
     }
     return props.item.dropDown || undefined
 })
