@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-04 11:25:18
- * @LastEditTime: 2024-03-27 14:09:17
+ * @LastEditTime: 2024-04-19 09:56:47
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\user\user\view.get.ts
@@ -21,8 +21,18 @@ export default defineEventHandler(async (evt) => {
         // data: userData,
         data: user,
         // fields: userLabels
-        fields: Object.keys(userLabels).reduce((total, key) => {
-            if (key === 'cid') {
+        fields: Object.keys(userLabels).reduce((total: Record<string, any>, key) => {
+            if (key === 'name') {
+                total.push({
+                    key,
+                    label: userLabels[key],
+                    component: 'copy',
+                    position: 'after',
+                    color: 'blue'
+                })
+
+            }
+            else if (key === 'cid') {
                 total.push({
                     key,
                     label: userLabels[key],
