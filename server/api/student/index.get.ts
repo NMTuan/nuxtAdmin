@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-03-18 11:49:05
- * @LastEditTime: 2024-03-27 15:43:27
+ * @LastEditTime: 2024-04-19 09:33:28
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\student\index.get.ts
@@ -45,7 +45,7 @@ export default defineEventHandler(async (evt) => {
         ],
         fields: [
             { key: 'id', label: '编号' },
-            { key: 'name', label: '姓名' },
+            { key: 'name', label: '姓名', component: 'copy' },
             {
                 key: 'sex',
                 label: '性别',
