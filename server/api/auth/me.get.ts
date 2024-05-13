@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-27 13:47:55
- * @LastEditTime: 2024-03-26 14:52:25
+ * @LastEditTime: 2024-05-13 13:59:07
  * @LastEditors: NMTuan
  * @Description:
  * @FilePath: \nuxtAdmin\server\api\auth\me.get.ts
@@ -17,6 +17,11 @@ export default defineEventHandler(async (evt) => {
             {
                 label: '首页',
                 key: 'index',
+                icon: 'i-ri-home-3-line'
+            },
+            {
+                label: '聊天',
+                key: 'chat',
                 icon: 'i-ri-home-3-line'
             },
             {
@@ -56,6 +61,11 @@ export default defineEventHandler(async (evt) => {
                 key: 'user',
                 icon: 'i-ri-user-4-line',
                 children: [
+                    {
+                        label: '测试',
+                        key: 'test',
+                        icon: 'i-ri-home-3-line'
+                    },
                     {
                         label: '用户',
                         key: 'user',
