@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:30:33
- * @LastEditTime: 2024-03-27 11:28:20
+ * @LastEditTime: 2024-04-20 20:25:59
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\page\dataTable\index.vue
@@ -13,48 +13,95 @@
         <div class="flex items-center justify-between m-6">
             <!-- 功能操作 -->
             <div>
-                <UButton v-for="item in pageActions.filter(action => action.positions.includes('top'))"
-                    @click="handlerAction(item)" :icon="item.icon">
+                <UButton
+                    v-for="item in pageActions.filter((action) =>
+                        action.positions.includes('top')
+                    )"
+                    @click="handlerAction(item)"
+                    :icon="item.icon"
+                >
                     {{ item.label }}
                 </UButton>
             </div>
             <!-- 搜索 -->
-            <PageDataTableSearch v-show="searchFields.length > 0" v-model="q" :fields="searchFields"
-                :adv-fields="advFields" />
+            <PageDataTableSearch
+                v-show="searchFields.length > 0"
+                v-model="q"
+                :fields="searchFields"
+                :adv-fields="advFields"
+            />
         </div>
 
         <!-- 快捷筛选 -->
         <PageDataTableFilter v-model="q" :filters="filters" />
 
         <!-- 数据表格 -->
-        <UTable :rows="list" :columns="columns" :loading="pending" class="border-b dark:border-gray-700 mx-6">
+        <UTable
+            :rows="list"
+            :columns="columns"
+            :loading="pending"
+            class="border-b dark:border-gray-700 mx-6"
+        >
             <template v-for="col in columns" #[`${col.key}-data`]="{ row }">
                 <template v-if="col.component === 'actions'">
                     <div class="flex items-center gap-1">
-                        <UButton v-for="action in pageActions.filter(action => action.positions.includes('row'))  "
-                            @click="handlerAction(action, row)" :icon="action.icon" :color="action.color || 'primary'"
-                            :variant="action.variant || 'link'">
+                        <UButton
+                            v-for="action in pageActions.filter((action) =>
+                                action.positions.includes('row')
+                            )"
+                            @click="handlerAction(action, row)"
+                            :icon="action.icon"
+                            :color="action.color || 'primary'"
+                            :variant="action.variant || 'link'"
+                        >
                             {{ action.label }}
                         </UButton>
                     </div>
                 </template>
 
                 <template v-else-if="col?.component">
-                    <ComField :component="col.component" :row="row" :column="col" :value="row[col.key]" />
+                    <ComField
+                        :component="col.component"
+                        :row="row"
+                        :column="col"
+                        :value="
+                            col.key
+                                .split('.')
+                                .reduce((total, key) => total[key], row)
+                        "
+                    />
                 </template>
 
                 <template v-else>
-                    {{ row[col.key] }}
+                    {{
+                        col.key
+                            .split('.')
+                            .reduce((total, key) => total[key], row)
+                    }}
                 </template>
             </template>
         </UTable>
         <!-- 底部分页 -->
-        <div class="sticky bottom-0 p-6 bg-white/75 dark:bg-gray-900/75 backdrop-blur">
+        <div
+            class="sticky bottom-0 p-6 bg-white/75 dark:bg-gray-900/75 backdrop-blur"
+        >
             <div class="flex items-center justify-between">
-                <UPagination v-model="q.page" :page-count="q.limit" :total="total" show-last show-first />
+                <UPagination
+                    v-model="q.page"
+                    :page-count="q.limit"
+                    :total="total"
+                    show-last
+                    show-first
+                />
                 <div class="flex items-center">
-                    <div class="text-sm mr-3">{{ $t('page.dataTable.total', { total: total }) }}</div>
-                    <USelect v-model="q.limit" :options="pageSizeOptions" option-attribute="label" />
+                    <div class="text-sm mr-3">
+                        {{ $t('page.dataTable.total', { total: total }) }}
+                    </div>
+                    <USelect
+                        v-model="q.limit"
+                        :options="pageSizeOptions"
+                        option-attribute="label"
+                    />
                 </div>
             </div>
         </div>
@@ -87,7 +134,7 @@ const columns = computed(() => {
     }
     // 没有声明columns，则用data里的第一条数据构建columns
     if (list.value.length > 0) {
-        return Object.keys(list.value[0]).map(key => {
+        return Object.keys(list.value[0]).map((key) => {
             return {
                 key: key,
                 label: key
@@ -108,7 +155,7 @@ const searchFields = computed(() => {
     if (Array.isArray(data.value?.data?.search)) {
         return data.value.data.search.reduce((total, item) => {
             total.push({
-                label: columns.value.find(col => col.key === item.key)?.label,
+                label: columns.value.find((col) => col.key === item.key)?.label,
                 ...item
             })
             return total
@@ -124,7 +171,7 @@ const advFields = computed(() => {
     if (Array.isArray(data.value?.data?.advSearch)) {
         return data.value.data?.advSearch.reduce((total, item) => {
             total.push({
-                label: columns.value.find(col => col.key === item.key)?.label,
+                label: columns.value.find((col) => col.key === item.key)?.label,
                 ...item
             })
             return total
@@ -155,5 +202,4 @@ const handlerAction = (act, rowData) => {
 }
 
 provide('pageRefresh', refresh)
-
 </script>

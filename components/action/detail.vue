@@ -2,7 +2,7 @@
  * @Author: NMTuan
  * @Email: NMTuan@qq.com
  * @Date: 2024-02-29 09:31:00
- * @LastEditTime: 2024-03-27 14:26:53
+ * @LastEditTime: 2024-04-20 16:08:55
  * @LastEditors: NMTuan
  * @Description: 
  * @FilePath: \nuxtAdmin\components\action\detail.vue
@@ -10,12 +10,16 @@
 
 <template>
     <ComCard :label="actionInfo.title || actionInfo.label" :close="actionBack">
-        <UTable :rows="data?.data.fields" :loading="pending" :columns="columns">
+        <UTable :rows="rows" :loading="pending" :columns="columns">
             <template v-for="col in columns" #[`${col.key}-data`]="{ row }">
                 <template v-if="col.key === 'value'">
                     <template v-if="row.component">
-                        <ComField :component="row.component" :row="row" :column="row"
-                            :value="data.data.data[row.key]" />
+                        <ComField
+                            :component="row.component"
+                            :row="row"
+                            :column="row"
+                            :value="data.data.data[row.key]"
+                        />
                     </template>
                     <template v-else>
                         {{ data.data.data[row.key] }}
@@ -25,7 +29,6 @@
                     {{ row[col.key] }}
                 </template>
             </template>
-
         </UTable>
         <template #footer>
             <div class="flex justify-end">
@@ -48,9 +51,31 @@ const { data, pending } = await actionFetch(route.query)
 
 const columns = computed(() => {
     return [
-        { key: 'label', label: data.value?.data.local?.label || t('action.detail.label') },
+        {
+            key: 'label',
+            label: data.value?.data.local?.label || t('action.detail.label')
+        },
         // { key: 'key', label: '字段' },
-        { key: 'value', label: data.value?.data.local?.value || t('action.detail.value') },
+        {
+            key: 'value',
+            label: data.value?.data.local?.value || t('action.detail.value')
+        }
     ]
+})
+
+const rows = computed(() => {
+    if (data.value?.data.fields) {
+        return data.value.data.fields
+    }
+    // 循环 data.data.data ，构建 rows
+    if (data.value?.data.data) {
+        return Object.keys(data.value.data.data).map((key) => {
+            return {
+                key,
+                label: key
+            }
+        })
+    }
+    return []
 })
 </script>
